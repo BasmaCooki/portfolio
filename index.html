@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+    <div class="image-container">
+        <img src="image/animate.gif" alt="Image de fond">
+        <div class="button-container">
+            <a href="#" class="game-button" id="startButton">Game Start</a>
+        </div>
+    </div>
+
+    <div class="transition-container" id="transitionContainer">
+        <img src="image/street-fighter.gif" alt="GIF de transition">
+    </div>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('transitionContainer').style.display = 'flex';
+            setTimeout(function() {
+                window.location.href = "portfolio/portfolio.html";
+            }, 2610); // Durée du GIF en millisecondes
+        });
+    </script>
+</body>
+</html>
