@@ -1,3 +1,26 @@
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const share = document.querySelector(".fixed_share");
+      const toggle = document.querySelector(".share-toggle");
+
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          share.classList.toggle("open");
+        });
+      }
+
+      // Gestion du lien actif dans le menu
+      const navLinks = document.querySelectorAll("nav a[target='contentFrame']");
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.forEach(l => l.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+    });
+
+
+
 jQuery(".share-toggle").click(function () {
             jQuery(".listing").fadeToggle(600);
         });
