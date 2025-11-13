@@ -1,73 +1,220 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio – BG TECH</title>
-
-  <!-- Police stylée futuriste -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio BTS SIO SISR</title>
+  <link rel="stylesheet" href="portfolio.css" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="portfolio.js"></script>
-  <link rel="stylesheet" href="portfolio.css">
+
 </head>
-
-
 <body>
+  <div class="app">
+    <!-- BARRE LATERALE -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="identity">
+          <div class="logo-wrapper">
+            <!-- ton logo -->
+            <img src="../image/bgtech.png" alt="Logo BG TECH" />
+          </div>
+          <div class="identity-text">
+            <h1>GUETTOUCHE Basma</h1>
+            <p>Étudiante en BTS SIO<br />Option SISR</p>
+          </div>
+        </div>
 
-  <!-- === HEADER === -->
-  <header>
-    <div class="logo">
-      <img src="image/bgtech.png" alt="Logo BG TECH">
-    </div>
-
-    <nav>
-      <a href="index.html" target="contentFrame" class="active">Accueil</a>
-      <a href="bts/bts.html" target="contentFrame">BTS SIO</a>
-      <a href="entreprise/entreprise.html" target="contentFrame">Entreprise</a>
-      <a href="five/five.html" target="contentFrame">Épreuve E5</a>
-      <a href="doc/docs.html" target="contentFrame">Documentation</a>
-      <a href="veille/veille.html" target="contentFrame">Veille techno</a>
-    </nav>
-
-    <div class="nav-icons">
-      <button id="searchButton" title="Recherche">🔍</button>
-    </div>
-
-    <!-- === Bouton de partage === -->
-    <div class="sticky_share_btn">
-      <div class="fixed_share">
-        <ul class="listing">
-          <li class="linkedin">
-            <a href="https://www.linkedin.com/in/basma-guettouche-a41531244/" target="_blank">
-              <i class="fa fa-linkedin-square"></i>
-            </a>
-          </li>
-          <li class="wordpress">
-            <a href="https://bestinfo84.wordpress.com/" target="_blank">
-              <i class="fa fa-globe"></i>
-            </a>
-          </li>
-          <li class="github">
-            <a href="https://github.com/BasmaCooki/site_vf" target="_blank">
-              <i class="fa fa-github"></i>
-            </a>
-          </li>
-        </ul>
-        <span class="share-toggle">
-          <i class="fa fa-share-alt"></i>
-        </span>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-target="accueil">
+            <span class="icon">🏠</span>
+            <span>Accueil</span>
+          </button>
+          <button class="nav-item" data-target="bts">
+            <span class="icon">🎓</span>
+            <span>BTS SIO</span>
+          </button>
+          <button class="nav-item" data-target="entreprise">
+            <span class="icon">🏢</span>
+            <span>Entreprise</span>
+          </button>
+          <button class="nav-item" data-target="e5">
+            <span class="icon">🧩</span>
+            <span>Épreuve E5</span>
+          </button>
+          <button class="nav-item" data-target="docs">
+            <span class="icon">📂</span>
+            <span>Documentation</span>
+          </button>
+          <button class="nav-item" data-target="veille">
+            <span class="icon">🛰️</span>
+            <span>Veille techno</span>
+          </button>
+          <button class="nav-item" data-target="contact">
+            <span class="icon">✉️</span>
+            <span>Contact</span>
+          </button>
+        </nav>
       </div>
-    </div>
-  </header>
 
-  <!-- === CONTENU PRINCIPAL AVEC IFRAME === -->
-  <main class="iframe-layout">
-    <!-- L’iframe principale où tout le contenu sera chargé -->
-    <iframe class="content" src="welcome.html" name="contentFrame" title="Contenu principal"></iframe>
-  </main>
+      <div class="sidebar-bottom">
+        <div class="sticky-share-btn">
+  <div class="share-container">
+    <ul class="share-list">
+      <li class="linkedin">
+        <a href="https://www.linkedin.com/in/basma-guettouche-a41531244/" target="_blank">
+          <i class="fa fa-linkedin-square"></i>
+        </a>
+      </li>
 
+      <li class="wordpress">
+        <a href="https://bestinfo84.wordpress.com/" target="_blank">
+          <i class="fa fa-globe"></i>
+        </a>
+      </li>
 
+      <li class="github">
+        <a href="https://github.com/BasmaCooki/site_vf" target="_blank">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+    </ul>
+
+    <span class="share-toggle">
+      <i class="fa fa-share-alt"></i>
+    </span>
+  </div>
+</div>
+
+        <p class="sidebar-footer">
+          © 2025 Portfolio BTS SIO SISR<br />
+          Tous droits réservés
+        </p>
+      </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+      <!-- Barre de recherche -->
+      <header class="content-header">
+        <div class="search-box">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Rechercher dans le portfolio…"
+            autocomplete="off"
+          />
+          <button id="searchButton">🔍</button>
+          <div id="searchResults" class="search-results" hidden></div>
+        </div>
+      </header>
+
+      <!-- Sections -->
+      <section id="accueil" class="section">
+        <div class="section-inner hero">
+          <h2>Bienvenue sur mon Portfolio SISR</h2>
+        </div>
+      </section>
+
+      <section id="bts" class="section">
+        <div class="section-inner">
+          <h2>BTS SIO – Option SISR</h2>
+          <p>
+            Le BTS Services Informatiques aux Organisations (SIO) forme aux métiers
+            de l'informatique. En option <strong>SISR</strong>, l’accent est mis sur
+            l’administration des systèmes et des réseaux.
+          </p>
+          <ul>
+            <li>Présentation du BTS SIO et des deux options (SISR / SLAM)</li>
+            <li>Compétences visées en SISR (sécurité, réseau, système…)</li>
+            <li>Correspondance compétences / réalisations du portfolio</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="entreprise" class="section">
+        <div class="section-inner">
+          <h2>Entreprise</h2>
+          <p>
+            Présentation de l’entreprise d’accueil, de son activité et du contexte
+            technique (réseau, serveurs, services, sécurité).
+          </p>
+          <ul>
+            <li>Fiche de présentation de l’entreprise</li>
+            <li>Schéma d’architecture réseau / système</li>
+            <li>Principales missions réalisées en stage ou alternance</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="e5" class="section">
+        <div class="section-inner">
+          <h2>Épreuve E5 – Situations professionnelles</h2>
+          <p>
+            Synthèse des situations professionnelles présentées à l’épreuve E5 :
+            installations, configurations, sécurisation, documentation…
+          </p>
+          <ul>
+            <li>Tableau de synthèse E5 (format PDF)</li>
+            <li>Fiches descriptives des situations professionnelles</li>
+            <li>Captures d’écran, tests et procédures associées</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="docs" class="section">
+        <div class="section-inner">
+          <h2>Documentation</h2>
+          <p>
+            Ensemble des documents techniques produits durant la formation et en
+            entreprise.
+          </p>
+          <ul>
+            <li>Procédures d’installation et de configuration</li>
+            <li>Schémas d’adressage, VLAN, routage…</li>
+            <li>Guides utilisateurs / fiches de dépannage</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="veille" class="section">
+        <div class="section-inner">
+          <h2>Veille technologique</h2>
+          <p>
+            Veille réalisée autour des thèmes réseaux, cybersécurité et systèmes.
+          </p>
+          <ul>
+            <li>Thématiques surveillées (ex : ransomware, cloud, IPv6…)</li>
+            <li>Sources (sites spécialisés, newsletters, chaînes YouTube…)</li>
+            <li>Quelques articles / actualités commentés</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section-inner">
+          <h2>Contact</h2>
+          <p>N’hésitez pas à me contacter pour toute question concernant mon parcours.</p>
+          <form class="contact-form" action="mailto:prenom.nom@mail.com" method="post" enctype="text/plain">
+            <div class="form-row">
+              <input type="text" name="nom" placeholder="" required />
+            </div>
+            <div class="form-row">
+              <input type="email" name="email" placeholder="Votre email" required />
+            </div>
+            <div class="form-row">
+              <textarea name="message" rows="4" placeholder="Votre message" required></textarea>
+            </div>
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Bouton retour en haut -->
+      <button class="scroll-top" id="scrollTopBtn" aria-label="Remonter en haut">↑</button>
+    </main>
+  </div>
+
+  <script src="portfolio.js"></script>
 </body>
 </html>

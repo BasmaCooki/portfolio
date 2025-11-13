@@ -1,147 +1,181 @@
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const share = document.querySelector(".fixed_share");
-      const toggle = document.querySelector(".share-toggle");
-
-      if (toggle) {
-        toggle.addEventListener("click", () => {
-          share.classList.toggle("open");
-        });
-      }
-
-      // Gestion du lien actif dans le menu
-      const navLinks = document.querySelectorAll("nav a[target='contentFrame']");
-      navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.forEach(l => l.classList.remove("active"));
-          link.classList.add("active");
-        });
-      });
-    });
-
-
-
-jQuery(".share-toggle").click(function () {
-            jQuery(".listing").fadeToggle(600);
-        });
-
-
-
-/* ======= Index des pages à chercher ======= */
-/* AJOUTE/EDITE ici si tu crées d'autres pages */
-const PAGES = [
-  { title: "Accueil",        path: "index.html",                 tags: ["home","accueil"] },
-  { title: "Portfolio",      path: "portfolio.html",             tags: ["portfolio","projets"] },
-  { title: "BTS SIO",        path: "bts/bts.html",               tags: ["bts","sio","sisr","ecole"] },
-  { title: "Entreprise",     path: "entreprise/entreprise.html", tags: ["entreprise","stage","alternance"] },
-  { title: "Épreuve E5",     path: "five/five.html",             tags: ["e5","projet","examen","épreuve"] },
-  { title: "Documentation",  path: "doc/docs.html",              tags: ["doc","documentation","tutoriels"] },
-  { title: "Veille techno",  path: "veille/veille.html",         tags: ["veille","technologie","news"] },
-];
-
-/* ======= Elements ======= */
-const openBtn   = document.getElementById('openSearch');
-const overlay   = document.getElementById('searchOverlay');
-const closeBtn  = document.getElementById('closeSearch');
-const input     = document.getElementById('searchInput');
-const resultsEl = document.getElementById('searchResults');
-
-/* ======= Open / Close ======= */
-function openSearch() {
-  overlay.classList.add('open');
-  overlay.setAttribute('aria-hidden','false');
-  input.value = '';
-  renderResults([]);
-  setTimeout(() => input.focus(), 10);
-}
-function closeSearch() {
-  overlay.classList.remove('open');
-  overlay.setAttribute('aria-hidden','true');
-  input.blur();
-}
-openBtn?.addEventListener('click', openSearch);
-closeBtn?.addEventListener('click', closeSearch);
-overlay?.addEventListener('click', (e) => { if (e.target === overlay) closeSearch(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
-
-/* ======= Recherche ======= */
-function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
-
-function scorePage(page, terms){
-  const hay = normalize(page.title + ' ' + page.path + ' ' + (page.tags||[]).join(' '));
-  let score = 0;
-  for(const t of terms){
-    const idx = hay.indexOf(t);
-    if (idx === -1) return -1;      // terme absent → exclu
-    score += Math.max(1, 100 - idx); // bonus si le match est tôt
-  }
-  return score;
+// Année dans la sidebar / footer si besoin (facultatif, ici non affichée ailleurs)
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
 }
 
-function highlight(text, terms){
-  let out = text;
-  terms.forEach(t=>{
-    if(!t) return;
-    const re = new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
-    out = out.replace(re,'<mark>$1</mark>');
+// Navigation par les boutons de la sidebar
+const navButtons = document.querySelectorAll(".nav-item");
+
+function goToSection(id) {
+  const section = document.getElementById(id);
+  if (!section) return;
+
+  window.scrollTo({
+    top: section.offsetTop - 20,
+    behavior: "smooth",
   });
-  return out;
-}
 
-function search(q){
-  const terms = normalize(q).split(/\s+/).filter(Boolean);
-  if (!terms.length) return [];
-  return PAGES
-    .map(p => ({...p, _score: scorePage(p, terms)}))
-    .filter(p => p._score >= 0)
-    .sort((a,b)=> b._score - a._score)
-    .slice(0, 20);
-}
-
-function renderResults(items){
-  resultsEl.innerHTML = '';
-  if (!items.length) return;
-  const q = input.value.trim();
-  const terms = normalize(q).split(/\s+/).filter(Boolean);
-  items.forEach((p,i)=>{
-    const li = document.createElement('li');
-    li.setAttribute('role','option');
-    li.dataset.index = i;
-    li.innerHTML = `
-      <span class="title">${highlight(p.title, terms)}</span>
-      <span class="path">${p.path}</span>
-    `;
-    li.addEventListener('click', ()=> { window.location.href = p.path; });
-    resultsEl.appendChild(li);
+  navButtons.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.target === id);
   });
 }
 
-/* saisie + résultats */
-let activeIndex = -1;
-input.addEventListener('input', ()=>{
-  activeIndex = -1;
-  renderResults(search(input.value));
+navButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const target = btn.dataset.target;
+    goToSection(target);
+  });
 });
 
-/* Navigation clavier dans la liste */
-document.addEventListener('keydown', (e)=>{
-  if (!overlay.classList.contains('open')) return;
-  const items = Array.from(resultsEl.querySelectorAll('li'));
-  if (e.key === 'ArrowDown'){
-    e.preventDefault();
-    if (!items.length) return;
-    activeIndex = (activeIndex + 1) % items.length;
-  } else if (e.key === 'ArrowUp'){
-    e.preventDefault();
-    if (!items.length) return;
-    activeIndex = (activeIndex - 1 + items.length) % items.length;
-  } else if (e.key === 'Enter'){
-    if (activeIndex >= 0 && items[activeIndex]){
-      items[activeIndex].click();
-    }
+// Bouton scroll-top
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.style.display = "flex";
   } else {
+    scrollTopBtn.style.display = "none";
+  }
+});
+
+scrollTopBtn.addEventListener("click", () => goToSection("accueil"));
+
+// ---------------- RECHERCHE ----------------
+
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const searchResults = document.getElementById("searchResults");
+
+// Index de recherche (tu peux adapter les mots-clés)
+const searchIndex = [
+  {
+    id: "accueil",
+    title: "Accueil",
+    path: "Section",
+    keywords: "bienvenue portfolio sisr tableau de synthese dossier u5 attestation",
+  },
+  {
+    id: "bts",
+    title: "BTS SIO – SISR",
+    path: "Section",
+    keywords: "bts sio option sisr referentiel competences formation",
+  },
+  {
+    id: "entreprise",
+    title: "Entreprise",
+    path: "Section",
+    keywords: "entreprise stage alternance missions contexte reseau",
+  },
+  {
+    id: "e5",
+    title: "Épreuve E5",
+    path: "Section",
+    keywords: "e5 situations professionnelles tableau de synthese projet",
+  },
+  {
+    id: "docs",
+    title: "Documentation",
+    path: "Section",
+    keywords: "documentation procedure configuration vlan dhcp dns",
+  },
+  {
+    id: "veille",
+    title: "Veille technologique",
+    path: "Section",
+    keywords: "veille techno cybersécurité reseaux articles actualite",
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    path: "Section",
+    keywords: "contact email telephone",
+  },
+];
+
+function renderResults(results) {
+  searchResults.innerHTML = "";
+
+  if (!results.length) {
+    searchResults.classList.add("empty");
+    searchResults.hidden = false;
     return;
   }
-  items.forEach((el,i)=> el.classList.toggle('active', i===activeIndex));
+
+  searchResults.classList.remove("empty");
+
+  results.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "search-item";
+
+    const title = document.createElement("div");
+    title.className = "search-item-title";
+    title.textContent = item.title;
+
+    const path = document.createElement("div");
+    path.className = "search-item-path";
+    path.textContent = item.path;
+
+    div.appendChild(title);
+    div.appendChild(path);
+
+    div.addEventListener("click", () => {
+      goToSection(item.id);
+      searchResults.hidden = true;
+    });
+
+    searchResults.appendChild(div);
+  });
+
+  searchResults.hidden = false;
+}
+
+function doSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    searchResults.hidden = true;
+    return;
+  }
+
+  const results = searchIndex.filter((item) => {
+    const text = (item.title + " " + item.path + " " + item.keywords).toLowerCase();
+    return text.includes(q);
+  });
+
+  renderResults(results);
+}
+
+searchButton.addEventListener("click", doSearch);
+
+searchInput.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    doSearch();
+  } else if (e.key === "Escape") {
+    searchResults.hidden = true;
+    searchInput.blur();
+  } else {
+    doSearch();
+  }
+});
+
+// Fermer les résultats si click en dehors
+document.addEventListener("click", (e) => {
+  if (!searchResults.hidden) {
+    const inside =
+      searchResults.contains(e.target) ||
+      searchInput.contains(e.target) ||
+      searchButton.contains(e.target);
+    if (!inside) {
+      searchResults.hidden = true;
+    }
+  }
+});
+
+// Bouton Share
+const shareToggle = document.querySelector(".share-toggle");
+const shareContainer = document.querySelector(".share-container");
+
+shareToggle.addEventListener("click", () => {
+  shareContainer.classList.toggle("active");
 });
 

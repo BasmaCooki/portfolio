@@ -1,8 +1,4 @@
-/* =========================
-   BG TECH — portfolio.css (v7)
-   ========================= */
-
-/* ---- RESET ---- */
+/* RESET */
 *,
 *::before,
 *::after {
@@ -11,262 +7,442 @@
   padding: 0;
 }
 
-/* ---- VARIABLES ---- */
-:root {
-  --bg-top: #2a5e8f;
-  --bg-bottom: #3a79b3;
-  --text: #e9f2fa;
-  --muted: #cbd6e2;
-  --accent: #00eaff;
-  --accent2: #ff3ae6;
-  --line: rgba(255, 255, 255, 0.1);
-}
-
-/* ---- BASE ---- */
-html, body {
-  width: 100%;
+html,
+body {
   height: 100%;
-  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-  color: var(--text);
-  font-family: 'Orbitron', system-ui, sans-serif;
-  overflow-x: hidden;
 }
 
-/* Lueur subtile de fond */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(800px 400px at 50% 0%, rgba(0, 234, 255, 0.15), transparent 70%),
-    radial-gradient(800px 400px at 50% 100%, rgba(255, 58, 230, 0.10), transparent 80%);
-  mix-blend-mode: screen;
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at center, #071920 0, #020409 70%);
+  color: #e5f9f6;
 }
 
-/* =========================
-   HEADER
-   ========================= */
-header {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 1000;
+/* LAYOUT GLOBAL */
+.app {
   display: flex;
-  align-items: center;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 310px; /* PLUS LARGE */
+  background: linear-gradient(180deg, #101418 0, #050608 100%);
+  border-right: 1px solid #1b2229;
+  padding: 2rem 1.5rem; /* PLUS D’ESPACE */
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 16px 48px;
-  min-height: 130px;
-  background: linear-gradient(90deg, var(--bg-top), var(--bg-bottom));
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
 }
 
-/* Ligne néon */
-header::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
-  opacity: .7;
+/* Identité */
+.identity {
+  display: flex;
+  flex-direction: column; /* CENTRÉ */
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Logo */
-.logo { display: flex; align-items: center; gap: 12px; }
-.logo img {
-  height: 170px; width: auto; display: block;
-  filter: drop-shadow(0 0 10px rgba(0, 234, 255, 0.6));
-  transition: transform .3s ease, filter .3s ease;
-}
-.logo img:hover { transform: scale(1.07); filter: drop-shadow(0 0 18px rgba(0,234,255,.9)); }
-
-/* Navigation */
-nav { display: flex; align-items: center; gap: 44px; }
-nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: .6px;
-  transition: color .2s ease, text-shadow .2s ease;
-}
-nav a:hover, nav a.active { color: var(--accent2); text-shadow: 0 0 8px rgba(255,58,230,.4); }
-
-/* Zone d'icônes à droite (recherche + partage) */
-.nav-icons {
+.logo-wrapper {
+  width: 70px; /* plus grand */
+  height: 70px;
+  border-radius: 50%;
+  background: #0b1515;
   display: flex;
   align-items: center;
-  gap: 16px;                /* rapproche le bouton partage du menu */
-  position: relative;
+  justify-content: center;
+  overflow: hidden;
 }
-.nav-icons button {
-  background: none; border: none; color: var(--text);
-  font-size: 1.9rem; cursor: pointer;
-  transition: transform .2s ease, color .2s ease;
+
+.logo-wrapper img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
 }
-.nav-icons button:hover { transform: scale(1.15); color: var(--accent2); }
 
-/* =========================
-   BOUTON PARTAGE (dans la barre)
-   ========================= */
-.sticky_share_btn { position: relative; }   /* dans le flux, pas collé au bord */
-.fixed_share { position: relative; }
+.identity-text h1 {
+  font-size: 1.4rem; /* plus lisible */
+  color: #6fffe9;
+  font-weight: 700;
+}
 
-/* bouton rond + items */
-.share-toggle,
-.fixed_share ul.listing > li {
-  font-size: 18px;
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
+.identity-text p {
+  font-size: 0.9rem;
+  color: #cbd5f5;
+}
+
+/* NAVIGATION BOUTONS */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem; /* ESPACÉ */
+  margin-top: 1.5rem;
+}
+
+.nav-item {
+  width: 100%;
+  border: none;
+  padding: 0.95rem 1.1rem; /* PLUS GROS */
+  border-radius: 25px; /* arrondi style tablette */
+  background: #151b22;
+  color: #e5f9f6;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 1rem; /* texte plus lisible */
   cursor: pointer;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  color: #fff; background: transparent;
-  transition: transform .35s ease;
+  text-align: left;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: 0.15s ease;
 }
-.share-toggle:hover,
-.fixed_share ul.listing > li:hover { transform: scale(1.1) rotate(360deg); }
 
-/* menu déroulant sous l’icône */
-.fixed_share ul.listing {
-  list-style: none;
-  margin: 0; padding: 0;
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  display: none;
+.nav-item .icon {
+  font-size: 1.25rem; /* icônes plus visibles */
 }
-.fixed_share ul.listing > li { margin-bottom: 10px; }
-.fixed_share ul.listing > li:last-child { margin-bottom: 0; }
-.fixed_share ul.listing > li > a { display: block; color: inherit; }
 
-/* ouverture */
-.fixed_share.open ul.listing { display: block; }
+.nav-item:hover {
+  background: #1f2833;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
 
-/* =========================
-   CONTENU
-   ========================= */
-main {
-  padding: 190px 20px 40px;      /* espace sous le header */
-  max-width: 1100px;
-  margin: 0 auto;
+.nav-item.active {
+  background: #27f2c6;
+  color: #041015;
+  font-weight: 600;
+}
+
+/* Bas de sidebar */
+.sidebar-bottom {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
   text-align: center;
 }
-h1 {
-  margin: 10px 0 12px;
-  font-size: clamp(3rem, 5vw, 4.2rem);
-  color: var(--accent);
-  line-height: 1.15;
-  text-shadow: 0 2px 10px rgba(0, 234, 255, 0.25);
-}
-p.lead, main > p {
-  color: var(--muted);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 1100px){
-  nav { gap: 32px; }
-}
-@media (max-width: 900px) {
-  .logo img { height: 130px; }
-  nav { gap: 24px; }
-}
-@media (max-width: 768px) {
-  nav { display: none; }
-  header { padding: 14px 24px; min-height: 110px; }
-  .logo img { height: 100px; }
-  main { padding-top: 150px; }
-}
-
-/* =========================
-   ACCESSIBILITÉ
-   ========================= */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-@media (prefers-reduced-motion: reduce){
-  * { animation: none !important; transition: none !important; }
-}
-
-
-/* ======= RECHERCHE (overlay) ======= */
-.search-overlay{
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.55);
-  display: none;                    /* masqué par défaut */
-  align-items: center; justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(2px);
-}
-.search-overlay.open{ display: flex; }
-
-.search-panel{
-  width: min(820px, 92vw);
-  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.35);
-  padding: 16px 16px 10px;
-  color: var(--text);
-}
-
-.search-head{
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom: 8px;
-}
-.search-head h2{ margin:0; font-size:1.1rem; letter-spacing:.5px; opacity:.9; }
-.search-close{
-  background: none; border: none; color: var(--text);
-  font-size: 1.8rem; line-height: 1; cursor: pointer;
-  padding: 4px 8px; border-radius: 8px;
-}
-.search-close:hover{ color: var(--accent2); }
-
-.search-bar{
-  display:flex; align-items:center; gap:8px;
-  background: rgba(0,0,0,.15);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 10px 12px;
-}
-#searchInput{
-  background: transparent; border: none; outline: none;
-  color: var(--text); width:100%;
-  font-size: 1.05rem;
-}
-
-.search-results{
-  list-style: none; margin: 10px 0 6px; padding: 0;
-  max-height: 50vh; overflow: auto;
+.socials a {
+  width: 36px;
+  height: 36px;
   border-radius: 10px;
+  background: #151b22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #e5f9f6;
+  font-size: 1.1rem;
+  transition: 0.15s ease;
 }
-.search-results li{
-  display:flex; align-items:center; justify-content:space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: rgba(255,255,255,.03);
-  margin-bottom: 8px;
+
+.socials a:hover {
+  background: #27f2c6;
+  color: #041015;
+  transform: translateY(-1px);
+}
+
+/* ============================
+   CONTENU PRINCIPAL
+   ============================ */
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Recherche */
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(7, 16, 22, 0.9);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid #1b2933;
+}
+
+#searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #e5f9f6;
+  font-size: 0.9rem;
+  min-width: 210px;
+}
+
+#searchButton {
+  border: none;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  background: rgba(39, 242, 198, 0.25);
+  color: #e5f9f6;
   cursor: pointer;
-  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  font-size: 1rem;
 }
-.search-results li:hover,
-.search-results li.active{
-  background: rgba(0,234,255,.10);
-  border-color: rgba(0,234,255,.35);
+
+#searchButton:hover {
+  background: rgba(39, 242, 198, 0.4);
 }
-.search-results .title{ font-weight:800; }
-.search-results .path{ opacity:.8; font-size:.9rem; }
-.search-results mark{
-  background: transparent; color: var(--accent2);
-  text-shadow: 0 0 6px rgba(255,58,230,.35);
+
+/* Résultats */
+.search-results {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  left: 0;
+  background: #02070b;
+  border-radius: 1rem;
+  border: 1px solid #1b2933;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 50;
 }
-.search-hint{
-  margin: 4px 2px 0; opacity:.8; font-size:.9rem; text-align:right;
+
+/* ============================
+   SECTIONS
+   ============================ */
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-inner {
+  background: radial-gradient(circle at top left, #10262e 0, #060e15 55%);
+  border-radius: 1.4rem;
+  padding: 2.2rem;
+  box-shadow: 0 18px 45px rgba(2, 6, 12, 0.85);
+  border: 1px solid rgba(39, 242, 198, 0.12);
+}
+
+/* Titres */
+.section-inner h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+  color: #6fffe9;
+}
+
+/* Paragraphes */
+.section-inner p {
+  font-size: 1rem;
+  color: #d5f3f0;
+  margin-bottom: 1rem;
+}
+
+/* Listes */
+.section-inner ul {
+  margin-left: 1.1rem;
+  font-size: 0.95rem;
+  color: #c7e3df;
+}
+
+.section-inner ul li {
+  margin-bottom: 0.4rem;
+}
+
+/* Section d'accueil spéciale */
+.hero {
+  text-align: center;
+  background: radial-gradient(circle at center, #173b3b 0, #050b10 60%);
+}
+
+.hero h2 {
+  font-size: 2.4rem;
+}
+
+.subtitle {
+  margin: 0.7rem 0 1.4rem;
+  font-size: 1.2rem;
+}
+
+.hero-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.3rem;
+}
+
+.chip {
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(39, 242, 198, 0.15);
+  border: 1px solid rgba(39, 242, 198, 0.5);
+  text-decoration: none;
+  color: #e5f9f6;
+  font-size: 0.9rem;
+}
+
+.chip:hover {
+  background: rgba(39, 242, 198, 0.25);
+}
+
+.quick-links {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* FORMULAIRE CONTACT */
+.contact-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border: 1px solid #1b2833;
+  background: rgba(2, 10, 15, 0.9);
+  color: #e5f9f6;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: #27f2c6;
+  color: #041015;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* BOUTON RETOUR HAUT */
+.scroll-top {
+  position: fixed;
+  right: 1.8rem;
+  bottom: 1.6rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #27f2c6;
+  color: #041015;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(39, 242, 198, 0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    padding: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .main-content {
+    padding: 1.2rem;
+  }
+}
+
+
+/* Bouton flottant Share */
+.sticky-share-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem; /* tu peux mettre right: 2rem si tu préfères */
+  z-index: 999;
+}
+
+.share-container {
+  position: relative;
+}
+
+.share-toggle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #27f2c6;
+  color: #041015;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(39, 242, 198, 0.35);
+}
+
+.share-toggle:hover {
+  transform: scale(1.08);
+}
+
+/* Liste sociale cachée au début */
+.share-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 65px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+/* Icônes sociales */
+.share-list li a {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #151b22;
+  border-radius: 12px;
+  color: #e5f9f6;
+  font-size: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  transition: 0.2s ease;
+}
+
+.share-list li a:hover {
+  background: #27f2c6;
+  color: #041015;
+}
+
+/* Quand on active le menu */
+.share-container.active .share-list {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
