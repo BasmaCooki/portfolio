@@ -1,181 +1,245 @@
-// Année dans la sidebar / footer si besoin (facultatif, ici non affichée ailleurs)
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
-
-// Navigation par les boutons de la sidebar
-const navButtons = document.querySelectorAll(".nav-item");
-
-function goToSection(id) {
-  const section = document.getElementById(id);
-  if (!section) return;
-
-  window.scrollTo({
-    top: section.offsetTop - 20,
-    behavior: "smooth",
-  });
+// =============================
+// NAVIGATION + IFRAME
+// =============================
+document.addEventListener("DOMContentLoaded", () => {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const iframe = document.querySelector('iframe[name="contentFrame"]');
 
   navButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.target === id);
-  });
-}
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      if (iframe && target) {
+        iframe.src = target;
+      }
 
-navButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const target = btn.dataset.target;
-    goToSection(target);
-  });
-});
-
-// Bouton scroll-top
-const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollTopBtn.style.display = "flex";
-  } else {
-    scrollTopBtn.style.display = "none";
-  }
-});
-
-scrollTopBtn.addEventListener("click", () => goToSection("accueil"));
-
-// ---------------- RECHERCHE ----------------
-
-const searchInput = document.getElementById("searchInput");
-const searchButton = document.getElementById("searchButton");
-const searchResults = document.getElementById("searchResults");
-
-// Index de recherche (tu peux adapter les mots-clés)
-const searchIndex = [
-  {
-    id: "accueil",
-    title: "Accueil",
-    path: "Section",
-    keywords: "bienvenue portfolio sisr tableau de synthese dossier u5 attestation",
-  },
-  {
-    id: "bts",
-    title: "BTS SIO – SISR",
-    path: "Section",
-    keywords: "bts sio option sisr referentiel competences formation",
-  },
-  {
-    id: "entreprise",
-    title: "Entreprise",
-    path: "Section",
-    keywords: "entreprise stage alternance missions contexte reseau",
-  },
-  {
-    id: "e5",
-    title: "Épreuve E5",
-    path: "Section",
-    keywords: "e5 situations professionnelles tableau de synthese projet",
-  },
-  {
-    id: "docs",
-    title: "Documentation",
-    path: "Section",
-    keywords: "documentation procedure configuration vlan dhcp dns",
-  },
-  {
-    id: "veille",
-    title: "Veille technologique",
-    path: "Section",
-    keywords: "veille techno cybersécurité reseaux articles actualite",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-    path: "Section",
-    keywords: "contact email telephone",
-  },
-];
-
-function renderResults(results) {
-  searchResults.innerHTML = "";
-
-  if (!results.length) {
-    searchResults.classList.add("empty");
-    searchResults.hidden = false;
-    return;
-  }
-
-  searchResults.classList.remove("empty");
-
-  results.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "search-item";
-
-    const title = document.createElement("div");
-    title.className = "search-item-title";
-    title.textContent = item.title;
-
-    const path = document.createElement("div");
-    path.className = "search-item-path";
-    path.textContent = item.path;
-
-    div.appendChild(title);
-    div.appendChild(path);
-
-    div.addEventListener("click", () => {
-      goToSection(item.id);
-      searchResults.hidden = true;
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
     });
-
-    searchResults.appendChild(div);
   });
 
-  searchResults.hidden = false;
-}
+  // =============================
+  // THEME SWITCH (dark / light)
+  // =============================
 
-function doSearch() {
-  const q = searchInput.value.trim().toLowerCase();
-  if (!q) {
-    searchResults.hidden = true;
-    return;
-  }
+  const themeToggle = document.getElementById("themeToggle");
+  const body = document.body;
 
-  const results = searchIndex.filter((item) => {
-    const text = (item.title + " " + item.path + " " + item.keywords).toLowerCase();
-    return text.includes(q);
-  });
+  // Récupérer le thème déjà choisi
+  const savedTheme = localStorage.getItem("bgtech-theme");
 
-  renderResults(results);
-}
-
-searchButton.addEventListener("click", doSearch);
-
-searchInput.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    doSearch();
-  } else if (e.key === "Escape") {
-    searchResults.hidden = true;
-    searchInput.blur();
+  if (savedTheme === "light") {
+    body.classList.remove("theme-dark");
+    body.classList.add("theme-light");
+    if (themeToggle) themeToggle.checked = false;
   } else {
-    doSearch();
+    body.classList.remove("theme-light");
+    body.classList.add("theme-dark");
+    if (themeToggle) themeToggle.checked = true;
   }
-});
 
-// Fermer les résultats si click en dehors
-document.addEventListener("click", (e) => {
-  if (!searchResults.hidden) {
-    const inside =
-      searchResults.contains(e.target) ||
-      searchInput.contains(e.target) ||
-      searchButton.contains(e.target);
-    if (!inside) {
-      searchResults.hidden = true;
+  if (themeToggle) {
+    themeToggle.addEventListener("change", () => {
+      if (themeToggle.checked) {
+        body.classList.remove("theme-light");
+        body.classList.add("theme-dark");
+        localStorage.setItem("bgtech-theme", "dark");
+      } else {
+        body.classList.remove("theme-dark");
+        body.classList.add("theme-light");
+        localStorage.setItem("bgtech-theme", "light");
+      }
+    });
+  }
+
+  // =============================
+  // RECHERCHE VIA OVERLAY
+  // =============================
+
+  const openBtn = document.getElementById("openSearch");
+  const overlay = document.getElementById("searchOverlay");
+  const closeBtn = document.getElementById("closeSearch");
+  const input = document.getElementById("searchInput");
+  const resultsEl = document.getElementById("searchResults");
+
+  const PAGES = [
+    {
+      title: "Accueil",
+      path: "../accueil/accueil.html",
+      tags: ["home", "accueil"],
+    },
+    {
+      title: "Portfolio",
+      path: "portfolio.html",
+      tags: ["portfolio", "bg tech"],
+    },
+    {
+      title: "BTS SIO",
+      path: "../bts/bts.html",
+      tags: ["bts", "sio", "sisr", "école"],
+    },
+    {
+      title: "Entreprise",
+      path: "../entreprise/entreprise.html",
+      tags: ["entreprise", "stage", "alternance"],
+    },
+    {
+      title: "Épreuve E5",
+      path: "../five/five.html",
+      tags: ["e5", "épreuve", "projet"],
+    },
+    {
+      title: "Documentation",
+      path: "../doc/docs.html",
+      tags: ["documentation", "docs", "tutoriels"],
+    },
+    {
+      title: "Veille technologique",
+      path: "../veille/veille.html",
+      tags: ["veille", "techno", "technologie"],
+    },
+    {
+      title: "Contact",
+      path: "../contact/contact.html",
+      tags: ["contact", "email"],
+    },
+  ];
+
+  function openSearch() {
+    if (!overlay) return;
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    if (input) {
+      input.value = "";
+      renderResults([]);
+      setTimeout(() => input.focus(), 20);
     }
   }
+
+  function closeSearch() {
+    if (!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  openBtn && openBtn.addEventListener("click", openSearch);
+  closeBtn && closeBtn.addEventListener("click", closeSearch);
+
+  overlay &&
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeSearch();
+    });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSearch();
+  });
+
+  function normalize(str) {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  function scorePage(page, terms) {
+    const hay = normalize(
+      page.title + " " + page.path + " " + (page.tags || []).join(" ")
+    );
+    let score = 0;
+    for (const t of terms) {
+      const idx = hay.indexOf(t);
+      if (idx === -1) return -1;
+      score += Math.max(1, 100 - idx);
+    }
+    return score;
+  }
+
+  function highlight(text, terms) {
+    let out = text;
+    terms.forEach((t) => {
+      if (!t) return;
+      const re = new RegExp("(" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+      out = out.replace(re, "<mark>$1</mark>");
+    });
+    return out;
+  }
+
+  function search(q) {
+    const terms = normalize(q)
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!terms.length) return [];
+    return PAGES.map((p) => ({ ...p, _score: scorePage(p, terms) }))
+      .filter((p) => p._score >= 0)
+      .sort((a, b) => b._score - a._score)
+      .slice(0, 20);
+  }
+
+  function renderResults(items) {
+    if (!resultsEl) return;
+    resultsEl.innerHTML = "";
+    if (!items.length) return;
+
+    const q = input ? input.value.trim() : "";
+    const terms = normalize(q)
+      .split(/\s+/)
+      .filter(Boolean);
+
+    items.forEach((p, i) => {
+      const li = document.createElement("li");
+      li.dataset.index = String(i);
+      li.innerHTML = `
+        <span class="title">${highlight(p.title, terms)}</span>
+        <span class="path">${p.path}</span>
+      `;
+      li.addEventListener("click", () => {
+        if (iframe) iframe.src = p.path;
+
+        // mettre le bouton actif si le chemin correspond
+        navButtons.forEach((btn) => {
+          const target = btn.getAttribute("data-target");
+          if (target === p.path) {
+            navButtons.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+          }
+        });
+
+        closeSearch();
+      });
+      resultsEl.appendChild(li);
+    });
+  }
+
+  let activeIndex = -1;
+
+  input &&
+    input.addEventListener("input", () => {
+      activeIndex = -1;
+      renderResults(search(input.value));
+    });
+
+  document.addEventListener("keydown", (e) => {
+    if (!overlay || !overlay.classList.contains("open")) return;
+    if (!resultsEl) return;
+
+    const items = Array.from(resultsEl.querySelectorAll("li"));
+    if (!items.length) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      activeIndex = (activeIndex + 1) % items.length;
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      activeIndex = (activeIndex - 1 + items.length) % items.length;
+    } else if (e.key === "Enter") {
+      if (activeIndex >= 0 && items[activeIndex]) {
+        items[activeIndex].click();
+      }
+    } else {
+      return;
+    }
+
+    items.forEach((el, i) => {
+      el.classList.toggle("active", i === activeIndex);
+    });
+  });
 });
-
-// Bouton Share
-const shareToggle = document.querySelector(".share-toggle");
-const shareContainer = document.querySelector(".share-container");
-
-shareToggle.addEventListener("click", () => {
-  shareContainer.classList.toggle("active");
-});
-
