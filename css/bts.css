@@ -1,0 +1,269 @@
+/* =============================
+   SECTION BTS SIO – STYLES SPÉCIFIQUES
+   ============================= */
+
+/* Section d’introduction "BTS SIO" */
+#bts .section-header {
+  text-align: left;
+}
+
+#bts .section-body p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Mise en avant légère de la première section */
+body.theme-dark #bts .section-inner {
+  position: relative;
+}
+
+body.theme-dark #bts .section-inner::after {
+  content: "Bac +2 • Informatique • Professionnalisation";
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.6rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.7;
+  color: #e0f2fe;
+}
+
+body.theme-light #bts .section-inner::after {
+  content: "Bac +2 • Informatique • Professionnalisation";
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.6rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.75;
+  color: #0f172a;
+}
+
+/* =============================
+   PRÉSENTATION DU BTS
+   ============================= */
+
+#bts-presentation .section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+#bts-presentation .section-body p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Petite barre verticale à gauche du texte */
+#bts-presentation .section-body {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+#bts-presentation .section-body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #22d3ee, #6366f1);
+  opacity: 0.6;
+}
+
+/* =============================
+   OPTIONS SISR & SLAM
+   ============================= */
+
+/* On transforme les paragraphes en une sorte de grille */
+#bts-options .section-body {
+  display: grid;
+  gap: 1.1rem;
+}
+
+/* Premier paragraphe = intro simple */
+#bts-options .section-body p:first-of-type {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* P2 = SISR, P3 = SLAM transformés en "cartes" */
+#bts-options .section-body p:nth-of-type(2),
+#bts-options .section-body p:nth-of-type(3) {
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Badge emoji */
+#bts-options .section-body p:nth-of-type(2) strong,
+#bts-options .section-body p:nth-of-type(3) strong {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  font-size: 0.88rem;
+}
+
+/* Variantes dark / light */
+body.theme-dark #bts-options .section-body p:nth-of-type(2),
+body.theme-dark #bts-options .section-body p:nth-of-type(3) {
+  background: radial-gradient(circle at top left, #020617, #020617);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.85);
+}
+
+body.theme-light #bts-options .section-body p:nth-of-type(2),
+body.theme-light #bts-options .section-body p:nth-of-type(3) {
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+}
+
+/* Effet de lueur décorative */
+#bts-options .section-body p:nth-of-type(2)::after,
+#bts-options .section-body p:nth-of-type(3)::after {
+  content: "";
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  top: -20%;
+  left: -20%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Hover sur desktop */
+@media (hover: hover) {
+  #bts-options .section-body p:nth-of-type(2):hover,
+  #bts-options .section-body p:nth-of-type(3):hover {
+    transform: translateY(-4px);
+  }
+
+  body.theme-dark #bts-options .section-body p:nth-of-type(2):hover,
+  body.theme-dark #bts-options .section-body p:nth-of-type(3):hover {
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.95);
+    border-color: rgba(56, 189, 248, 0.6);
+  }
+
+  body.theme-light #bts-options .section-body p:nth-of-type(2):hover,
+  body.theme-light #bts-options .section-body p:nth-of-type(3):hover {
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.2);
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+
+  #bts-options .section-body p:nth-of-type(2):hover::after,
+  #bts-options .section-body p:nth-of-type(3):hover::after {
+    opacity: 1;
+  }
+}
+
+/* =============================
+   BLOCS DE COMPÉTENCES
+   ============================= */
+
+#bts-blocs .section-body {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Intro */
+#bts-blocs .section-body p:first-of-type {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Chaque bloc = carte */
+#bts-blocs .section-body p:nth-of-type(n + 2) {
+  padding: 0.95rem 1.1rem;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  position: relative;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+/* Titre du bloc */
+#bts-blocs .section-body p:nth-of-type(n + 2) strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Variantes dark / light */
+body.theme-dark #bts-blocs .section-body p:nth-of-type(n + 2) {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(51, 65, 85, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.9);
+}
+
+body.theme-light #bts-blocs .section-body p:nth-of-type(n + 2) {
+  background: #f9fafb;
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+}
+
+/* Accent de couleur à gauche de chaque bloc */
+#bts-blocs .section-body p:nth-of-type(n + 2)::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 0.7rem;
+  width: 4px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #22d3ee, #6366f1);
+}
+
+/* Décalage du texte pour laisser la place à la barre */
+#bts-blocs .section-body p:nth-of-type(n + 2) {
+  padding-left: 1.7rem;
+}
+
+/* Hover */
+@media (hover: hover) {
+  #bts-blocs .section-body p:nth-of-type(n + 2):hover {
+    transform: translateY(-3px);
+  }
+
+  body.theme-dark #bts-blocs .section-body p:nth-of-type(n + 2):hover {
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 1);
+  }
+
+  body.theme-light #bts-blocs .section-body p:nth-of-type(n + 2):hover {
+    border-color: rgba(59, 130, 246, 0.7);
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.22);
+  }
+}
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+
+@media (max-width: 768px) {
+  #bts .section-inner::after,
+  #bts-presentation .section-body::before {
+    display: none;
+  }
+
+  #bts-options .section-body,
+  #bts-blocs .section-body {
+    gap: 0.8rem;
+  }
+
+  #bts-options .section-body p:nth-of-type(2),
+  #bts-options .section-body p:nth-of-type(3),
+  #bts-blocs .section-body p:nth-of-type(n + 2) {
+    font-size: 0.88rem;
+  }
+}
