@@ -16,11 +16,18 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/portfolio.css" />
+  <link rel="stylesheet" href="css/accueil.css" />
+  <link rel="stylesheet" href="css/formation.css" />
   <link rel="stylesheet" href="css/bts.css" />
+  <link rel="stylesheet" href="css/doc.css" />
+  <link rel="stylesheet" href="css/entreprise.css" />
+  <link rel="stylesheet" href="css/five.css" />
+  <link rel="stylesheet" href="css/veille.css" />
 
   <!-- JS global -->
   <script src="js/portfolio.js" defer></script>
-  <script src="js/bts.js" defer></script>
+  <script src="js/accueil.js" defer></script>
+  <script src="js/formation.js" defer></script>
 </head>
 
 <body class="theme-dark">
@@ -39,6 +46,7 @@
       </div>
 
       <nav class="sidebar__nav">
+
         <!-- PARENT : ACCUEIL -->
         <button
           class="nav-btn nav-btn--parent nav-btn--active"
@@ -60,6 +68,7 @@
             <span><i class="fa fa-road"></i> Parcours</span>
           </button>
         </div>
+
 
         <!-- PARENT : BTS -->
         <button
@@ -87,17 +96,24 @@
           </button>
         </div>
 
-        <!-- AUTRES LIENS SIMPLES -->
-        <button class="nav-btn" data-target="#entreprise">
-          <span class="nav-btn__icon"><i class="fa fa-building"></i></span>
-          <span class="nav-btn__label">Entreprise</span>
-        </button>
 
-        <button class="nav-btn" data-target="#e5">
-          <span class="nav-btn__icon"><i class="fa fa-list-alt"></i></span>
-          <span class="nav-btn__label">Épreuve E5</span>
-        </button>
+        <!-- Bouton principal Entreprise -->
+<button class="nav-btn" data-target="#entreprise">
+  <span class="nav-btn__icon"><i class="fa fa-building"></i></span>
+  <span class="nav-btn__label">Entreprise</span>
+</button>
 
+<!-- Sous-sections -->
+<button class="nav-sub-btn" data-target="#entreprise-alternance">
+  <span class="nav-btn__label">– Alternance</span>
+</button>
+
+<button class="nav-sub-btn" data-target="#entreprise-projets">
+  <span class="nav-btn__label">– Projets Club Med</span>
+</button>
+
+
+<!-- AUTRES LIENS SIMPLES -->
         <button class="nav-btn" data-target="#docs">
           <span class="nav-btn__icon"><i class="fa fa-book"></i></span>
           <span class="nav-btn__label">Documentation</span>
@@ -106,6 +122,11 @@
         <button class="nav-btn" data-target="#veille">
           <span class="nav-btn__icon"><i class="fa fa-rss"></i></span>
           <span class="nav-btn__label">Veille techno</span>
+        </button>
+
+        <button class="nav-btn" data-target="#certifications">
+          <span class="nav-btn__icon"><i class="fa fa-rss"></i></span>
+          <span class="nav-btn__label">Certifications</span>
         </button>
 
         <button class="nav-btn" data-target="#contact">
@@ -298,186 +319,739 @@
       </section>
 
       <!-- ========= PROFIL ========= -->
-      <section id="profil" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Mon profil</h2>
-            <p class="section-subtitle">
-              Qui je suis, ce que j’aime faire, et ce que je prépare pour la suite.
-            </p>
-          </div>
+      <!-- ========= PROFIL ========= -->
+<section id="profil" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Mon profil</h2>
+      <p class="section-subtitle">
+        Qui je suis, ce que j’aime faire, et ce que je prépare pour la suite.
+      </p>
+    </div>
 
-          <div class="section-body">
-            <!-- contenu à toi, je mets un texte de base -->
-            <p>
-              Je suis une étudiante en <strong>BTS SIO option SISR</strong>, attirée par
-              la <strong>sécurité des systèmes</strong> et l’<strong>administration réseau</strong>.
-              J’aime comprendre comment fonctionne une infrastructure, la sécuriser et la documenter.
-            </p>
-          </div>
+    <div class="section-body">
+      <div class="profile-layout">
+
+        <!-- Colonne principale : présentation -->
+        <div class="profile-main">
+          <h3>À propos de moi</h3>
+          <p>
+            Je m'appelle <strong>Basma Guettouche</strong> et je suis actuellement étudiante en
+            <strong>BTS SIO option SISR</strong> à INGETIS, Paris. Après un baccalauréat
+            <strong>STL – Biotechnologie</strong>, j’ai choisi de me réorienter vers
+            l’informatique, avec un intérêt particulier pour
+            <strong>l’administration systèmes &amp; réseaux</strong> et la
+            <strong>cybersécurité</strong>.
+          </p>
+          <p>
+            J’aime comprendre comment fonctionne une infrastructure, diagnostiquer des incidents,
+            sécuriser les systèmes et accompagner les utilisateurs au quotidien. Mon objectif est
+            de progresser vers des métiers liés au <strong>support informatique avancé</strong>,
+            à l’<strong>administration réseaux</strong> ou à la <strong>sécurité des SI</strong>.
+          </p>
+
+          <h3>Ce que je sais faire</h3>
+          <ul>
+            <li>Administration de base de systèmes <strong>Windows Server</strong> et <strong>Linux</strong>.</li>
+            <li>Configuration et supervision d’infrastructures réseau (VLAN, DHCP, DNS…).</li>
+            <li>Utilisation d’outils professionnels (Intune, GLPI, Wireshark, pfSense…).</li>
+            <li>Scripts simples en <strong>PowerShell</strong> et <strong>Bash</strong> pour automatiser des tâches.</li>
+            <li>Support et assistance aux utilisateurs, diagnostic et résolution d’incidents.</li>
+          </ul>
+
+          <h3>Qualités personnelles</h3>
+          <ul>
+            <li><strong>Rigueur</strong> et sens du détail, renforcés par mon parcours scientifique.</li>
+            <li><strong>Pédagogie</strong> : j’aime expliquer simplement des notions techniques.</li>
+            <li><strong>Organisation</strong> et gestion de plusieurs tâches en parallèle.</li>
+            <li><strong>Curiosité</strong> et intérêt pour les nouvelles technologies.</li>
+          </ul>
         </div>
-      </section>
 
-      <!-- ========= PARCOURS ========= -->
-      <section id="parcours" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Parcours</h2>
-            <p class="section-subtitle">
-              Les étapes clés de mes études et de mes expériences.
-            </p>
+        <!-- Colonne latérale : infos rapides + photo + centres d'intérêt -->
+        <div class="profile-side">
+
+          <!-- Photo de profil -->
+          <div class="profile-photo">
+            <img
+              src="images/profil-basma.jpg"
+              alt="Photo de profil de Basma Guettouche"
+            />
           </div>
 
-          <div class="section-body">
-            <p>Tu peux détailler ici ton parcours scolaire, stages, alternance, etc.</p>
+          <!-- Carte infos rapides -->
+          <div class="profile-card">
+            <h3>Infos rapides</h3>
+            <ul>
+              <li><strong>Localisation :</strong> Bagnolet (93)</li>
+              <li><strong>Date de naissance :</strong> 13 décembre 2000</li>
+              <li><strong>Formation actuelle :</strong> BTS SIO SISR</li>
+              <li><strong>Recherche :</strong> Contrat d’apprentissage en informatique</li>
+            </ul>
           </div>
+
+          <!-- Langues -->
+          <div class="profile-card">
+            <h3>Langues</h3>
+            <ul>
+              <li><strong>Français :</strong> langue maternelle</li>
+              <li><strong>Anglais :</strong> niveau A2</li>
+            </ul>
+          </div>
+
+          <!-- Centres d’intérêt -->
+          <div class="profile-card">
+            <h3>Centres d’intérêt</h3>
+            <ul>
+              <li>Veille informatique : cybersécurité, IA, nouvelles technologies.</li>
+              <li>Lecture : romans et mangas.</li>
+              <li>Jeu d’échecs (Chess.com) : logique, stratégie et réflexion.</li>
+            </ul>
+          </div>
+
+          <!-- Liens -->
+          <div class="profile-card">
+            <h3>Liens</h3>
+            <ul>
+              <li><strong>GitHub :</strong> <a href="https://github.com/BasmaCooki" target="_blank">github.com/BasmaCooki</a></li>
+              <li><strong>LinkedIn :</strong> <a href="https://www.linkedin.com" target="_blank">Profil LinkedIn</a></li>
+              <li><strong>Email :</strong> basma.guettouche.etudiant@gmail.com</li>
+            </ul>
+          </div>
+
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= PARCOURS ========= -->
+<section id="parcours" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Parcours</h2>
+      <p class="section-subtitle">
+        Les étapes clés de mon parcours scolaire et mon CV.
+      </p>
+    </div>
+
+    <div class="section-body">
+
+      <!-- ========= BLOC CV : APERÇU + TÉLÉCHARGEMENT ========= -->
+      <div class="cv-block">
+        <!-- Colonne gauche : texte + boutons -->
+        <div class="cv-info">
+          <h3>Mon CV</h3>
+          <p>
+            Voici la version complète de mon CV. Pendant la présentation, je peux le
+            afficher à l’écran et vous pouvez également le télécharger au format PDF.
+          </p>
+
+          <!-- Boutons / liens -->
+          <p>
+            <!-- Ouvrir le CV dans un nouvel onglet -->
+            <a href="docs/CV_Basma_Guettouche.pdf" target="_blank">
+              Voir mon CV en grand
+            </a>
+          </p>
+          <p>
+            <!-- Forcer le téléchargement -->
+            <a href="docs/CV_Basma_Guettouche.pdf" download="CV_Basma_Guettouche.pdf">
+              Télécharger mon CV (PDF)
+            </a>
+          </p>
+        </div>
+
+        <!-- Colonne droite : aperçu visuel du CV -->
+        <div class="cv-preview">
+          <!-- Tu peux utiliser une capture d’écran de ton CV -->
+          <img
+            src="images/cv-basma-apercu.png"
+            alt="Aperçu visuel du CV de Basma Guettouche"
+          />
+        </div>
+      </div>
+
+      <!-- ========= TIMELINE DU PARCOURS ========= -->
+      <div class="timeline">
+
+        <!-- Élément 1 : BTS SIO -->
+        <article class="timeline-item">
+          <div class="timeline-date">
+            <span class="timeline-date-main">Sept. 2024</span>
+            <span class="timeline-date-sub">Actuellement</span>
+          </div>
+
+          <div class="timeline-card">
+            <h3 class="timeline-title">BTS SIO – Services Informatiques aux Organisations</h3>
+            <p class="timeline-school">
+              Option SISR – INGETIS, Paris
+            </p>
+            <p class="timeline-desc">
+              Formation en cours axée sur l’administration systèmes &amp; réseaux,
+              la sécurité et le support aux utilisateurs.
+            </p>
+
+            <!-- Image d’exemple pour le BTS -->
+            <div class="timeline-image">
+              <img
+                src="images/parcours-bts-sio.jpg"
+                alt="Illustration ou photo liée au BTS SIO"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Élément 2 : Baccalauréat -->
+        <article class="timeline-item">
+          <div class="timeline-date">
+            <span class="timeline-date-main">Sept. 2018</span>
+            <span class="timeline-date-sub">Mai 2019</span>
+          </div>
+
+          <div class="timeline-card">
+            <h3 class="timeline-title">Baccalauréat STL – Biotechnologie</h3>
+            <p class="timeline-school">
+              Lycée Polyvalent Liberté – Romainville
+            </p>
+            <p class="timeline-desc">
+              Formation scientifique orientée laboratoire, expérimentation et rigueur,
+              qui m’a apporté une méthode de travail structurée.
+            </p>
+
+            <!-- Image d’exemple pour le Bac -->
+            <div class="timeline-image">
+              <img
+                src="images/parcours-bac-stl.jpg"
+                alt="Illustration ou photo liée au baccalauréat STL"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Tu peux ajouter d'autres étapes ici (collège, formation courte, etc.) -->
+        <!--
+        <article class="timeline-item">
+          ...
+        </article>
+        -->
+
+      </div>
+    </div>
+  </div>
+</section>
 
 
-      
-
-      <!-- ========= BTS ========= -->
+<!-- ========= BTS ========= -->
+<!-- ========= BTS SIO – INTRO ========= -->
 <section id="bts" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-title">BTS SIO</h2>
+      <h2 class="section-title">BTS SIO – Services Informatiques aux Organisations</h2>
       <p class="section-subtitle">
-        Une vue globale sur la formation Services Informatiques aux Organisations.
+        Une formation en deux ans pour devenir technicienne en informatique au service des
+        organisations.
       </p>
+
+      <!-- Grande image de présentation globale du BTS -->
+      <div class="section-hero-media">
+        <img
+          src="images/bts-hero.jpg"
+          alt="Illustration générale de la formation en informatique"
+          class="section-hero-image"
+        />
+      </div>
     </div>
+
     <div class="section-body">
       <p>
-        Le BTS Services Informatiques aux Organisations (BTS SIO) est une formation en deux ans qui prépare
-        les étudiants aux métiers de l’informatique dans les entreprises et les administrations.
-        Il permet d’acquérir des compétences solides en systèmes, réseaux, développement, cybersécurité
-        et gestion de projet. La formation repose sur des mises en situation réelles, des travaux pratiques
-        et un stage en entreprise pour garantir une forte professionnalisation.
+        Le BTS SIO forme des professionnels capables d’installer, configurer, sécuriser et maintenir
+        des solutions informatiques au sein des entreprises. La formation repose sur des mises en
+        situation concrètes, des projets et des périodes en stage ou en alternance.
+      </p>
+      <p>
+        Deux options sont proposées : <strong>SISR</strong> (infrastructure, systèmes et réseaux) et
+        <strong>SLAM</strong> (développement d’applications). Elles permettent à chaque étudiante
+        ou étudiant de se spécialiser selon son projet professionnel.
       </p>
     </div>
   </div>
 </section>
 
-<section id="bts-presentation" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Présentation du BTS</h2>
-      <p class="section-subtitle">
-        Objectifs, programme et compétences visées.
-      </p>
-    </div>
-    <div class="section-body">
-      <p>
-        Le BTS SIO forme des techniciens capables d’installer, de configurer, de maintenir et de sécuriser
-        des solutions informatiques au sein des organisations. Le programme couvre plusieurs domaines :
-        administration système, gestion de réseaux, développement d’applications, cybersécurité,
-        support utilisateur, et gestion de projet. Les étudiants apprennent à analyser les besoins d’un client,
-        à proposer des solutions adaptées, à les déployer, et à en assurer le suivi.
-      </p>
-    </div>
-  </div>
-</section>
-
+<!-- ========= OPTIONS SISR / SLAM ========= -->
 <section id="bts-options" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-title">Les différentes options</h2>
+      <h2 class="section-title">Options du BTS SIO</h2>
       <p class="section-subtitle">
-        SISR &amp; SLAM, deux approches complémentaires de l’informatique.
+        Deux spécialités : SISR pour l’infrastructure, SLAM pour le développement.
       </p>
+
+      <!-- Grande image illustrant les deux mondes : réseau + code -->
+      <div class="section-hero-media">
+        <img
+          src="images/bts-options-hero.jpg"
+          alt="Illustration des deux options SISR et SLAM"
+          class="section-hero-image"
+        />
+      </div>
     </div>
+
     <div class="section-body">
-      <p>
-        En deuxième année, les étudiants choisissent entre deux spécialités :
-      </p>
-      <p>
-        <strong>🔵 Option SISR – Solutions d’Infrastructure, Systèmes et Réseaux :</strong><br>
-        Cette spécialité forme à l’administration de serveurs Windows/Linux, à la gestion de réseaux
-        (VLAN, routage, pare-feu), à la virtualisation, et à la sécurisation des infrastructures.
-        Elle prépare aux métiers de technicien systèmes & réseaux, administrateur junior ou technicien cybersécurité.
-      </p>
-      <p>
-        <strong>🟣 Option SLAM – Solutions Logicielles et Applications Métiers :</strong><br>
-        Orientée développement, cette option permet d’apprendre la conception d’applications web, mobiles ou métiers,
-        la gestion de bases de données, et l’intégration de solutions logicielles. Elle mène aux métiers
-        de développeur web, intégrateur ou analyste programmeur.
-      </p>
+      <div class="section-examples">
+        <!-- Carte SISR -->
+        <article class="example-block">
+          <div class="example-text">
+            <h3 class="example-title">Option SISR – Solutions d’Infrastructure, Systèmes et Réseaux</h3>
+            <p>
+              L’option SISR forme des techniciens capables d’administrer des serveurs, de gérer un réseau,
+              de déployer des postes de travail et de sécuriser une infrastructure informatique.
+            </p>
+            <ul>
+              <li>Administration Windows / Linux</li>
+              <li>Réseaux (VLAN, pare-feu, routage, VPN)</li>
+              <li>Virtualisation (Hyper-V, VMware…)</li>
+              <li>Outils d’administration et de supervision</li>
+            </ul>
+          </div>
+          <div class="example-media">
+            <img
+              src="images/bts-sisr-lab.jpg"
+              alt="Exemple de salle réseau / serveurs pour l'option SISR"
+              class="example-image"
+            />
+          </div>
+        </article>
+
+        <!-- Carte SLAM -->
+        <article class="example-block">
+          <div class="example-text">
+            <h3 class="example-title">Option SLAM – Solutions Logicielles et Applications Métiers</h3>
+            <p>
+              L’option SLAM est centrée sur le développement. Les étudiants conçoivent et réalisent des
+              applications web, mobiles ou métiers, en lien avec les besoins des organisations.
+            </p>
+            <ul>
+              <li>HTML, CSS, JavaScript</li>
+              <li>PHP, Java, Python, C#…</li>
+              <li>Bases de données (SQL, MySQL…)</li>
+              <li>Applications web et outils métiers</li>
+            </ul>
+          </div>
+          <div class="example-media">
+            <img
+              src="images/bts-slam-code.jpg"
+              alt="Exemple de code ou d'application développée en option SLAM"
+              class="example-image"
+            />
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ========= BLOCS DE COMPÉTENCES ========= -->
 <section id="bts-blocs" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-title">Les blocs de compétences</h2>
+      <h2 class="section-title">Blocs de compétences du BTS SIO</h2>
       <p class="section-subtitle">
-        Les grands axes évalués pendant la formation.
+        Une formation structurée autour de blocs communs, appliqués différemment en SISR et en SLAM.
       </p>
+
+      <!-- Grande image montrant des compétences / schéma de bloc -->
+      <div class="section-hero-media">
+        <img
+          src="images/bts-blocs-hero.jpg"
+          alt="Schéma ou illustration des blocs de compétences du BTS SIO"
+          class="section-hero-image"
+        />
+      </div>
     </div>
+
     <div class="section-body">
-      <p>
-        Le BTS SIO s’articule autour de plusieurs blocs de compétences évalués tout au long des projets,
-        des épreuves et des stages :
-      </p>
+      <!-- Bloc 1 -->
+      <article class="bloc-card">
+        <div class="bloc-text">
+          <h3 class="example-title">Bloc 1 – Support et mise à disposition de services informatiques</h3>
+          <p>
+            Bloc commun centré sur le support utilisateur, le déploiement de postes de travail
+            et la résolution d’incidents.
+          </p>
+          <div class="bloc-columns">
+            <div class="bloc-column">
+              <h4>SISR</h4>
+              <ul>
+                <li>Installation de postes Windows / Linux</li>
+                <li>Configuration réseau de base</li>
+                <li>Dépannage matériel et système</li>
+              </ul>
+            </div>
+            <div class="bloc-column">
+              <h4>SLAM</h4>
+              <ul>
+                <li>Installation d’outils de développement</li>
+                <li>Résolution de bugs applicatifs</li>
+                <li>Déploiement d’applications internes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bloc-media">
+          <img
+            src="images/bts-bloc1-support.jpg"
+            alt="Exemple de poste de support informatique ou helpdesk"
+            class="example-image"
+          />
+        </div>
+      </article>
 
-      <p><strong>🧩 Bloc 1 — Support et mise à disposition de services informatiques :</strong><br>
-        Assistance utilisateurs, déploiement de postes, gestion du parc informatique.
-      </p>
+      <!-- Bloc 2 : cœur de différence SISR/SLAM -->
+      <article class="bloc-card">
+        <div class="bloc-text">
+          <h3 class="example-title">Bloc 2 – Cœur de métier : Infrastructure (SISR) / Développement (SLAM)</h3>
+          <p>
+            Ce bloc est le cœur de la spécialisation. Il différencie clairement les profils orientés
+            infrastructure et ceux orientés développement.
+          </p>
+          <div class="bloc-columns">
+            <div class="bloc-column">
+              <h4>SISR – Administration systèmes & réseaux</h4>
+              <ul>
+                <li>Serveurs Windows / Linux, Active Directory</li>
+                <li>Réseaux, VLAN, pare-feu, VPN</li>
+                <li>Virtualisation (Hyper-V, VMware…)</li>
+                <li>Scripts (PowerShell, Bash)</li>
+              </ul>
+            </div>
+            <div class="bloc-column">
+              <h4>SLAM – Développement d’applications</h4>
+              <ul>
+                <li>Langages : HTML, CSS, JavaScript</li>
+                <li>Langages serveur : PHP, Java, Python, C#…</li>
+                <li>Bases de données et SQL</li>
+                <li>Frameworks et applications web</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bloc-media">
+          <img
+            src="images/bts-bloc2-sisr-slam.jpg"
+            alt="Illustration comparant infrastructure SISR et code SLAM"
+            class="example-image"
+          />
+        </div>
+      </article>
 
-      <p><strong>🧩 Bloc 2 — Administration des systèmes et des réseaux :</strong><br>
-        Installation de serveurs, configuration réseau, supervision, sécurité.<br>
-        <em>(Bloc principal pour l’option SISR.)</em>
-      </p>
+      <!-- Bloc 3 -->
+      <article class="bloc-card">
+        <div class="bloc-text">
+          <h3 class="example-title">Bloc 3 – Cybersécurité des services informatiques</h3>
+          <p>
+            Bloc commun appliqué selon la spécialisation, avec un focus sur la protection des systèmes
+            et des données.
+          </p>
+          <div class="bloc-columns">
+            <div class="bloc-column">
+              <h4>SISR</h4>
+              <ul>
+                <li>Protection des serveurs et du réseau</li>
+                <li>Gestion des droits et des accès</li>
+                <li>Sauvegardes, mises à jour, durcissement</li>
+              </ul>
+            </div>
+            <div class="bloc-column">
+              <h4>SLAM</h4>
+              <ul>
+                <li>Sécurisation du code (injections, XSS…)</li>
+                <li>Gestion des comptes et rôles dans les applications</li>
+                <li>Validation des données et bonnes pratiques</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bloc-media">
+          <img
+            src="images/bts-bloc3-cyber.jpg"
+            alt="Illustration de la cybersécurité appliquée aux systèmes et aux applications"
+            class="example-image"
+          />
+        </div>
+      </article>
 
-      <p><strong>🧩 Bloc 3 — Cybersécurité des services informatiques :</strong><br>
-        Analyse des risques, contrôles d’accès, durcissement des systèmes.
-      </p>
-
-      <p><strong>🧩 Bloc 4 — Conception et développement d’applications :</strong><br>
-        Programmation, tests, gestion de bases de données.<br>
-        <em>(Bloc principal pour l’option SLAM.)</em>
-      </p>
-
-      <p><strong>🧩 Bloc 5 — Gestion de projet informatique :</strong><br>
-        Méthodes de gestion, planification, documentation, communication.
-      </p>
+      <!-- Bloc 4 -->
+      <article class="bloc-card">
+        <div class="bloc-text">
+          <h3 class="example-title">Bloc 4 – Gestion de projet informatique</h3>
+          <p>
+            Bloc commun lié à la méthodologie de projet, la documentation et la communication.
+          </p>
+          <div class="bloc-columns">
+            <div class="bloc-column">
+              <h4>SISR</h4>
+              <ul>
+                <li>Projet de déploiement d’infrastructure</li>
+                <li>Mise en place de serveurs ou de réseaux</li>
+                <li>Documentation technique des architectures</li>
+              </ul>
+            </div>
+            <div class="bloc-column">
+              <h4>SLAM</h4>
+              <ul>
+                <li>Projet de développement d’application</li>
+                <li>Suivi des fonctionnalités et des versions</li>
+                <li>Documentation utilisateur et technique</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bloc-media">
+          <img
+            src="images/bts-bloc4-projet.jpg"
+            alt="Illustration d'un projet informatique en équipe"
+            class="example-image"
+          />
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
+<!-- ========= E5 – TABLEAU DE SYNTHÈSE ========= -->
+<section id="bts-e5" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Épreuve E5 – Tableau de synthèse</h2>
+      <p class="section-subtitle">
+        Vue d’ensemble de mes réalisations professionnelles et des compétences du BTS SIO évaluées.
+      </p>
+    </div>
 
+    <div class="section-body e5-layout">
+      <!-- Colonne texte / infos -->
+      <div class="e5-info">
+        <p>
+          Ce tableau récapitule l’ensemble de mes réalisations en cours de formation et en alternance,
+          ainsi que les compétences du BTS SIO option SISR mobilisées pour chaque activité.
+        </p>
+        <ul>
+          <li>Centre de formation : <strong>INGETIS</strong></li>
+          <li>Option : <strong>SISR – Solutions d’Infrastructure, Systèmes et Réseaux</strong></li>
+          <li>Session d’examen : <strong>2026</strong></li>
+        </ul>
 
+        <div class="e5-actions">
+          <!-- lien à adapter avec le bon chemin vers ton fichier -->
+          <a
+            href="docs/tableau-synthese-e5-basma-guettouche.pdf"
+            class="btn btn-primary"
+            download
+          >
+            Télécharger le tableau (PDF)
+          </a>
+
+          <a
+            href="docs/tableau-synthese-e5-basma-guettouche.pdf"
+            class="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ouvrir le tableau dans un nouvel onglet
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne aperçu visuel -->
+      <div class="e5-preview">
+        <!-- ici tu mets un screenshot de ton tableau E5 -->
+        <img
+          src="images/e5-apercu.png"
+          alt="Aperçu du tableau de synthèse E5"
+          class="e5-preview-image"
+        />
+        <p class="e5-preview-caption">
+          Aperçu du tableau de synthèse E5. Le document complet est disponible en téléchargement.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
       <!-- ========= AUTRES SECTIONS SIMPLES ========= -->
 
-      <section id="entreprise" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Entreprise</h2>
-            <p class="section-subtitle">
-              Présentation de ton entreprise, missions de stage ou alternance.
-            </p>
-          </div>
-          <div class="section-body">
-            <p>Contenu Entreprise.</p>
-          </div>
-        </div>
-      </section>
+<!-- ========= PROJET CLUB MED ========= -->
+<section id="clubmed" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Projet Club Med</h2>
+      <p class="section-subtitle">
+        Exemple de missions réalisées dans le cadre de mon alternance.
+      </p>
 
-      <section id="e5" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Épreuve E5</h2>
-            <p class="section-subtitle">
-              Projets, dossiers, contextes et livrables.
+      <!-- Grande image de présentation -->
+      <div class="section-hero-media">
+        <img
+          src="images/clubmed-hero.jpg"
+          alt="Illustration d'un projet ou d'un contexte professionnel chez Club Med"
+          class="section-hero-image"
+        />
+      </div>
+    </div>
+
+    <div class="section-body">
+      <div class="section-body-main">
+        <p>
+          Au cours de mon alternance, j’ai participé à différentes missions pour Club Med,
+          me permettant de mettre en pratique mes compétences en systèmes, réseaux et support
+          dans un contexte réel et exigeant.
+        </p>
+      </div>
+
+      <div class="section-examples">
+        <!-- Exemple 1 -->
+        <article class="example-block">
+          <div class="example-text">
+            <h3 class="example-title">Préparation et déploiement de postes</h3>
+            <p>
+              Préparation de machines pour de nouveaux collaborateurs : installation du système,
+              configuration des applications nécessaires et intégration dans l’environnement
+              Club Med.
             </p>
           </div>
-          <div class="section-body">
-            <p>Contenu E5.</p>
+          <div class="example-media">
+            <img
+              src="images/clubmed-deploiement.jpg"
+              alt="Postes de travail en cours de préparation"
+              class="example-image"
+            />
           </div>
-        </div>
-      </section>
+        </article>
+
+        <!-- Exemple 2 -->
+        <article class="example-block">
+          <div class="example-text">
+            <h3 class="example-title">Résolution d’incidents</h3>
+            <p>
+              Intervention sur des incidents bloquants pour les utilisateurs : impossibilité
+              de se connecter, applications métiers qui ne se lancent plus, problèmes d’accès
+              réseau ou de performance.
+            </p>
+          </div>
+          <div class="example-media">
+            <img
+              src="images/clubmed-incidents.jpg"
+              alt="Illustration d'un incident technique en cours de traitement"
+              class="example-image"
+            />
+          </div>
+        </article>
+
+        <!-- Exemple 3 -->
+        <article class="example-block">
+          <div class="example-text">
+            <h3 class="example-title">Suivi et traçabilité</h3>
+            <p>
+              Utilisation d’outils de ticketing et d’inventaire pour assurer un suivi
+              précis des interventions, des machines concernées et des actions réalisées.
+            </p>
+          </div>
+          <div class="example-media">
+            <img
+              src="images/clubmed-suivi.jpg"
+              alt="Illustration du suivi des tickets ou de l'inventaire"
+              class="example-image"
+            />
+          </div>
+        </article>
+      </div>
+      <!-- ====== ZONE DOCUMENTS / PROCÉDURES (lecture seule) ====== -->
+<div class="project-docs">
+  <h3 class="example-title">Documentation et procédures (consultation uniquement)</h3>
+  <p>
+    Voici quelques exemples de documents utilisés dans le cadre de mon alternance.
+    Les versions visibles ici sont anonymisées et uniquement consultables.
+  </p>
+
+  <ul class="project-docs-list">
+    <!-- Dossier 1 -->
+    <li class="project-doc-item">
+      <div class="project-doc-icon">
+        <i class="fa fa-folder-open"></i>
+      </div>
+      <div class="project-doc-content">
+        <h4>Procédures IT Kiosk</h4>
+        <p>
+          Extraits de procédures utilisées lors du support : remise à zéro de poste,
+          attribution matériel, checklist, etc.
+        </p>
+        <a
+          href="docs/clubmed/procedures-kiosk-view.pdf"
+          class="project-doc-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consulter les procédures
+        </a>
+      </div>
+    </li>
+
+    <!-- Dossier 2 -->
+    <li class="project-doc-item">
+      <div class="project-doc-icon">
+        <i class="fa fa-folder-open"></i>
+      </div>
+      <div class="project-doc-content">
+        <h4>Scripts & automatisation</h4>
+        <p>
+          Aperçu de scripts utilisés pour automatiser certaines tâches (exemple : préparation
+          de poste, nettoyage, inventaire).
+        </p>
+        <a
+          href="docs/clubmed/scripts-aperçu.pdf"
+          class="project-doc-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Voir les scripts (aperçu)
+        </a>
+      </div>
+    </li>
+
+    <!-- Dossier 3 -->
+    <li class="project-doc-item">
+      <div class="project-doc-icon">
+        <i class="fa fa-folder-open"></i>
+      </div>
+      <div class="project-doc-content">
+        <h4>Modèles & documentation</h4>
+        <p>
+          Extraits de modèles de documentation interne (fiches, guide utilisateur,
+          documentation technique…).
+        </p>
+        <a
+          href="docs/clubmed/modeles-doc-view.pdf"
+          class="project-doc-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ouvrir les modèles
+        </a>
+      </div>
+    </li>
+  </ul>
+
+  <p class="project-docs-note">
+    🔒 Ces documents sont anonymisés et uniquement consultables. Aucun téléchargement n’est proposé
+    afin de respecter la confidentialité de l’entreprise.
+  </p>
+</div>
+<!-- ====== FIN ZONE DOCUMENTS ====== -->
+
+
+      
 
       <section id="docs" class="panel panel--section">
         <div class="section-inner">
@@ -493,33 +1067,692 @@
         </div>
       </section>
 
-      <section id="veille" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Veille technologique</h2>
-            <p class="section-subtitle">
-              Articles, sujets cyber, nouveautés réseaux &amp; systèmes.
-            </p>
-          </div>
-          <div class="section-body">
-            <p>Contenu Veille.</p>
-          </div>
+      <!-- ========= VEILLE TECHNOLOGIQUE ========= -->
+<section id="veille" class="panel panel--section">
+  <div class="section-inner">
+    <!-- === En-tête : titre + sous-titre + grande image === -->
+    <div class="section-header">
+      <h2 class="section-title">Veille technologique</h2>
+      <p class="section-subtitle">
+        La cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs.
+      </p>
+
+      <!-- Grande image de présentation de la veille -->
+      <div class="section-hero-media">
+        <img
+          src="images/veille-hero.jpg"
+          alt="Illustration de la cybersécurité des identités et de la protection des comptes"
+          class="section-hero-image"
+        />
+      </div>
+    </div>
+
+    <div class="section-body">
+      <!-- =========================
+           1. INTRODUCTION & PROBLÉMATIQUE
+           ========================= -->
+      <section id="veille-intro" class="veille-block">
+        <h3 class="example-title">Contexte &amp; problématique</h3>
+        <p>
+          La majorité des cyberattaques modernes visent désormais les comptes utilisateurs :
+          mots de passe volés, phishing, usurpation d’identité, attaques sur l’authentification
+          multifacteur, etc. Avec le développement du cloud et du télétravail, la cybersécurité
+          des identités est devenue un enjeu majeur pour les entreprises.
+        </p>
+        <p>
+          Dans le cadre de ma formation <strong>BTS SIO SISR</strong> et de mon alternance
+          au <strong>Club Med – IT Kiosk Informatique</strong>, je suis directement confrontée
+          à ces problématiques : gestion de comptes, accès aux applications, sécurité des postes
+          et accompagnement des utilisateurs.
+        </p>
+        <p>
+          <strong>Problématique de ma veille&nbsp;:</strong><br />
+          <em>
+            Comment renforcer efficacement la sécurité des comptes utilisateurs dans une entreprise
+            moderne grâce au MFA (Multi-Factor Authentication) et au modèle Zero Trust&nbsp;?
+          </em>
+        </p>
+
+        <!-- Schéma simple (image) -->
+        <div class="veille-schema">
+          <img
+            src="images/veille-schema-identites.jpg"
+            alt="Schéma expliquant le lien entre mot de passe, MFA et Zero Trust"
+            class="example-image"
+          />
+          <p class="veille-caption">
+            Schéma simplifié : mot de passe seul → vulnérable ; mot de passe + MFA + approche Zero Trust → sécurité renforcée.
+          </p>
         </div>
       </section>
 
-      <section id="contact" class="panel panel--section">
-        <div class="section-inner">
-          <div class="section-header">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">
-              Comment te joindre : mail, LinkedIn, etc.
-            </p>
-          </div>
-          <div class="section-body">
-            <p>Contenu Contact.</p>
-          </div>
+      <!-- =========================
+           2. FRISE CHRONOLOGIQUE
+           ========================= -->
+      <section id="veille-timeline" class="veille-block">
+        <h3 class="example-title">Évolution des menaces sur les identités</h3>
+        <p>
+          La cybersécurité des identités a évolué au rythme des attaques. Voici une frise
+          chronologique simplifiée montrant quelques étapes clés.
+        </p>
+
+        <div class="veille-timeline">
+          <!-- Étape 1 -->
+          <article class="timeline-item">
+            <div class="timeline-date">2018</div>
+            <div class="timeline-content">
+              <h4>Explosion du phishing ciblé</h4>
+              <p>
+                Multiplication des campagnes de phishing visant à voler les identifiants
+                des utilisateurs (e-mails frauduleux, faux sites de connexion, etc.).
+              </p>
+              <img
+                src="images/veille-timeline-phishing.jpg"
+                alt="Illustration d'un exemple d'email de phishing"
+                class="timeline-image"
+              />
+            </div>
+          </article>
+
+          <!-- Étape 2 -->
+          <article class="timeline-item">
+            <div class="timeline-date">2020</div>
+            <div class="timeline-content">
+              <h4>Télétravail &amp; cloud</h4>
+              <p>
+                Avec le télétravail massif, les accès distants se multiplient et les
+                comptes deviennent la principale porte d’entrée pour les attaquants.
+              </p>
+              <img
+                src="images/veille-timeline-teletravail.jpg"
+                alt="Illustration du télétravail et des connexions à distance"
+                class="timeline-image"
+              />
+            </div>
+          </article>
+
+          <!-- Étape 3 -->
+          <article class="timeline-item">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <h4>Attaques MFA Fatigue</h4>
+              <p>
+                Les attaquants commencent à abuser des notifications MFA pour pousser
+                l’utilisateur à valider, par erreur, une connexion frauduleuse.
+              </p>
+              <img
+                src="images/veille-timeline-mfa-fatigue.jpg"
+                alt="Illustration d'une attaque de type MFA fatigue"
+                class="timeline-image"
+              />
+            </div>
+          </article>
+
+          <!-- Étape 4 -->
+          <article class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h4>Généralisation du modèle Zero Trust</h4>
+              <p>
+                Les entreprises adoptent le modèle <strong>Zero Trust</strong> : ne jamais
+                faire confiance par défaut, vérifier systématiquement l’identité, l’appareil
+                et le contexte.
+              </p>
+              <img
+                src="images/veille-timeline-zero-trust.jpg"
+                alt="Illustration du modèle Zero Trust en entreprise"
+                class="timeline-image"
+              />
+            </div>
+          </article>
         </div>
       </section>
+
+      <!-- =========================
+           3. MENACES MODERNES SUR LES IDENTITÉS
+           ========================= -->
+      <section id="veille-menaces" class="veille-block">
+        <h3 class="example-title">Menaces modernes sur les identités</h3>
+        <p>
+          Les comptes utilisateurs sont aujourd’hui au centre des attaques. Voici quelques
+          exemples de menaces auxquelles les entreprises doivent faire face.
+        </p>
+
+        <div class="section-examples">
+          <!-- Menace 1 : Phishing -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">Phishing &amp; hameçonnage ciblé</h4>
+              <p>
+                L’attaquant envoie un e-mail ou un message qui imite un service légitime
+                pour inciter l’utilisateur à saisir son identifiant et son mot de passe.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-menace-phishing.jpg"
+                alt="Exemple d'interface de phishing ou de faux site de connexion"
+                class="example-image"
+              />
+            </div>
+          </article>
+
+          <!-- Menace 2 : Vol de session -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">Vol de session &amp; cookies</h4>
+              <p>
+                Au lieu de voler le mot de passe, l’attaquant récupère un cookie de session
+                déjà authentifié, lui permettant d’accéder au compte sans connaître le mot
+                de passe.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-menace-session.jpg"
+                alt="Illustration d'une session compromise"
+                class="example-image"
+              />
+            </div>
+          </article>
+
+          <!-- Menace 3 : MFA Fatigue -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">MFA Fatigue Attack</h4>
+              <p>
+                L’attaquant envoie de nombreuses demandes de validation MFA à l’utilisateur
+                jusqu’à ce que celui-ci accepte par fatigue ou inattention.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-menace-mfa-fatigue.jpg"
+                alt="Illustration de multiples notifications MFA"
+                class="example-image"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================
+           4. MFA : AUTHENTIFICATION MULTI-FACTEUR
+           ========================= -->
+      <section id="veille-mfa" class="veille-block">
+        <h3 class="example-title">Le rôle du MFA (Multi-Factor Authentication)</h3>
+        <p>
+          Le MFA ajoute une couche de sécurité en demandant plusieurs preuves d’identité
+          (mot de passe + téléphone, application d’authentification, clé physique, etc.).
+          Même si un mot de passe est compromis, l’attaquant ne peut pas se connecter sans
+          le second facteur.
+        </p>
+
+        <div class="veille-schema">
+          <img
+            src="images/veille-mfa-schema.jpg"
+            alt="Schéma expliquant la différence entre mot de passe seul et MFA"
+            class="example-image"
+          />
+          <p class="veille-caption">
+            Exemple : mot de passe + validation sur smartphone → accès autorisé uniquement
+            si les deux facteurs sont valides.
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================
+           5. ZERO TRUST
+           ========================= -->
+      <section id="veille-zero-trust" class="veille-block">
+        <h3 class="example-title">Le modèle Zero Trust</h3>
+        <p>
+          Le modèle <strong>Zero Trust</strong> repose sur une idée simple : ne jamais faire
+          confiance par défaut, même à l’intérieur du réseau de l’entreprise. Chaque accès
+          est contrôlé en fonction de l’identité, de l’appareil, du lieu et du risque.
+        </p>
+
+        <div class="veille-schema">
+          <img
+            src="images/veille-zero-trust-schema.jpg"
+            alt="Schéma simplifié du modèle Zero Trust"
+            class="example-image"
+          />
+          <p class="veille-caption">
+            Vérification continue : identité de l’utilisateur, état de l’appareil,
+            localisation, type de ressource, niveau de risque, etc.
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================
+           6. LIEN AVEC MON ALTERNANCE
+           ========================= -->
+      <section id="veille-alternance" class="veille-block">
+        <h3 class="example-title">Application dans mon alternance au Club Med</h3>
+        <p>
+          Au <strong>IT Kiosk Informatique</strong>, je suis régulièrement confrontée à des
+          situations où la cybersécurité des identités est au cœur des interventions.
+        </p>
+
+        <div class="section-examples">
+          <!-- Exemple 1 -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">Gestion des comptes &amp; accès</h4>
+              <p>
+                Assistance aux collaborateurs ayant des difficultés de connexion (mot de passe,
+                accès à certaines applications, verrouillage de compte, etc.), en respectant
+                les procédures de vérification d’identité.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-alternance-comptes.jpg"
+                alt="Illustration de la gestion des comptes utilisateurs"
+                class="example-image"
+              />
+            </div>
+          </article>
+
+          <!-- Exemple 2 -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">Postes conformes &amp; sécurisés</h4>
+              <p>
+                Utilisation d’outils comme Intune pour vérifier que les postes sont à jour,
+                chiffrés et conformes aux politiques de sécurité avant de donner accès
+                à certaines ressources.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-alternance-intune.jpg"
+                alt="Exemple de poste géré via Intune (capture floutée)"
+                class="example-image"
+              />
+            </div>
+          </article>
+
+          <!-- Exemple 3 -->
+          <article class="example-block">
+            <div class="example-text">
+              <h4 class="example-title">Sensibilisation des utilisateurs</h4>
+              <p>
+                Explication aux utilisateurs de l’importance de ne pas valider une
+                demande MFA qu’ils n’ont pas initiée, de reconnaître un e-mail suspect,
+                et de signaler tout comportement anormal.
+              </p>
+            </div>
+            <div class="example-media">
+              <img
+                src="images/veille-alternance-sensibilisation.jpg"
+                alt="Illustration de sensibilisation à la cybersécurité"
+                class="example-image"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================
+           7. SOURCES DE VEILLE (IMAGES CLIQUABLES)
+           ========================= -->
+      <section id="veille-sources" class="veille-block">
+        <h3 class="example-title">Sources de veille utilisées</h3>
+        <p>
+          Pour suivre l’actualité de la cybersécurité des identités, j’utilise plusieurs
+          sources spécialisées. Les logos ci-dessous sont cliquables et renvoient vers
+          les sites correspondants.
+        </p>
+
+        <div class="veille-sources-grid">
+          <!-- Source 1 -->
+          <a
+            href="https://www.microsoft.com/security/blog"
+            class="veille-source-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/source-microsoft-security.jpg"
+              alt="Microsoft Security Blog"
+              class="veille-source-image"
+            />
+            <span class="veille-source-label">Microsoft Security Blog</span>
+          </a>
+
+          <!-- Source 2 -->
+          <a
+            href="https://www.cert.ssi.gouv.fr/"
+            class="veille-source-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/source-cert-fr.jpg"
+              alt="CERT-FR"
+              class="veille-source-image"
+            />
+            <span class="veille-source-label">CERT-FR</span>
+          </a>
+
+          <!-- Source 3 -->
+          <a
+            href="https://www.ssi.gouv.fr/"
+            class="veille-source-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/source-anssi.jpg"
+              alt="ANSSI"
+              class="veille-source-image"
+            />
+            <span class="veille-source-label">ANSSI</span>
+          </a>
+
+          <!-- Source 4 -->
+          <a
+            href="https://www.cybermalveillance.gouv.fr/"
+            class="veille-source-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/source-cybermalveillance.jpg"
+              alt="Cybermalveillance.gouv.fr"
+              class="veille-source-image"
+            />
+            <span class="veille-source-label">Cybermalveillance.gouv.fr</span>
+          </a>
+
+          <!-- Source 5 -->
+          <a
+            href="https://www.youtube.com/@JohnHammond"
+            class="veille-source-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/source-youtube-johnhammond.jpg"
+              alt="YouTube - John Hammond"
+              class="veille-source-image"
+            />
+            <span class="veille-source-label">YouTube – John Hammond</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- =========================
+           8. CONCLUSION
+           ========================= -->
+      <section id="veille-conclusion" class="veille-block">
+        <h3 class="example-title">Bilan de ma veille</h3>
+        <p>
+          Cette veille technologique m’a permis de mieux comprendre la place centrale
+          de la cybersécurité des identités dans les entreprises modernes. J’ai pris
+          conscience que la sécurité ne repose pas uniquement sur les mots de passe,
+          mais sur une approche globale combinant MFA, bonnes pratiques, politiques
+          de sécurité et modèle Zero Trust.
+        </p>
+        <p>
+          En tant qu’étudiante en <strong>BTS SIO SISR</strong> et alternante au Club Med,
+          cette veille renforce mes compétences en administration systèmes et réseaux,
+          et confirme mon intérêt pour la <strong>cybersécurité</strong> comme
+          orientation professionnelle.
+        </p>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+      <!-- ========= CERTIFICATIONS ========= -->
+<section id="certifications" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-subtitle">
+        Formations officielles suivies dans le domaine de la cybersécurité et de la conformité.
+      </p>
+    </div>
+
+    <div class="section-body">
+
+      <!-- =======================
+           CERTIFICATION ANSSI
+      ======================== -->
+      <article class="certif-card">
+        <h3 class="certif-title">Certification ANSSI – SecNum Académie</h3>
+
+        <!-- Aperçu de la certification ANSSI -->
+        <div class="certif-preview">
+          <a href="images/certif-secnum.jpg"
+             target="_blank"
+             rel="noopener noreferrer">
+            <img
+              src="images/certif-secnum.jpg"
+              alt="Certification SecNum Académie ANSSI"
+              class="certif-image"
+            />
+          </a>
+        </div>
+
+        <p>Acquisition des connaissances :</p>
+        <ul>
+          <li>Panorama de la SSI</li>
+          <li>Sécurité de l’authentification</li>
+          <li>Sécurité sur Internet</li>
+          <li>Sécurité du poste de travail & nomadisme</li>
+        </ul>
+      </article>
+
+      <!-- =======================
+           CERTIFICATION RGPD (5 modules)
+      ======================== -->
+      <article class="certif-card">
+        <h3 class="certif-title">Certification RGPD – CNIL (5 modules)</h3>
+        <p>
+          Formation complète à la protection des données personnelles via l’atelier RGPD
+          proposé par la <strong>CNIL</strong>.
+        </p>
+
+        <!-- Liste des 5 modules (aperçus cliquables) -->
+        <div class="certif-modules-grid">
+
+          <!-- MODULE 1 -->
+          <div class="certif-module">
+            <a href="images/rgpd-module1.jpg"
+               target="_blank"
+               rel="noopener noreferrer">
+              <img
+                src="images/rgpd-module1.jpg"
+                alt="Module 1 RGPD"
+                class="certif-image"
+              />
+            </a>
+            <p class="module-label">Module 1 – Comprendre le RGPD</p>
+          </div>
+
+          <!-- MODULE 2 -->
+          <div class="certif-module">
+            <a href="images/rgpd-module2.jpg"
+               target="_blank"
+               rel="noopener noreferrer">
+              <img
+                src="images/rgpd-module2.jpg"
+                alt="Module 2 RGPD"
+                class="certif-image"
+              />
+            </a>
+            <p class="module-label">Module 2 – Les données personnelles</p>
+          </div>
+
+          <!-- MODULE 3 -->
+          <div class="certif-module">
+            <a href="images/rgpd-module3.jpg"
+               target="_blank"
+               rel="noopener noreferrer">
+              <img
+                src="images/rgpd-module3.jpg"
+                alt="Module 3 RGPD"
+                class="certif-image"
+              />
+            </a>
+            <p class="module-label">Module 3 – Les responsabilités</p>
+          </div>
+
+          <!-- MODULE 4 -->
+          <div class="certif-module">
+            <a href="images/rgpd-module4.jpg"
+               target="_blank"
+               rel="noopener noreferrer">
+              <img
+                src="images/rgpd-module4.jpg"
+                alt="Module 4 RGPD"
+                class="certif-image"
+              />
+            </a>
+            <p class="module-label">Module 4 – Les risques & la sécurité</p>
+          </div>
+
+          <!-- MODULE 5 -->
+          <div class="certif-module">
+            <a href="images/rgpd-module5.jpg"
+               target="_blank"
+               rel="noopener noreferrer">
+              <img
+                src="images/rgpd-module5.jpg"
+                alt="Module 5 RGPD"
+                class="certif-image"
+              />
+            </a>
+            <p class="module-label">Module 5 – Les droits des personnes</p>
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+      <!-- ========= CONTACT ========= -->
+<section id="contact" class="panel panel--section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">
+        Mes coordonnées et un formulaire pour me joindre facilement.
+      </p>
+    </div>
+
+    <div class="section-body">
+      <div class="contact-layout">
+        <!-- ===== Colonne gauche : infos + carte ===== -->
+        <div class="contact-col contact-col--info">
+          <h3 class="example-title">Mes coordonnées</h3>
+
+          <ul class="contact-infos">
+            <li>
+              <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+              <span class="contact-text">basma.guettouche.etudiant@gmail.com</span>
+            </li>
+            <li>
+              <span class="contact-icon"><i class="fa fa-phone"></i></span>
+              <span class="contact-text">07 66 54 61 60</span>
+            </li>
+            <li>
+              <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+              <span class="contact-text">93170 Bagnolet – Île-de-France, France</span>
+            </li>
+          </ul>
+
+          <!-- Réseaux sociaux -->
+          <div class="contact-socials">
+            <a
+              href="https://www.linkedin.com/in/ton-profil-linkedin"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a
+              href="https://github.com/BasmaCooki"
+              class="social-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+
+          <!-- Carte (OpenStreetMap en iframe) -->
+          <div class="contact-map">
+            <iframe
+              title="Localisation"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=2.3900,48.8500,2.4600,48.8850&layer=mapnik&marker=48.8700,2.4300"
+              style="border:0;"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- ===== Colonne droite : formulaire ===== -->
+        <div class="contact-col contact-col--form">
+          <h3 class="example-title">M’envoyer un message</h3>
+
+          <!--
+            Tu peux :
+            - soit mettre un vrai endpoint (Formspree, PHPMailer, etc.)
+            - soit laisser action vide pour le moment
+          -->
+          <form class="contact-form" method="post" action="">
+            <div class="form-group">
+              <label for="contact-name">Nom</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="Votre nom"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="votre.email@example.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                placeholder="Votre message…"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </main>
   </div>
 
