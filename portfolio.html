@@ -6,13 +6,22 @@
   <title>Portfolio – BG TECH</title>
 
   <!-- Polices -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" 
+    rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" 
+    rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/portfolio.css" />
@@ -23,6 +32,7 @@
   <link rel="stylesheet" href="css/entreprise.css" />
   <link rel="stylesheet" href="css/five.css" />
   <link rel="stylesheet" href="css/veille.css" />
+
 
   <!-- JS global -->
   <script src="js/portfolio.js" defer></script>
@@ -97,20 +107,27 @@
         </div>
 
 
-        <!-- Bouton principal Entreprise -->
-<button class="nav-btn" data-target="#entreprise">
+<!-- PARENT : ENTREPRISE -->
+<button
+  class="nav-btn nav-btn--parent"
+  data-target="#entreprise"
+  data-submenu="submenu-entreprise"
+>
   <span class="nav-btn__icon"><i class="fa fa-building"></i></span>
   <span class="nav-btn__label">Entreprise</span>
+  <span class="nav-btn__chevron"><i class="fa fa-chevron-down"></i></span>
 </button>
 
-<!-- Sous-sections -->
-<button class="nav-sub-btn" data-target="#entreprise-alternance">
-  <span class="nav-btn__label">– Alternance</span>
-</button>
-
-<button class="nav-sub-btn" data-target="#entreprise-projets">
-  <span class="nav-btn__label">– Projets Club Med</span>
-</button>
+<div id="submenu-entreprise" class="nav-submenu">
+  <button class="nav-sub-btn" data-target="#entreprise-alternance">
+    <span class="nav-sub-btn__line"></span>
+    <span><i class="fa fa-briefcase"></i> Alternance</span>
+  </button>
+  <button class="nav-sub-btn" data-target="#entreprise-projets">
+    <span class="nav-sub-btn__line"></span>
+    <span><i class="fa fa-tasks"></i> Projets Club Med</span>
+  </button>
+</div>
 
 
 <!-- AUTRES LIENS SIMPLES -->
@@ -119,15 +136,17 @@
           <span class="nav-btn__label">Documentation</span>
         </button>
 
-        <button class="nav-btn" data-target="#veille">
-          <span class="nav-btn__icon"><i class="fa fa-rss"></i></span>
-          <span class="nav-btn__label">Veille techno</span>
-        </button>
+<!-- Veille techno -->
+<button class="nav-btn" data-target="#veille">
+  <span class="nav-btn__icon"><i class="fa fa-search"></i></span>
+  <span class="nav-btn__label">Veille techno</span>
+</button>
 
-        <button class="nav-btn" data-target="#certifications">
-          <span class="nav-btn__icon"><i class="fa fa-rss"></i></span>
-          <span class="nav-btn__label">Certifications</span>
-        </button>
+<!-- Certifications -->
+<button class="nav-btn" data-target="#certifications">
+  <span class="nav-btn__icon"><i class="fa fa-certificate"></i></span>
+  <span class="nav-btn__label">Certifications</span>
+</button>
 
         <button class="nav-btn" data-target="#contact">
           <span class="nav-btn__icon"><i class="fa fa-envelope"></i></span>
@@ -256,290 +275,467 @@
           <ul class="search-results" id="searchResults" role="listbox"></ul>
         </div>
 
-        <!-- Switch de thème -->
-        <label class="theme-switch" aria-label="Changer de thème">
-          <input
-            id="themeToggle"
-            type="checkbox"
-            class="theme-switch__checkbox"
-            checked
-          />
-          <div class="theme-switch__container">
-            <div class="theme-switch__clouds"></div>
-            <div class="theme-switch__stars-container">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z"
-                  fill="currentColor"></path>
-              </svg>
-            </div>
-            <div class="theme-switch__circle-container">
-              <div class="theme-switch__sun-moon-container">
-                <div class="theme-switch__moon">
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </label>
+        <!-- Remplacez tout le bloc theme-switch par : -->
+<label class="bb8-toggle" aria-label="Changer de thème">
+  <input
+    id="themeToggle"
+    type="checkbox"
+    class="bb8-toggle__checkbox"
+    checked
+  />
+  <div class="bb8-toggle__container">
+    <div class="bb8-toggle__scenery">
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="bb8-toggle__star"></div>
+      <div class="tatto-1"></div>
+      <div class="tatto-2"></div>
+      <div class="gomrassen"></div>
+      <div class="hermes"></div>
+      <div class="chenini"></div>
+      <div class="bb8-toggle__cloud"></div>
+      <div class="bb8-toggle__cloud"></div>
+      <div class="bb8-toggle__cloud"></div>
+    </div>
+    <div class="bb8">
+      <div class="bb8__head-container">
+        <div class="bb8__antenna"></div>
+        <div class="bb8__antenna"></div>
+        <div class="bb8__head"></div>
+      </div>
+      <div class="bb8__body"></div>
+    </div>
+    <div class="artificial__hidden">
+      <div class="bb8__shadow"></div>
+    </div>
+  </div>
+</label>
       </header>
 
-      <!-- ========= ACCUEIL / HERO ========= -->
-      <section id="accueil" class="panel panel--hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-gridlines"></div>
+<!-- ========= ACCUEIL / HERO ========= -->
+<section id="accueil" class="panel panel--hero panel--accueil">
+  <!-- Arrière-plans et effets -->
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-gridlines"></div>
+  
+  <!-- Scanner animé -->
+  <div class="hero-scanner"></div>
+  
+  <!-- Conteneur principal -->
+  <div class="section-inner hero-grid">
+    <!-- Colonne texte -->
+    <div class="hero-content">
+      <!-- Badge animé -->
+      <div class="hero-badge">
+        <span class="hero-badge__dot"></span>
+        <span class="hero-badge__text">Statut : En ligne</span>
+      </div>
 
-        <div class="section-inner">
-          <div class="section-header">
-            <p class="section-kicker">Bienvenue sur BG TECH</p>
-            <h1 class="section-title section-title--xl">
-              PORTFOLIO <span>CYBER &amp; RÉSEAU</span>
-            </h1>
+      <p class="hero-kicker" data-aos="fade-right">Bienvenue sur BG TECH</p>
+
+      <h1 class="hero-title" data-aos="fade-right" data-aos-delay="100">
+        PORTFOLIO <span class="hero-title__highlight">CYBER &amp; RÉSEAU</span>
+      </h1>
+
+      <p class="hero-subtitle" data-aos="fade-right" data-aos-delay="200">
+        Je suis <strong>Basma GUETTOUCHE</strong>, étudiante en
+        <strong>BTS SIO option SISR</strong>, passionnée par
+        l'administration des systèmes, les réseaux et la cybersécurité.
+      </p>
+
+      <!-- Boutons d'action -->
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+        <button class="btn-primary js-scroll-to" data-target="#profil">
+          <span class="btn-icon"><i class="fa fa-user"></i></span>
+          <span class="btn-text">Voir mon profil</span>
+          <span class="btn-glow"></span>
+        </button>
+        <button class="btn-ghost js-scroll-to" data-target="#bts">
+          <span class="btn-icon"><i class="fa fa-graduation-cap"></i></span>
+          <span class="btn-text">Découvrir le BTS SIO</span>
+          <span class="btn-glow"></span>
+        </button>
+      </div>
+
+      <!-- Console interactive -->
+      <div class="hero-console" data-aos="fade-up" data-aos-delay="400">
+        <div class="hero-console__frame">
+          <div class="hero-console__header">
+            <span class="console-dot console-dot--red"></span>
+            <span class="console-dot console-dot--yellow"></span>
+            <span class="console-dot console-dot--green"></span>
+            <span class="console-title">Terminal BG TECH v2.0</span>
+          </div>
+          <div class="hero-console__body">
+            <p class="console-line" id="heroConsoleText"
+               data-text="> Initialisation des systèmes... [OK]&#10;> Chargement du portfolio... [OK]&#10;> Accès autorisé. Bienvenue !">
+            </p>
+            <span class="hero-console__cursor"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags de compétences -->
+      <div class="hero-tags" data-aos="fade-up" data-aos-delay="500">
+        <span class="tag" data-skill="security">
+          <i class="fa fa-shield"></i> Cybersécurité
+        </span>
+        <span class="tag" data-skill="network">
+          <i class="fa fa-server"></i> Admin systèmes & réseaux
+        </span>
+        <span class="tag" data-skill="scripting">
+          <i class="fa fa-code"></i> Scripts Bash & PowerShell
+        </span>
+      </div>
+
+      <!-- Métriques en temps réel -->
+      <div class="hero-metrics" data-aos="fade-up" data-aos-delay="600">
+        <div class="metric">
+          <span class="metric__value" data-target="2">0</span>
+          <span class="metric__label">Années d'études</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value" data-target="15">0</span>
+          <span class="metric__label">Projets réalisés</span>
+        </div>
+        <div class="metric">
+          <span class="metric__value" data-target="100">0</span>
+          <span class="metric__suffix">%</span>
+          <span class="metric__label">Motivation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne carte animée -->
+    <aside class="hero-card" data-aos="fade-left" data-aos-delay="300">
+      <!-- Bordure animée -->
+      <div class="hero-card__border"></div>
+      <div class="hero-card__glow"></div>
+
+      <!-- En-tête -->
+      <div class="hero-card__header">
+        <span class="dot dot--red"></span>
+        <span class="dot dot--yellow"></span>
+        <span class="dot dot--green"></span>
+        <span class="hero-card__title">
+          <i class="fa fa-id-card"></i> Profil rapide
+        </span>
+      </div>
+
+      <!-- Contenu -->
+      <div class="hero-card__body">
+        <!-- Avatar avec statut -->
+        <div class="hero-avatar">
+          <div class="hero-avatar__ring"></div>
+          <div class="hero-avatar__img">
+            <img src="image/profil.png" alt="Basma Guettouche" />
+          </div>
+          <div class="hero-avatar__status">
+            <span class="status-dot"></span>
+            <span class="status-text">Disponible</span>
+          </div>
+        </div>
+
+        <!-- Liste d'informations -->
+        <ul class="hero-list">
+          <li>
+            <span class="bullet"></span>
+            <span><strong>BTS SIO SISR</strong> – INGETIS Paris</span>
+          </li>
+          <li>
+            <span class="bullet"></span>
+            <span>Alternance : support & déploiement postes</span>
+          </li>
+          <li>
+            <span class="bullet"></span>
+            <span>Intérêt fort pour la cybersécurité & l'admin réseau</span>
+          </li>
+        </ul>
+
+        <!-- Pills d'information -->
+        <div class="hero-pill-row">
+          <div class="hero-pill">
+            <i class="fa fa-bullseye"></i>
+            <div class="hero-pill__content">
+              <span class="hero-pill__label">Objectif</span>
+              <span class="hero-pill__value">Admin systèmes / Réseaux</span>
+            </div>
+          </div>
+          <div class="hero-pill">
+            <i class="fa fa-map-marker"></i>
+            <div class="hero-pill__content">
+              <span class="hero-pill__label">Localisation</span>
+              <span class="hero-pill__value">Bagnolet (93)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barre de progression des compétences -->
+        <div class="hero-skills">
+          <div class="skill-bar">
+            <div class="skill-bar__label">
+              <span>Systèmes & Réseaux</span>
+              <span class="skill-bar__percent">40%</span>
+            </div>
+            <div class="skill-bar__track">
+              <div class="skill-bar__fill" data-percent="40"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar__label">
+              <span>Cybersécurité</span>
+              <span class="skill-bar__percent">60%</span>
+            </div>
+            <div class="skill-bar__track">
+              <div class="skill-bar__fill" data-percent="60"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar__label">
+              <span>Scripting</span>
+              <span class="skill-bar__percent">30%</span>
+            </div>
+            <div class="skill-bar__track">
+              <div class="skill-bar__fill" data-percent="30"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton d'action de la carte -->
+        <button class="hero-card__cta js-scroll-to" data-target="#contact">
+          <span>Me contacter</span>
+          <i class="fa fa-arrow-right"></i>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Indicateur de scroll amélioré -->
+  <button
+    type="button"
+    class="scroll-hint js-scroll-to"
+    data-target="#profil"
+    aria-label="Défiler vers le bas"
+  >
+    <span class="scroll-hint__text">Faire défiler pour découvrir</span>
+    <span class="scroll-hint__icon">
+      <i class="fa fa-angle-down"></i>
+    </span>
+  </button>
+
+  <!-- Lignes de code défilantes (effet Matrix) -->
+  <div class="code-rain" aria-hidden="true"></div>
+</section>
+
+<!-- ========= SECTION PROFIL ========= -->
+  <section id="profil" class="panel panel--section">
+    <div class="cyber-grid"></div>
+    
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Mon profil</h2>
+        <p class="section-subtitle">
+          Qui je suis, ce que j'aime faire, et ce que je prépare pour la suite.
+        </p>
+      </div>
+
+      <div class="section-body">
+        <div class="profile-layout">
+          <!-- Colonne principale -->
+          <div class="profile-main">
+            <h3><i class="fa fa-user-circle"></i> À propos de moi</h3>
+            <p>
+              Je m'appelle <strong>Basma Guettouche</strong> et je suis actuellement étudiante en
+              <strong>BTS SIO option SISR</strong> à INGETIS, Paris. Après un baccalauréat
+              <strong>STL – Biotechnologie</strong>, j'ai choisi de me réorienter vers
+              l'informatique, avec un intérêt particulier pour
+              <strong>l'administration systèmes &amp; réseaux</strong> et la
+              <strong>cybersécurité</strong>.
+            </p>
+            <p>
+              J'aime comprendre comment fonctionne une infrastructure, diagnostiquer des incidents,
+              sécuriser les systèmes et accompagner les utilisateurs au quotidien. Mon objectif est
+              de progresser vers des métiers liés au <strong>support informatique avancé</strong>,
+              à l'<strong>administration réseaux</strong> ou à la <strong>sécurité des SI</strong>.
+            </p>
+
+            <h3><i class="fa fa-cogs"></i> Ce que je sais faire</h3>
+            <ul class="profile-list">
+              <li>Administration de base de systèmes <strong>Windows Server</strong> et <strong>Linux</strong>.</li>
+              <li>Configuration et supervision d'infrastructures réseau (VLAN, DHCP, DNS…).</li>
+              <li>Utilisation d'outils professionnels (Intune, GLPI, Wireshark, pfSense…).</li>
+              <li>Scripts simples en <strong>PowerShell</strong> et <strong>Bash</strong> pour automatiser des tâches.</li>
+              <li>Support et assistance aux utilisateurs, diagnostic et résolution d'incidents.</li>
+            </ul>
+
+            <h3><i class="fa fa-star"></i> Qualités personnelles</h3>
+            <ul class="profile-list">
+              <li><strong>Rigueur</strong> et sens du détail, renforcés par mon parcours scientifique.</li>
+              <li><strong>Pédagogie</strong> : j'aime expliquer simplement des notions techniques.</li>
+              <li><strong>Organisation</strong> et gestion de plusieurs tâches en parallèle.</li>
+              <li><strong>Curiosité</strong> et intérêt pour les nouvelles technologies.</li>
+            </ul>
           </div>
 
-          <p class="hero-intro">
-            Je suis <strong>Basma GUETTOUCHE</strong>, étudiante en
-            <strong>BTS SIO option SISR</strong>, passionnée par
-            l’administration des systèmes, les réseaux et la cybersécurité.
-          </p>
+          <!-- Colonne latérale -->
+          <div class="profile-side">
+            <!-- Photo de profil -->
+            <div class="profile-photo">
+              <div class="profile-photo__frame">
+                <img
+                  src="image/profil.png"
+                  alt="Photo de profil de Basma Guettouche"
+                />
+              </div>
+            </div>
 
-          <div class="hero-console">
-            <div class="hero-console__frame">
-              <p>
-                &gt; Accès autorisé. Chargement des systèmes RG TECH...
-                <span class="hero-console__cursor"></span>
+            <!-- Cartes d'information -->
+
+
+            <div class="profile-card">
+              <h3><i class="fa fa-language"></i> Langues</h3>
+              <ul>
+                <li><strong>Français :</strong> langue maternelle</li>
+                <li><strong>Anglais :</strong> niveau A2</li>
+              </ul>
+            </div>
+
+            <div class="profile-card">
+              <h3><i class="fa fa-heart"></i> Centres d'intérêt</h3>
+              <ul>
+                <li>Veille informatique : cybersécurité, IA, nouvelles technologies.</li>
+                <li>Lecture : romans et mangas.</li>
+                <li>Jeu d'échecs (Chess.com) : logique, stratégie et réflexion.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECTION PARCOURS ========= -->
+  <section id="parcours" class="panel panel--section">
+    <div class="cyber-grid"></div>
+    
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Parcours</h2>
+        <p class="section-subtitle">
+          Les étapes clés de mon parcours scolaire et mon CV.
+        </p>
+      </div>
+
+      <div class="section-body">
+        <!-- Bloc CV -->
+        <div class="cv-block">
+          <div class="cv-info">
+            <h3><i class="fa fa-file-text"></i> Mon CV</h3>
+            <p>
+              Voici la version complète de mon CV. Pendant la présentation, je peux
+              l'afficher à l'écran et vous pouvez également le télécharger au format PDF.
+            </p>
+
+            <div class="cv-actions">
+              <a href="#" class="btn-primary">
+                <i class="fa fa-eye"></i> Voir mon CV
+              </a>
+              <a href="#" class="btn-ghost">
+                <i class="fa fa-download"></i> Télécharger (PDF)
+              </a>
+            </div>
+          </div>
+
+          <div class="cv-preview">
+            <div class="cv-preview__frame">
+              <img
+                src="fichier/cv-24CRe_iUKg-essai-gratuit (1).pdf"
+                alt="Aperçu visuel du CV de Basma Guettouche"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+          <!-- BTS SIO -->
+          <article class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-marker__dot"></div>
+              <div class="timeline-marker__line"></div>
+            </div>
+
+            <div class="timeline-date">
+              <span class="timeline-date-main">Sept. 2024</span>
+              <span class="timeline-date-sub">Actuellement</span>
+            </div>
+
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <i class="fa fa-graduation-cap"></i>
+              </div>
+              <h3 class="timeline-title">BTS SIO – Services Informatiques aux Organisations</h3>
+              <p class="timeline-school">
+                <i class="fa fa-map-marker"></i> Option SISR – INGETIS, Paris
               </p>
+              <p class="timeline-desc">
+                Formation en cours axée sur l'administration systèmes &amp; réseaux,
+                la sécurité et le support aux utilisateurs.
+              </p>
+
+              <div class="timeline-image">
+                <img
+                  src="image/Bts-SIO-scaled.jpg"
+                  alt="Illustration BTS SIO"
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <!-- ========= PROFIL ========= -->
-      <!-- ========= PROFIL ========= -->
-<section id="profil" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Mon profil</h2>
-      <p class="section-subtitle">
-        Qui je suis, ce que j’aime faire, et ce que je prépare pour la suite.
-      </p>
-    </div>
+          <!-- Baccalauréat -->
+          <article class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-marker__dot"></div>
+              <div class="timeline-marker__line"></div>
+            </div>
 
-    <div class="section-body">
-      <div class="profile-layout">
+            <div class="timeline-date">
+              <span class="timeline-date-main">Sept. 2018</span>
+              <span class="timeline-date-sub">Mai 2019</span>
+            </div>
 
-        <!-- Colonne principale : présentation -->
-        <div class="profile-main">
-          <h3>À propos de moi</h3>
-          <p>
-            Je m'appelle <strong>Basma Guettouche</strong> et je suis actuellement étudiante en
-            <strong>BTS SIO option SISR</strong> à INGETIS, Paris. Après un baccalauréat
-            <strong>STL – Biotechnologie</strong>, j’ai choisi de me réorienter vers
-            l’informatique, avec un intérêt particulier pour
-            <strong>l’administration systèmes &amp; réseaux</strong> et la
-            <strong>cybersécurité</strong>.
-          </p>
-          <p>
-            J’aime comprendre comment fonctionne une infrastructure, diagnostiquer des incidents,
-            sécuriser les systèmes et accompagner les utilisateurs au quotidien. Mon objectif est
-            de progresser vers des métiers liés au <strong>support informatique avancé</strong>,
-            à l’<strong>administration réseaux</strong> ou à la <strong>sécurité des SI</strong>.
-          </p>
+            <div class="timeline-card">
+              <div class="timeline-icon">
+                <i class="fa fa-flask"></i>
+              </div>
+              <h3 class="timeline-title">Baccalauréat STL – Biotechnologie</h3>
+              <p class="timeline-school">
+                <i class="fa fa-map-marker"></i> Lycée Polyvalent Liberté – Romainville
+              </p>
+              <p class="timeline-desc">
+                Formation scientifique orientée laboratoire, expérimentation et rigueur,
+                qui m'a apporté une méthode de travail structurée.
+              </p>
 
-          <h3>Ce que je sais faire</h3>
-          <ul>
-            <li>Administration de base de systèmes <strong>Windows Server</strong> et <strong>Linux</strong>.</li>
-            <li>Configuration et supervision d’infrastructures réseau (VLAN, DHCP, DNS…).</li>
-            <li>Utilisation d’outils professionnels (Intune, GLPI, Wireshark, pfSense…).</li>
-            <li>Scripts simples en <strong>PowerShell</strong> et <strong>Bash</strong> pour automatiser des tâches.</li>
-            <li>Support et assistance aux utilisateurs, diagnostic et résolution d’incidents.</li>
-          </ul>
-
-          <h3>Qualités personnelles</h3>
-          <ul>
-            <li><strong>Rigueur</strong> et sens du détail, renforcés par mon parcours scientifique.</li>
-            <li><strong>Pédagogie</strong> : j’aime expliquer simplement des notions techniques.</li>
-            <li><strong>Organisation</strong> et gestion de plusieurs tâches en parallèle.</li>
-            <li><strong>Curiosité</strong> et intérêt pour les nouvelles technologies.</li>
-          </ul>
-        </div>
-
-        <!-- Colonne latérale : infos rapides + photo + centres d'intérêt -->
-        <div class="profile-side">
-
-          <!-- Photo de profil -->
-          <div class="profile-photo">
-            <img
-              src="images/profil-basma.jpg"
-              alt="Photo de profil de Basma Guettouche"
-            />
-          </div>
-
-          <!-- Carte infos rapides -->
-          <div class="profile-card">
-            <h3>Infos rapides</h3>
-            <ul>
-              <li><strong>Localisation :</strong> Bagnolet (93)</li>
-              <li><strong>Date de naissance :</strong> 13 décembre 2000</li>
-              <li><strong>Formation actuelle :</strong> BTS SIO SISR</li>
-              <li><strong>Recherche :</strong> Contrat d’apprentissage en informatique</li>
-            </ul>
-          </div>
-
-          <!-- Langues -->
-          <div class="profile-card">
-            <h3>Langues</h3>
-            <ul>
-              <li><strong>Français :</strong> langue maternelle</li>
-              <li><strong>Anglais :</strong> niveau A2</li>
-            </ul>
-          </div>
-
-          <!-- Centres d’intérêt -->
-          <div class="profile-card">
-            <h3>Centres d’intérêt</h3>
-            <ul>
-              <li>Veille informatique : cybersécurité, IA, nouvelles technologies.</li>
-              <li>Lecture : romans et mangas.</li>
-              <li>Jeu d’échecs (Chess.com) : logique, stratégie et réflexion.</li>
-            </ul>
-          </div>
-
-          <!-- Liens -->
-          <div class="profile-card">
-            <h3>Liens</h3>
-            <ul>
-              <li><strong>GitHub :</strong> <a href="https://github.com/BasmaCooki" target="_blank">github.com/BasmaCooki</a></li>
-              <li><strong>LinkedIn :</strong> <a href="https://www.linkedin.com" target="_blank">Profil LinkedIn</a></li>
-              <li><strong>Email :</strong> basma.guettouche.etudiant@gmail.com</li>
-            </ul>
-          </div>
-
+              <div class="timeline-image">
+                <img
+                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=500&fit=crop"
+                  alt="Illustration Bac STL"
+                />
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ========= PARCOURS ========= -->
-<section id="parcours" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Parcours</h2>
-      <p class="section-subtitle">
-        Les étapes clés de mon parcours scolaire et mon CV.
-      </p>
-    </div>
-
-    <div class="section-body">
-
-      <!-- ========= BLOC CV : APERÇU + TÉLÉCHARGEMENT ========= -->
-      <div class="cv-block">
-        <!-- Colonne gauche : texte + boutons -->
-        <div class="cv-info">
-          <h3>Mon CV</h3>
-          <p>
-            Voici la version complète de mon CV. Pendant la présentation, je peux le
-            afficher à l’écran et vous pouvez également le télécharger au format PDF.
-          </p>
-
-          <!-- Boutons / liens -->
-          <p>
-            <!-- Ouvrir le CV dans un nouvel onglet -->
-            <a href="docs/CV_Basma_Guettouche.pdf" target="_blank">
-              Voir mon CV en grand
-            </a>
-          </p>
-          <p>
-            <!-- Forcer le téléchargement -->
-            <a href="docs/CV_Basma_Guettouche.pdf" download="CV_Basma_Guettouche.pdf">
-              Télécharger mon CV (PDF)
-            </a>
-          </p>
-        </div>
-
-        <!-- Colonne droite : aperçu visuel du CV -->
-        <div class="cv-preview">
-          <!-- Tu peux utiliser une capture d’écran de ton CV -->
-          <img
-            src="images/cv-basma-apercu.png"
-            alt="Aperçu visuel du CV de Basma Guettouche"
-          />
-        </div>
-      </div>
-
-      <!-- ========= TIMELINE DU PARCOURS ========= -->
-      <div class="timeline">
-
-        <!-- Élément 1 : BTS SIO -->
-        <article class="timeline-item">
-          <div class="timeline-date">
-            <span class="timeline-date-main">Sept. 2024</span>
-            <span class="timeline-date-sub">Actuellement</span>
-          </div>
-
-          <div class="timeline-card">
-            <h3 class="timeline-title">BTS SIO – Services Informatiques aux Organisations</h3>
-            <p class="timeline-school">
-              Option SISR – INGETIS, Paris
-            </p>
-            <p class="timeline-desc">
-              Formation en cours axée sur l’administration systèmes &amp; réseaux,
-              la sécurité et le support aux utilisateurs.
-            </p>
-
-            <!-- Image d’exemple pour le BTS -->
-            <div class="timeline-image">
-              <img
-                src="images/parcours-bts-sio.jpg"
-                alt="Illustration ou photo liée au BTS SIO"
-              />
-            </div>
-          </div>
-        </article>
-
-        <!-- Élément 2 : Baccalauréat -->
-        <article class="timeline-item">
-          <div class="timeline-date">
-            <span class="timeline-date-main">Sept. 2018</span>
-            <span class="timeline-date-sub">Mai 2019</span>
-          </div>
-
-          <div class="timeline-card">
-            <h3 class="timeline-title">Baccalauréat STL – Biotechnologie</h3>
-            <p class="timeline-school">
-              Lycée Polyvalent Liberté – Romainville
-            </p>
-            <p class="timeline-desc">
-              Formation scientifique orientée laboratoire, expérimentation et rigueur,
-              qui m’a apporté une méthode de travail structurée.
-            </p>
-
-            <!-- Image d’exemple pour le Bac -->
-            <div class="timeline-image">
-              <img
-                src="images/parcours-bac-stl.jpg"
-                alt="Illustration ou photo liée au baccalauréat STL"
-              />
-            </div>
-          </div>
-        </article>
-
-        <!-- Tu peux ajouter d'autres étapes ici (collège, formation courte, etc.) -->
-        <!--
-        <article class="timeline-item">
-          ...
-        </article>
-        -->
-
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
 <!-- ========= BTS ========= -->
