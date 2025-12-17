@@ -33,11 +33,18 @@
   <link rel="stylesheet" href="css/entreprise.css" />
   <link rel="stylesheet" href="css/five.css" />
   <link rel="stylesheet" href="css/veille.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+
 
   <!-- JS global -->
   <script src="js/portfolio.js" defer></script>
   <script src="js/accueil.js" defer></script>
   <script src="js/formation.js" defer></script>
+  <script src="js/bts.js" defer></script>
+  <script src="js/doc.js" defer></script>
+  <script src="js/entreprise.js" defer></script>
+  <script src="js/five.js" defer></script>
+  <script src="js/contact.js" defer></script>
 </head>
 
 <body class="theme-dark">
@@ -711,17 +718,31 @@
       </p>
 
       <div class="section-hero-media">
-        <img src="images/bts-hero.jpg" alt="Illustration BTS" class="section-hero-image" />
+        <img src="image/btssio.jpg" alt="Illustration BTS SIO" class="section-hero-image" />
       </div>
     </div>
 
     <div class="section-body">
       <p>
-        Le BTS SIO forme des professionnels capables d'installer, configurer, sécuriser et maintenir
-        des solutions informatiques au sein des entreprises.
+        Le <strong>BTS SIO</strong> forme des professionnels capables d’installer, configurer, sécuriser
+        et maintenir des solutions informatiques dans un contexte d’entreprise. La formation est orientée
+        <strong>terrain</strong> : ateliers, projets, mises en situation, documentation et travail en équipe.
       </p>
+
       <p>
-        Deux options sont proposées : <strong>SISR</strong> et <strong>SLAM</strong>.
+        Elle développe des compétences en <strong>support utilisateur</strong>, <strong>administration</strong>,
+        <strong>réseaux</strong>, <strong>cybersécurité</strong> et/ou <strong>développement</strong>, selon l’option choisie.
+      </p>
+
+      <p>
+        Le BTS SIO se réalise en général avec des périodes en <strong>stage</strong> ou en <strong>alternance</strong>,
+        permettant d’appliquer concrètement les notions vues en cours et de construire une expérience professionnelle.
+      </p>
+
+      <p>
+        À l’issue du BTS, il est possible d’entrer sur le marché du travail (technicienne / administratrice junior)
+        ou de poursuivre en <strong>licence professionnelle</strong>, <strong>bachelor</strong> ou <strong>école</strong>
+        (réseaux, systèmes, cybersécurité ou développement).
       </p>
     </div>
   </div>
@@ -732,30 +753,88 @@
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">Options du BTS SIO</h2>
+      <p class="section-subtitle">
+        Deux spécialités : SISR pour l’infrastructure (systèmes/réseaux) et SLAM pour le développement d’applications.
+      </p>
+
       <div class="section-hero-media">
-        <img src="images/bts-options-hero.jpg" alt="Options SISR SLAM" class="section-hero-image" />
+        <img src="image/BTS-SIO-1200x480.jpg" alt="Options SISR et SLAM" class="section-hero-image" />
       </div>
     </div>
 
     <div class="section-body">
       <div class="section-examples">
+        <!-- ===== SISR ===== -->
         <article class="example-block">
           <div class="example-text">
-            <h3 class="example-title">Option SISR</h3>
-            <p>Administration Windows / Linux, Réseaux, Virtualisation...</p>
+            <h3 class="example-title">Option SISR – Solutions d’Infrastructure, Systèmes et Réseaux</h3>
+            <p>
+              L’option <strong>SISR</strong> est centrée sur l’<strong>administration</strong> et la <strong>sécurité</strong>
+              d’une infrastructure : serveurs, réseaux, postes, services, supervision.
+            </p>
+            <ul>
+              <li>Administration Windows / Linux (comptes, droits, services, AD…)</li>
+              <li>Réseaux : VLAN, DHCP/DNS, routage, VPN, pare-feu</li>
+              <li>Virtualisation &amp; déploiement (Hyper-V, VMware…)</li>
+              <li>Scripts &amp; automatisation : <strong>PowerShell</strong>, <strong>Bash</strong></li>
+              <li>Supervision, inventaire, gestion de parc (ex : Intune…)</li>
+            </ul>
+
+            <p><strong>Métiers possibles :</strong></p>
+            <ul>
+              <li>Technicienne support / proximité</li>
+              <li>Technicienne systèmes &amp; réseaux</li>
+              <li>Administratrice systèmes/réseaux junior</li>
+              <li>Technicienne cybersécurité (niveau junior)</li>
+            </ul>
+
+            <p><strong>Poursuites d’études :</strong></p>
+            <ul>
+              <li>Licence pro Réseaux &amp; Télécoms / Admin Systèmes</li>
+              <li>Bachelor Cybersécurité / Cloud / Admin &amp; Infra</li>
+              <li>École (parcours systèmes, réseaux, cybersécurité)</li>
+            </ul>
           </div>
+
           <div class="example-media">
-            <img src="images/bts-sisr-lab.jpg" alt="SISR" class="example-image" />
+            <img src="image/network-Diagram.gif" alt="Illustration SISR" class="example-image" />
           </div>
         </article>
 
+        <!-- ===== SLAM ===== -->
         <article class="example-block">
           <div class="example-text">
-            <h3 class="example-title">Option SLAM</h3>
-            <p>HTML, CSS, JavaScript, PHP, Java, SQL...</p>
+            <h3 class="example-title">Option SLAM – Solutions Logicielles et Applications Métiers</h3>
+            <p>
+              L’option <strong>SLAM</strong> est centrée sur la <strong>conception</strong> et le <strong>développement</strong>
+              d’applications (web / métier), en lien avec les besoins d’une organisation.
+            </p>
+            <ul>
+              <li>Front : <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong></li>
+              <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong>, <strong>C#</strong>…</li>
+              <li>Bases de données : <strong>SQL</strong>, MySQL, PostgreSQL…</li>
+              <li>Conception (UML, cahier des charges), tests, maintenance</li>
+              <li>Sécurité applicative (authentification, rôles, protections XSS/SQLi…)</li>
+            </ul>
+
+            <p><strong>Métiers possibles :</strong></p>
+            <ul>
+              <li>Développeuse web / applicative (junior)</li>
+              <li>Développeuse back-end / full-stack (junior)</li>
+              <li>Technicienne applicative / support logiciel</li>
+              <li>Testeuse / QA (selon parcours)</li>
+            </ul>
+
+            <p><strong>Poursuites d’études :</strong></p>
+            <ul>
+              <li>Licence pro Développement / Applications Web</li>
+              <li>Bachelor Développement / Data / Cybersécurité applicative</li>
+              <li>École informatique (développement logiciel, ingénierie)</li>
+            </ul>
           </div>
+
           <div class="example-media">
-            <img src="images/bts-slam-code.jpg" alt="SLAM" class="example-image" />
+            <img src="image/slam.gif" alt="Illustration SLAM" class="example-image" />
           </div>
         </article>
       </div>
@@ -768,91 +847,196 @@
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">Blocs de compétences du BTS SIO</h2>
+      <p class="section-subtitle">
+        Des compétences communes, appliquées différemment selon l’option SISR ou SLAM.
+      </p>
+
       <div class="section-hero-media">
-        <img src="images/bts-blocs-hero.jpg" alt="Compétences" class="section-hero-image" />
+        <img src="image/skills.gif" alt="Compétences BTS SIO" class="section-hero-image" />
       </div>
     </div>
 
     <div class="section-body">
+      <!-- ===== Bloc 1 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
-          <h3 class="example-title">Bloc 1 – Support et services informatiques</h3>
+          <h3 class="example-title">Bloc 1 – Support et mise à disposition de services informatiques</h3>
+          <p>
+            Bloc commun : assistance, résolution d’incidents, déploiement, documentation et qualité de service.
+          </p>
+
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR</h4>
-              <ul><li>Installation postes</li><li>Dépannage</li></ul>
+              <ul>
+                <li>Installation/paramétrage poste Windows/Linux</li>
+                <li>Dépannage matériel &amp; système</li>
+                <li>Configuration réseau (IP, DNS, proxy…)</li>
+              </ul>
             </div>
+
             <div class="bloc-column">
               <h4>SLAM</h4>
-              <ul><li>Outils dev</li><li>Bugs applicatifs</li></ul>
+              <ul>
+                <li>Installation environnement de dev</li>
+                <li>Support applicatif / correction de bugs</li>
+                <li>Déploiement et tests d’applications</li>
+              </ul>
             </div>
           </div>
         </div>
+
         <div class="bloc-media">
-          <img src="images/bts-bloc1-support.jpg" alt="Support" class="example-image" />
+          <img src="image/bts-net-pro.gif" alt="Support informatique" class="example-image" />
         </div>
       </article>
 
+      <!-- ===== Bloc 2 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
-          <h3 class="example-title">Bloc 2 – Infrastructure / Développement</h3>
+          <h3 class="example-title">Bloc 2 – Cœur de métier : Infrastructure (SISR) / Développement (SLAM)</h3>
+          <p>
+            Bloc de spécialisation : il différencie clairement les compétences techniques SISR et SLAM.
+          </p>
+
           <div class="bloc-columns">
             <div class="bloc-column">
-              <h4>SISR</h4>
-              <ul><li>Serveurs, AD, Réseaux</li></ul>
+              <h4>SISR – Systèmes &amp; Réseaux</h4>
+              <ul>
+                <li>Serveurs Windows/Linux, Active Directory</li>
+                <li>Réseaux : VLAN, routage, VPN, pare-feu</li>
+                <li>Virtualisation &amp; services (DNS/DHCP, fichiers…)</li>
+                <li>Scripts : <strong>PowerShell</strong>, <strong>Bash</strong></li>
+              </ul>
             </div>
+
             <div class="bloc-column">
-              <h4>SLAM</h4>
-              <ul><li>Frameworks, Code, SQL</li></ul>
+              <h4>SLAM – Développement</h4>
+              <ul>
+                <li>Front : <strong>HTML</strong>, <strong>CSS</strong>, <strong>JS</strong></li>
+                <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong>, <strong>C#</strong></li>
+                <li>Bases de données : <strong>SQL</strong></li>
+                <li>API, frameworks, architecture applicative</li>
+              </ul>
             </div>
           </div>
         </div>
+
         <div class="bloc-media">
-          <img src="images/bts-bloc2-sisr-slam.jpg" alt="Cœur de métier" class="example-image" />
+          <img src="image/osi.gif" alt="Infrastructure et développement" class="example-image" />
         </div>
       </article>
 
+      <!-- ===== Bloc 3 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
-          <h3 class="example-title">Bloc 3 – Cybersécurité</h3>
+          <h3 class="example-title">Bloc 3 – Cybersécurité des services informatiques</h3>
+          <p>
+            Bloc commun : protection des systèmes, des données, des accès et bonnes pratiques de sécurité.
+          </p>
+
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR</h4>
-              <ul><li>Protection réseaux</li></ul>
+              <ul>
+                <li>Durcissement systèmes &amp; réseau</li>
+                <li>Gestion des droits / comptes / accès</li>
+                <li>Supervision, mises à jour, sauvegardes</li>
+              </ul>
             </div>
+
             <div class="bloc-column">
               <h4>SLAM</h4>
-              <ul><li>Sécurisation code</li></ul>
+              <ul>
+                <li>Sécurisation du code (XSS, SQLi…)</li>
+                <li>Gestion des rôles et permissions</li>
+                <li>Validation des données &amp; bonnes pratiques</li>
+              </ul>
             </div>
           </div>
         </div>
+
         <div class="bloc-media">
-          <img src="images/bts-bloc3-cyber.jpg" alt="Cyber" class="example-image" />
+          <img src="image/cyber.gif" alt="Cybersécurité" class="example-image" />
+        </div>
+      </article>
+
+      <!-- ===== Bloc 4 ===== -->
+      <article class="bloc-card">
+        <div class="bloc-text">
+          <h3 class="example-title">Bloc 4 – Gestion de projet, documentation et communication</h3>
+          <p>
+            Bloc commun : méthodologie, organisation, travail en équipe, documentation technique/utilisateur,
+            suivi et qualité.
+          </p>
+
+          <div class="bloc-columns">
+            <div class="bloc-column">
+              <h4>SISR</h4>
+              <ul>
+                <li>Projet de déploiement (serveur, réseau, parc)</li>
+                <li>Procédures, schémas, documentation</li>
+                <li>Suivi d’incidents / changements</li>
+              </ul>
+            </div>
+
+            <div class="bloc-column">
+              <h4>SLAM</h4>
+              <ul>
+                <li>Projet applicatif (besoin → dev → tests)</li>
+                <li>Documentation technique et utilisateur</li>
+                <li>Suivi des versions, correctifs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bloc-media">
+          <img src="image/skills.gif" alt="Gestion de projet" class="example-image" />
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ========= SECTION BTS E5 ========= -->
+
 <section id="bts-e5" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">Épreuve E5 – Tableau de synthèse</h2>
     </div>
+    
     <div class="section-body e5-layout">
       <div class="e5-info">
-        <p>Ce tableau récapitule l'ensemble de mes réalisations.</p>
+        <p>Ce tableau récapitule l'ensemble de mes réalisations professionnelles et atteste de la validation de mes compétences durant mon cursus BTS SIO.</p>
         <div class="e5-actions">
-          <a href="docs/tableau-synthese-e5.pdf" class="btn btn-primary" download>Télécharger (PDF)</a>
+          <a href="fichier/tableau-synthese-e5.pdf" class="btn btn-primary" download="Tableau_Synthese_E5_NOM.pdf">
+            <i class="fas fa-file-download"></i> Télécharger le PDF
+          </a>
         </div>
       </div>
-      <div class="e5-preview">
-        <img src="images/e5-apercu.png" alt="E5" class="e5-preview-image" />
+
+      <div class="e5-preview" onclick="openE5Modal()">
+        <div class="e5-preview-corner"></div>
+        <div class="e5-preview-corner"></div>
+        <div class="e5-preview-corner"></div>
+        <div class="e5-preview-corner"></div>
+        <img src="image/e5.png" alt="Aperçu du Tableau E5" class="e5-preview-image" />
+        <div class="e5-preview-overlay">
+           <span><i class="fas fa-search-plus"></i> VOIR LE TABLEAU</span>
+        </div>
       </div>
     </div>
+    <p class="e5-preview-caption">Cliquer sur l'aperçu pour agrandir l'image</p>
   </div>
 </section>
+
+<div id="e5Modal" class="e5-modal" onclick="closeE5Modal()">
+  <button class="e5-modal-close">&times;</button>
+  <div class="e5-modal-content">
+    <img src="image/e5.png" alt="Tableau E5 Agrandi">
+  </div>
+</div>
 
 <!-- ========= ENTREPRISE - ALTERNANCE ========= -->
 <section id="entreprise-alternance" class="panel panel--section">
@@ -930,7 +1114,7 @@
       </p>
 
       <div class="section-hero-media">
-        <img src="images/clubmed-hero.jpg" alt="Illustration d'un projet ou d'un contexte professionnel chez Club Med" class="section-hero-image" />
+        <img src="image/Club_Med_Logo_Blu.png" alt="Illustration d'un projet ou d'un contexte professionnel chez Club Med" class="section-hero-image" />
       </div>
     </div>
 
@@ -954,7 +1138,7 @@
             </p>
           </div>
           <div class="example-media">
-            <img src="images/clubmed-deploiement.jpg" alt="Postes de travail en cours de préparation" class="example-image" />
+            <img src="image/GIF-Hebergement.gif" alt="Postes de travail en cours de préparation" class="example-image" />
           </div>
         </article>
 
@@ -968,7 +1152,7 @@
             </p>
           </div>
           <div class="example-media">
-            <img src="images/clubmed-incidents.jpg" alt="Illustration d'un incident technique en cours de traitement" class="example-image" />
+            <img src="image/turn.gif" alt="Illustration d'un incident technique en cours de traitement" class="example-image" />
           </div>
         </article>
 
@@ -992,90 +1176,47 @@
     <div class="section-header">
       <span class="section-number">07</span>
       <h2 class="section-title">Documentation et procédures</h2>
-      <p class="section-subtitle">
-        Documents et procédures utilisés dans le cadre de mon alternance (consultation uniquement)
-      </p>
+      <p class="section-subtitle">Consultation des procédures techniques (anonymisées)</p>
     </div>
 
     <div class="section-body">
-      <p>
-        Voici quelques exemples de documents utilisés dans le cadre de mon alternance au Club Med.
-        Les versions visibles ici sont anonymisées et uniquement consultables.
-      </p>
+      <div class="project-docs-grid">
+        
+        <div class="doc-card">
+          <div class="doc-card-badge">PDF</div>
+          <div class="doc-card-icon"><i class="fa-solid fa-desktop"></i></div>
+          <h4>Remise à zéro poste</h4>
+          <p>Procédure de réinstallation complète d'un poste utilisateur avec les standards Club Med.</p>
+          <a href="fichier/Procédure Masterisation PC.pdf" target="_blank" class="doc-btn">Consulter</a>
+        </div>
 
-      <div class="project-docs">
-        <ul class="project-docs-list">
-          <!-- Dossier 1 -->
-          <li class="project-doc-item">
-            <div class="project-doc-icon">
-              <i class="fa fa-folder-open"></i>
-            </div>
-            <div class="project-doc-content">
-              <h4>Procédures IT Kiosk</h4>
-              <p>
-                Extraits de procédures utilisées lors du support : remise à zéro de poste,
-                attribution matériel, checklist, etc.
-              </p>
-              
-                href="docs/clubmed/procedures-kiosk-view.pdf"
-                class="project-doc-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Consulter les procédures
-              </a>
-            </div>
-          </li>
+        <div class="doc-card">
+          <div class="doc-card-badge">PDF</div>
+          <div class="doc-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h4>BitLocker</h4>
+          <p>Procédure de récupération de clé BitLocker</p>
+          <a href="fichier/Procédure récupération de clé Bitlocker.pdf" target="_blank" class="doc-btn">Consulter</a>
+        </div>
 
-          <!-- Dossier 2 -->
-          <li class="project-doc-item">
-            <div class="project-doc-icon">
-              <i class="fa fa-folder-open"></i>
-            </div>
-            <div class="project-doc-content">
-              <h4>Scripts & automatisation</h4>
-              <p>
-                Aperçu de scripts utilisés pour automatiser certaines tâches (exemple : préparation
-                de poste, nettoyage, inventaire).
-              </p>
-              
-                href="docs/clubmed/scripts-aperçu.pdf"
-                class="project-doc-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Voir les scripts (aperçu)
-              </a>
-            </div>
-          </li>
+        <div class="doc-card">
+          <div class="doc-card-badge">CODE</div>
+          <div class="doc-card-icon"><i class="fa-solid fa-terminal"></i></div>
+          <h4>Problème Réseau</h4>
+          <p>Procédure de diagnostic réseau</p>
+          <a href="fichier/Procédure diag réseau.pdf" target="_blank" class="doc-btn">Consulter</a>
+        </div>
 
-          <!-- Dossier 3 -->
-          <li class="project-doc-item">
-            <div class="project-doc-icon">
-              <i class="fa fa-folder-open"></i>
-            </div>
-            <div class="project-doc-content">
-              <h4>Modèles & documentation</h4>
-              <p>
-                Extraits de modèles de documentation interne (fiches, guide utilisateur,
-                documentation technique…).
-              </p>
-              
-                href="docs/clubmed/modeles-doc-view.pdf"
-                class="project-doc-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ouvrir les modèles
-              </a>
-            </div>
-          </li>
-        </ul>
+        <div class="doc-card">
+          <div class="doc-card-badge">PDF</div>
+          <div class="doc-card-icon"><i class="fa-solid fa-list-check"></i></div>
+          <h4>Office 365</h4>
+          <p>Procédure de la réinstalation O365</p>
+          <a href="fichier/Procédure-réinstallation-O365.pdf" target="_blank" class="doc-btn">Consulter</a>
+        </div>
 
-        <p class="project-docs-note">
-          🔒 Ces documents sont anonymisés et uniquement consultables. Aucun téléchargement n'est proposé
-          afin de respecter la confidentialité de l'entreprise.
-        </p>
+      </div> <div class="project-docs-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Note : Pour ajouter une procédure, dupliquez simplement le bloc "doc-card" ci-dessus.</span>
       </div>
     </div>
   </div>
@@ -1085,13 +1226,69 @@
 <section id="docs" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-title">Documentation</h2>
-      <p class="section-subtitle">
-        Docs techniques, procédures, fiches mémo, etc.
-      </p>
+      <span class="section-number">08</span>
+      <h2 class="section-title">Documentation & TP</h2>
+      <p class="section-subtitle">Travaux pratiques Système & Réseau.</p>
     </div>
+
     <div class="section-body">
-      <p>Contenu Documentation technique à venir...</p>
+      <div class="docs-two-columns">
+        
+        <div class="docs-column">
+          <h3 class="column-title"><i class="fa-solid fa-server"></i> Système</h3>
+          <div class="tp-list">
+            
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Windows Server</h4>
+                <p>Configuration et administration Windows Server.</p>
+              </div>
+              <a href="fichier/TP1WindowsServer.pdf" target="_blank" class="tp-btn-view">Voir</a>
+            </div>
+
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Déploiement Système</h4>
+                <p>Création d'une machine propre (Master).</p>
+              </div>
+              <a href="fichier/Creation-machine_propre_TPDHCP.pdf" target="_blank" class="tp-btn-view">Voir</a>
+            </div>
+
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Serveur DHCP 2019</h4>
+                <p>Installation et rôle DHCP sous Windows Server.</p>
+              </div>
+              <a href="fichier/Serveur DHCP 2019.pdf" target="_blank" class="tp-btn-view">Voir</a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="docs-column">
+          <h3 class="column-title"><i class="fa-solid fa-network-wired"></i> Réseau</h3>
+          <div class="tp-list">
+            
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Switch & Routeur</h4>
+                <p>Configuration de base des équipements Cisco.</p>
+              </div>
+              <a href="fichier/Configuration de base _ Switch - Routeur.pdf" target="_blank" class="tp-btn-view">Voir</a>
+            </div>
+
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Protocole DHCP</h4>
+                <p>Mise en œuvre du service DHCP en réseau.</p>
+              </div>
+              <a href="fichier/TP DHCP.pdf" target="_blank" class="tp-btn-view">Voir</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
@@ -1102,32 +1299,178 @@
     <div class="section-header">
       <h2 class="section-title">Veille technologique</h2>
       <p class="section-subtitle">
-        La cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs.
+        Cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs
       </p>
+
       <div class="section-hero-media">
-        <img src="images/veille-hero.jpg" alt="Illustration de la cybersécurité des identités" class="section-hero-image" />
+        <img
+          src="images/veille-hero.jpg"
+          alt="Cybersécurité et protection des identités numériques"
+          class="section-hero-image"
+        />
       </div>
     </div>
 
     <div class="section-body">
-      <section id="veille-intro" class="veille-block">
-        <h3 class="example-title">Contexte &amp; problématique</h3>
+
+      <!-- ================= INTRO ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">Présentation de la veille</h3>
         <p>
-          La majorité des cyberattaques modernes visent désormais les comptes utilisateurs :
-          mots de passe volés, phishing, usurpation d'identité, attaques sur l'authentification
-          multifacteur, etc.
+          La veille technologique consiste à suivre régulièrement l’évolution des technologies,
+          des menaces et des bonnes pratiques afin d’anticiper les risques et d’améliorer la
+          sécurité des systèmes informatiques.
         </p>
         <p>
-          <strong>Problématique de ma veille&nbsp;:</strong><br />
-          <em>
-            Comment renforcer efficacement la sécurité des comptes utilisateurs dans une entreprise
-            moderne grâce au MFA (Multi-Factor Authentication) et au modèle Zero Trust&nbsp;?
-          </em>
+          Dans le cadre de mon <strong>BTS SIO option SISR</strong>, j’ai choisi de réaliser une veille
+          orientée sur la <strong>cybersécurité des identités</strong>, car la majorité des incidents
+          de sécurité en entreprise sont liés à la compromission de comptes utilisateurs.
         </p>
-      </section>
+      </article>
+
+      <!-- ================= AXES DE VEILLE ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">Axes de veille</h3>
+        <ul>
+          <li>Attaques sur les comptes utilisateurs (phishing, vol d’identifiants)</li>
+          <li>Authentification multifacteur (MFA)</li>
+          <li>Modèle de sécurité Zero Trust</li>
+          <li>Bonnes pratiques de protection des identités en entreprise</li>
+        </ul>
+      </article>
+
+      <!-- ================= ARTICLES DE VEILLE ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">Articles et sujets de veille</h3>
+
+        <!-- Article 1 -->
+        <div class="veille-article">
+          <div class="veille-article-text">
+            <h4>La montée des attaques par phishing ciblant les identités</h4>
+            <p class="veille-date">Date : 10/09/2024</p>
+            <p>
+              Les attaques par phishing restent l’un des principaux vecteurs de compromission
+              des comptes utilisateurs. Elles visent à récupérer les identifiants de connexion
+              afin d’accéder aux services internes des entreprises.
+            </p>
+            <a
+              href="https://www.cert.ssi.gouv.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source : CERT-FR
+            </a>
+          </div>
+          <div class="veille-article-media">
+            <img
+              src="images/veille/articles/phishing.jpg"
+              alt="Illustration d'une attaque par phishing"
+              class="example-image"
+            />
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="veille-article">
+          <div class="veille-article-text">
+            <h4>Le MFA : un élément clé de la protection des comptes</h4>
+            <p class="veille-date">Date : 25/10/2024</p>
+            <p>
+              L’authentification multifacteur permet de renforcer la sécurité des comptes
+              utilisateurs en ajoutant une étape supplémentaire après le mot de passe,
+              réduisant ainsi les risques d’accès non autorisés.
+            </p>
+            <a
+              href="https://www.ssi.gouv.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source : ANSSI
+            </a>
+          </div>
+          <div class="veille-article-media">
+            <img
+              src="images/veille/articles/mfa.jpg"
+              alt="Illustration du MFA"
+              class="example-image"
+            />
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="veille-article">
+          <div class="veille-article-text">
+            <h4>Les limites du MFA : attaques par MFA fatigue</h4>
+            <p class="veille-date">Date : 15/01/2025</p>
+            <p>
+              Certaines attaques exploitent la lassitude des utilisateurs en envoyant
+              de nombreuses demandes de validation MFA jusqu’à ce que l’utilisateur accepte
+              par erreur.
+            </p>
+            <a
+              href="https://thehackernews.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source : The Hacker News
+            </a>
+          </div>
+          <div class="veille-article-media">
+            <img
+              src="images/veille/articles/mfa-fatigue.jpg"
+              alt="Illustration d'une attaque MFA fatigue"
+              class="example-image"
+            />
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="veille-article">
+          <div class="veille-article-text">
+            <h4>Le modèle Zero Trust appliqué aux identités</h4>
+            <p class="veille-date">Date : 03/02/2025</p>
+            <p>
+              Le modèle Zero Trust repose sur le principe « ne jamais faire confiance, toujours vérifier ».
+              Il impose un contrôle permanent des accès, des identités et des appareils.
+            </p>
+            <a
+              href="https://www.microsoft.com/security/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source : Microsoft Security Blog
+            </a>
+          </div>
+          <div class="veille-article-media">
+            <img
+              src="images/veille/articles/zero-trust.jpg"
+              alt="Illustration du modèle Zero Trust"
+              class="example-image"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= LIEN BTS / ALTERNANCE ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">Lien avec mon BTS SIO SISR et mon alternance</h3>
+        <p>
+          Cette veille technologique est directement liée à mon alternance en support informatique.
+          Les incidents rencontrés concernent très souvent l’accès aux comptes, la sécurité des
+          identités et l’utilisation des outils cloud.
+        </p>
+        <ul>
+          <li>Assistance aux utilisateurs lors de problèmes d’authentification</li>
+          <li>Application des bonnes pratiques de sécurité (MFA, mots de passe)</li>
+          <li>Sensibilisation des utilisateurs aux risques de phishing</li>
+          <li>Amélioration continue de la sécurité des comptes en entreprise</li>
+        </ul>
+      </article>
+
     </div>
   </div>
 </section>
+
 
 <!-- ========= CERTIFICATIONS ========= -->
 <section id="certifications" class="panel panel--section">

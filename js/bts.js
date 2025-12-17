@@ -448,3 +448,419 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(`  • Hero images: ${document.querySelectorAll('.section-hero-media').length}`);
   console.log(`  • Animations activées: ✓`);
 });
+
+
+
+// ========================================================
+// BTS E5 SECTION - JavaScript Ultra-Interactif
+// Modal d'agrandissement + animations
+// ========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("%c📄 BTS E5 Section Activée", 
+    "color: #1af6c4; font-size: 16px; font-weight: bold;");
+
+  // ======================================================
+  // CRÉATION DE LA MODAL D'AGRANDISSEMENT
+  // ======================================================
+  
+  function createImageModal() {
+    // Vérifier si la modal existe déjà
+    if (document.getElementById('e5-modal')) return;
+    
+    const modal = document.createElement('div');
+    modal.id = 'e5-modal';
+    modal.className = 'e5-modal';
+    modal.innerHTML = `
+      <div class="e5-modal-content">
+        <button class="e5-modal-close" aria-label="Fermer">✕</button>
+        <img src="" alt="Tableau E5 agrandi" />
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Fermeture de la modal
+    const closeBtn = modal.querySelector('.e5-modal-close');
+    closeBtn.addEventListener('click', () => closeModal());
+    
+    // Fermeture au clic sur le fond
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    
+    // Fermeture avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+  
+  function openModal(imageSrc) {
+    const modal = document.getElementById('e5-modal');
+    if (!modal) return;
+    
+    const img = modal.querySelector('img');
+    img.src = imageSrc;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Bloquer le scroll
+    
+    // Effet de particules à l'ouverture
+    createModalParticles();
+  }
+  
+  function closeModal() {
+    const modal = document.getElementById('e5-modal');
+    if (!modal) return;
+    
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Restaurer le scroll
+  }
+
+  // ======================================================
+  // GESTION DU CLIC SUR L'APERÇU
+  // ======================================================
+  
+  const e5Preview = document.querySelector('.e5-preview');
+  const e5PreviewImage = document.querySelector('.e5-preview-image');
+  
+  if (e5Preview && e5PreviewImage) {
+    createImageModal();
+    
+    // Ajouter les coins décoratifs
+    for (let i = 0; i < 4; i++) {
+      const corner = document.createElement('div');
+      corner.className = 'e5-preview-corner';
+      e5Preview.appendChild(corner);
+    }
+    
+    // Ajouter l'overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'e5-preview-overlay';
+    e5Preview.appendChild(overlay);
+    
+    // Clic pour agrandir
+    e5Preview.addEventListener('click', () => {
+      openModal(e5PreviewImage.src);
+      createClickPulse(e5Preview);
+    });
+    
+    // Effet de parallax léger
+    e5Preview.addEventListener('mousemove', (e) => {
+      const rect = e5Preview.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      
+      e5PreviewImage.style.transform = `scale(1.02) translate(${x * 10}px, ${y * 10}px)`;
+    });
+    
+    e5Preview.addEventListener('mouseleave', () => {
+      e5PreviewImage.style.transform = '';
+    });
+  }
+
+  // ======================================================
+  // EFFET DE PARTICULES À L'OUVERTURE DE LA MODAL
+  // ======================================================
+  
+  function createModalParticles() {
+    const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+    const color = currentTheme === 'dark' ? '#1af6c4' : '#0369a1';
+    const particleCount = 20;
+    
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      const angle = (Math.PI * 2 * i) / particleCount;
+      const distance = 100 + Math.random() * 100;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+      
+      particle.style.cssText = `
+        position: fixed;
+        left: ${centerX}px;
+        top: ${centerY}px;
+        width: 6px;
+        height: 6px;
+        background: ${color};
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        box-shadow: 0 0 15px ${color}, 0 0 30px ${color};
+        animation: modal-particle-burst 1.2s ease-out forwards;
+        --tx: ${tx}px;
+        --ty: ${ty}px;
+      `;
+      
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1200);
+    }
+    
+    // Ajouter l'animation si elle n'existe pas
+    if (!document.getElementById('modal-particle-anim')) {
+      const style = document.createElement('style');
+      style.id = 'modal-particle-anim';
+      style.textContent = `
+        @keyframes modal-particle-burst {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // ======================================================
+  // EFFET DE PULSE AU CLIC
+  // ======================================================
+  
+  function createClickPulse(element) {
+    const rect = element.getBoundingClientRect();
+    const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+    const color = currentTheme === 'dark' ? '#1af6c4' : '#0369a1';
+    
+    const pulse = document.createElement('div');
+    pulse.style.cssText = `
+      position: fixed;
+      left: ${rect.left}px;
+      top: ${rect.top}px;
+      width: ${rect.width}px;
+      height: ${rect.height}px;
+      border-radius: 20px;
+      border: 4px solid ${color};
+      opacity: 1;
+      pointer-events: none;
+      z-index: 9998;
+      animation: click-pulse-out 0.8s ease-out;
+    `;
+    
+    document.body.appendChild(pulse);
+    
+    setTimeout(() => pulse.remove(), 800);
+    
+    if (!document.getElementById('click-pulse-anim')) {
+      const style = document.createElement('style');
+      style.id = 'click-pulse-anim';
+      style.textContent = `
+        @keyframes click-pulse-out {
+          to {
+            transform: scale(1.1);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // ======================================================
+  // ANIMATION DU BOUTON DE TÉLÉCHARGEMENT
+  // ======================================================
+  
+  const downloadBtn = document.querySelector('.e5-actions .btn-primary');
+  
+  if (downloadBtn) {
+    // Effet de particules au clic
+    downloadBtn.addEventListener('click', (e) => {
+      createDownloadParticles(e);
+      createDownloadWave(downloadBtn);
+      
+      // Animation de téléchargement
+      animateDownload(downloadBtn);
+    });
+    
+    // Effet de glow qui suit la souris
+    downloadBtn.addEventListener('mousemove', (e) => {
+      const rect = downloadBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      downloadBtn.style.setProperty('--mouse-x', `${x}px`);
+      downloadBtn.style.setProperty('--mouse-y', `${y}px`);
+    });
+  }
+
+  // ======================================================
+  // PARTICULES DE TÉLÉCHARGEMENT
+  // ======================================================
+  
+  function createDownloadParticles(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+    const color = currentTheme === 'dark' ? '#1af6c4' : '#0369a1';
+    
+    for (let i = 0; i < 10; i++) {
+      const particle = document.createElement('div');
+      const angle = (Math.PI * 2 * i) / 10;
+      const distance = 40 + Math.random() * 30;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance + 20; // Biais vers le bas
+      
+      particle.style.cssText = `
+        position: fixed;
+        left: ${rect.left + x}px;
+        top: ${rect.top + y}px;
+        width: 5px;
+        height: 5px;
+        background: ${color};
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        box-shadow: 0 0 12px ${color};
+        animation: download-particle 1s ease-out forwards;
+        --tx: ${tx}px;
+        --ty: ${ty}px;
+      `;
+      
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    }
+    
+    if (!document.getElementById('download-particle-anim')) {
+      const style = document.createElement('style');
+      style.id = 'download-particle-anim';
+      style.textContent = `
+        @keyframes download-particle {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // ======================================================
+  // ONDE DE TÉLÉCHARGEMENT
+  // ======================================================
+  
+  function createDownloadWave(button) {
+    const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+    const color = currentTheme === 'dark' ? 'rgba(26, 246, 196, 0.6)' : 'rgba(3, 105, 161, 0.4)';
+    
+    const wave = document.createElement('div');
+    wave.style.cssText = `
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      border: 3px solid ${color};
+      animation: wave-expand 1s ease-out;
+      pointer-events: none;
+    `;
+    
+    button.style.position = 'relative';
+    button.appendChild(wave);
+    
+    setTimeout(() => wave.remove(), 1000);
+    
+    if (!document.getElementById('wave-expand-anim')) {
+      const style = document.createElement('style');
+      style.id = 'wave-expand-anim';
+      style.textContent = `
+        @keyframes wave-expand {
+          to {
+            transform: scale(1.3);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // ======================================================
+  // ANIMATION DE TÉLÉCHARGEMENT
+  // ======================================================
+  
+  function animateDownload(button) {
+    const originalText = button.textContent;
+    const originalHTML = button.innerHTML;
+    
+    // Phase 1: Téléchargement
+    button.innerHTML = '<span>⏳ Téléchargement...</span>';
+    button.style.pointerEvents = 'none';
+    
+    setTimeout(() => {
+      // Phase 2: Succès
+      button.innerHTML = '<span>✓ Téléchargé !</span>';
+      button.style.background = 'linear-gradient(135deg, #27c93f, #1ea830)';
+      
+      setTimeout(() => {
+        // Phase 3: Retour à la normale
+        button.innerHTML = originalHTML;
+        button.style.background = '';
+        button.style.pointerEvents = '';
+      }, 1500);
+    }, 1000);
+  }
+
+  // ======================================================
+  // INTERSECTION OBSERVER POUR L'APPARITION
+  // ======================================================
+  
+  const e5Section = document.getElementById('bts-e5');
+  
+  if (e5Section) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Effet de scan à l'apparition
+          createSectionScan(e5Section);
+          
+          // Animation des éléments
+          const e5Layout = e5Section.querySelector('.e5-layout');
+          if (e5Layout) {
+            e5Layout.style.animation = 'fade-slide-up 0.8s ease-out 0.3s forwards';
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(e5Section);
+  }
+
+  
+  // ======================================================
+  // COMPTEUR DE TÉLÉCHARGEMENTS (simulation)
+  // ======================================================
+  
+  let downloadCount = 0;
+  
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      downloadCount++;
+      console.log(`%c📥 Téléchargement #${downloadCount}`, 
+        "color: #1af6c4; font-weight: bold;");
+    });
+  }
+
+  // ======================================================
+  // STATS & DEBUG
+  // ======================================================
+  
+  console.log("%c✨ BTS E5 Stats:", "color: #22d3ee; font-weight: bold;");
+  console.log(`  • Modal créée: ✓`);
+  console.log(`  • Preview interactive: ✓`);
+  console.log(`  • Bouton téléchargement: ${downloadBtn ? '✓' : '✗'}`);
+  console.log(`  • Animations activées: ✓`);
+});
