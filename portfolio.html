@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="css/bts.css" />
   <link rel="stylesheet" href="css/doc.css" />
   <link rel="stylesheet" href="css/entreprise.css" />
-  <link rel="stylesheet" href="css/five.css" />
+  <link rel="stylesheet" href="css/certif.css" />
   <link rel="stylesheet" href="css/veille.css" />
   <link rel="stylesheet" href="css/contact.css" />
 
@@ -43,7 +43,7 @@
   <script src="js/bts.js" defer></script>
   <script src="js/doc.js" defer></script>
   <script src="js/entreprise.js" defer></script>
-  <script src="js/five.js" defer></script>
+  <script src="js/certif.js" defer></script>
   <script src="js/contact.js" defer></script>
 </head>
 
@@ -1297,6 +1297,7 @@
 <section id="veille" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
+      <span class="section-number">08</span>
       <h2 class="section-title">Veille technologique</h2>
       <p class="section-subtitle">
         Cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs
@@ -1304,7 +1305,7 @@
 
       <div class="section-hero-media">
         <img
-          src="images/veille-hero.jpg"
+          src="image/Cybersécurité_identités.jpg"
           alt="Cybersécurité et protection des identités numériques"
           class="section-hero-image"
         />
@@ -1315,14 +1316,14 @@
 
       <!-- ================= INTRO ================= -->
       <article class="veille-card">
-        <h3 class="example-title">Présentation de la veille</h3>
+        <h3 class="example-title">📡 Présentation de la veille</h3>
         <p>
-          La veille technologique consiste à suivre régulièrement l’évolution des technologies,
-          des menaces et des bonnes pratiques afin d’anticiper les risques et d’améliorer la
+          La veille technologique consiste à suivre régulièrement l'évolution des technologies,
+          des menaces et des bonnes pratiques afin d'anticiper les risques et d'améliorer la
           sécurité des systèmes informatiques.
         </p>
         <p>
-          Dans le cadre de mon <strong>BTS SIO option SISR</strong>, j’ai choisi de réaliser une veille
+          Dans le cadre de mon <strong>BTS SIO option SISR</strong>, j'ai choisi de réaliser une veille
           orientée sur la <strong>cybersécurité des identités</strong>, car la majorité des incidents
           de sécurité en entreprise sont liés à la compromission de comptes utilisateurs.
         </p>
@@ -1330,140 +1331,66 @@
 
       <!-- ================= AXES DE VEILLE ================= -->
       <article class="veille-card">
-        <h3 class="example-title">Axes de veille</h3>
-        <ul>
-          <li>Attaques sur les comptes utilisateurs (phishing, vol d’identifiants)</li>
-          <li>Authentification multifacteur (MFA)</li>
-          <li>Modèle de sécurité Zero Trust</li>
-          <li>Bonnes pratiques de protection des identités en entreprise</li>
-        </ul>
+        <h3 class="example-title">🎯 Axes de veille</h3>
+        <div class="veille-tags">
+          <span class="veille-tag">🔐 Authentification MFA</span>
+          <span class="veille-tag">🎣 Phishing & Social Engineering</span>
+          <span class="veille-tag">🛡️ Zero Trust</span>
+          <span class="veille-tag">👤 Gestion des identités</span>
+          <span class="veille-tag">⚠️ Vol de credentials</span>
+        </div>
       </article>
 
-      <!-- ================= ARTICLES DE VEILLE ================= -->
+      <!-- ================= SOURCES ================= -->
       <article class="veille-card">
-        <h3 class="example-title">Articles et sujets de veille</h3>
-
-        <!-- Article 1 -->
-        <div class="veille-article">
-          <div class="veille-article-text">
-            <h4>La montée des attaques par phishing ciblant les identités</h4>
-            <p class="veille-date">Date : 10/09/2024</p>
-            <p>
-              Les attaques par phishing restent l’un des principaux vecteurs de compromission
-              des comptes utilisateurs. Elles visent à récupérer les identifiants de connexion
-              afin d’accéder aux services internes des entreprises.
-            </p>
-            <a
-              href="https://www.cert.ssi.gouv.fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source : CERT-FR
-            </a>
+        <h3 class="example-title">📚 Sources de veille</h3>
+        <div class="veille-sources">
+          <div class="source-item">
+            <i class="fa fa-rss"></i>
+            <span><strong>CERT-FR</strong> - Alertes de sécurité françaises</span>
           </div>
-          <div class="veille-article-media">
-            <img
-              src="images/veille/articles/phishing.jpg"
-              alt="Illustration d'une attaque par phishing"
-              class="example-image"
-            />
+          <div class="source-item">
+            <i class="fa fa-rss"></i>
+            <span><strong>ANSSI</strong> - Publications officielles</span>
+          </div>
+          <div class="source-item">
+            <i class="fa fa-rss"></i>
+            <span><strong>Cybermalveillance.gouv.fr</strong> - Conseils grand public</span>
           </div>
         </div>
+        <p class="veille-info">
+          ℹ️ Les articles ci-dessous sont automatiquement récupérés depuis ces sources et filtrés
+          par mots-clés pertinents (MFA, phishing, authentification, etc.)
+        </p>
+      </article>
 
-        <!-- Article 2 -->
-        <div class="veille-article">
-          <div class="veille-article-text">
-            <h4>Le MFA : un élément clé de la protection des comptes</h4>
-            <p class="veille-date">Date : 25/10/2024</p>
-            <p>
-              L’authentification multifacteur permet de renforcer la sécurité des comptes
-              utilisateurs en ajoutant une étape supplémentaire après le mot de passe,
-              réduisant ainsi les risques d’accès non autorisés.
-            </p>
-            <a
-              href="https://www.ssi.gouv.fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source : ANSSI
-            </a>
-          </div>
-          <div class="veille-article-media">
-            <img
-              src="images/veille/articles/mfa.jpg"
-              alt="Illustration du MFA"
-              class="example-image"
-            />
-          </div>
-        </div>
-
-        <!-- Article 3 -->
-        <div class="veille-article">
-          <div class="veille-article-text">
-            <h4>Les limites du MFA : attaques par MFA fatigue</h4>
-            <p class="veille-date">Date : 15/01/2025</p>
-            <p>
-              Certaines attaques exploitent la lassitude des utilisateurs en envoyant
-              de nombreuses demandes de validation MFA jusqu’à ce que l’utilisateur accepte
-              par erreur.
-            </p>
-            <a
-              href="https://thehackernews.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source : The Hacker News
-            </a>
-          </div>
-          <div class="veille-article-media">
-            <img
-              src="images/veille/articles/mfa-fatigue.jpg"
-              alt="Illustration d'une attaque MFA fatigue"
-              class="example-image"
-            />
-          </div>
-        </div>
-
-        <!-- Article 4 -->
-        <div class="veille-article">
-          <div class="veille-article-text">
-            <h4>Le modèle Zero Trust appliqué aux identités</h4>
-            <p class="veille-date">Date : 03/02/2025</p>
-            <p>
-              Le modèle Zero Trust repose sur le principe « ne jamais faire confiance, toujours vérifier ».
-              Il impose un contrôle permanent des accès, des identités et des appareils.
-            </p>
-            <a
-              href="https://www.microsoft.com/security/blog/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source : Microsoft Security Blog
-            </a>
-          </div>
-          <div class="veille-article-media">
-            <img
-              src="images/veille/articles/zero-trust.jpg"
-              alt="Illustration du modèle Zero Trust"
-              class="example-image"
-            />
+      <!-- ================= ARTICLES DYNAMIQUES ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">📰 Derniers articles de veille</h3>
+        
+        <!-- Container qui sera rempli par JavaScript -->
+        <div class="veille-articles-container">
+          <!-- Les articles seront injectés ici automatiquement -->
+          <div class="veille-loading">
+            <div class="loading-spinner"></div>
+            <p>Chargement des derniers articles...</p>
           </div>
         </div>
       </article>
 
       <!-- ================= LIEN BTS / ALTERNANCE ================= -->
       <article class="veille-card">
-        <h3 class="example-title">Lien avec mon BTS SIO SISR et mon alternance</h3>
+        <h3 class="example-title">🔗 Lien avec mon BTS SIO SISR et mon alternance</h3>
         <p>
           Cette veille technologique est directement liée à mon alternance en support informatique.
-          Les incidents rencontrés concernent très souvent l’accès aux comptes, la sécurité des
-          identités et l’utilisation des outils cloud.
+          Les incidents rencontrés concernent très souvent l'accès aux comptes, la sécurité des
+          identités et l'utilisation des outils cloud.
         </p>
-        <ul>
-          <li>Assistance aux utilisateurs lors de problèmes d’authentification</li>
-          <li>Application des bonnes pratiques de sécurité (MFA, mots de passe)</li>
-          <li>Sensibilisation des utilisateurs aux risques de phishing</li>
-          <li>Amélioration continue de la sécurité des comptes en entreprise</li>
+        <ul class="veille-list">
+          <li>✅ Assistance aux utilisateurs lors de problèmes d'authentification</li>
+          <li>✅ Application des bonnes pratiques de sécurité (MFA, mots de passe)</li>
+          <li>✅ Sensibilisation des utilisateurs aux risques de phishing</li>
+          <li>✅ Amélioration continue de la sécurité des comptes en entreprise</li>
         </ul>
       </article>
 
@@ -1486,8 +1413,8 @@
       <article class="certif-card">
         <h3 class="certif-title">Certification ANSSI – SecNum Académie</h3>
         <div class="certif-preview">
-          <a href="images/certif-secnum.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="images/certif-secnum.jpg" alt="Certification SecNum Académie ANSSI" class="certif-image" />
+          <a href="image/certif.png" target="_blank" rel="noopener noreferrer">
+            <img src="image/certif.png" alt="Certification SecNum Académie ANSSI" class="certif-image" />
           </a>
         </div>
         <p>Acquisition des connaissances :</p>
@@ -1508,36 +1435,36 @@
 
         <div class="certif-modules-grid">
           <div class="certif-module">
-            <a href="images/rgpd-module1.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/rgpd-module1.jpg" alt="Module 1 RGPD" class="certif-image" />
+            <a href="image/modulo1.png" target="_blank" rel="noopener noreferrer">
+              <img src="image/modulo1.png" alt="Module 1 RGPD" class="certif-image" />
             </a>
             <p class="module-label">Module 1 – Comprendre le RGPD</p>
           </div>
 
           <div class="certif-module">
-            <a href="images/rgpd-module2.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/rgpd-module2.jpg" alt="Module 2 RGPD" class="certif-image" />
+            <a href="image/modulo2.png" target="_blank" rel="noopener noreferrer">
+              <img src="image/modulo2.png" alt="Module 2 RGPD" class="certif-image" />
             </a>
             <p class="module-label">Module 2 – Les données personnelles</p>
           </div>
 
           <div class="certif-module">
-            <a href="images/rgpd-module3.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/rgpd-module3.jpg" alt="Module 3 RGPD" class="certif-image" />
+            <a href="image/modulo3.png" target="_blank" rel="noopener noreferrer">
+              <img src="image/modulo3.png" alt="Module 3 RGPD" class="certif-image" />
             </a>
             <p class="module-label">Module 3 – Les responsabilités</p>
           </div>
 
           <div class="certif-module">
-            <a href="images/rgpd-module4.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/rgpd-module4.jpg" alt="Module 4 RGPD" class="certif-image" />
+            <a href="image/modulo4.png" target="_blank" rel="noopener noreferrer">
+              <img src="image/modulo4.png" alt="Module 4 RGPD" class="certif-image" />
             </a>
             <p class="module-label">Module 4 – Les risques & la sécurité</p>
           </div>
 
           <div class="certif-module">
-            <a href="images/rgpd-module5.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/rgpd-module5.jpg" alt="Module 5 RGPD" class="certif-image" />
+            <a href="image/modulo5.png" target="_blank" rel="noopener noreferrer">
+              <img src="image/modulo5.png" alt="Module 5 RGPD" class="certif-image" />
             </a>
             <p class="module-label">Module 5 – Les droits des personnes</p>
           </div>
