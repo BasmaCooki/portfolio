@@ -1,85 +1,107 @@
 // =========================================
-// VEILLE TECHNOLOGIQUE - AUTO-ACTUALISATION
-// Récupération automatique d'articles depuis plusieurs sources
+// VEILLE TECHNOLOGIQUE - STYLE LOÏC
+// Chargement d'articles par source
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
   const veilleSection = document.querySelector("#veille");
   if (!veilleSection) return;
 
-  console.log("%c🔍 Module Veille Technologique chargé", "color: #22d3ee; font-weight: bold;");
+  console.log("%c🔍 Module Veille Technologique (style Loïc) chargé", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // CONFIGURATION DES SOURCES
   // =========================================
   const SOURCES = {
-    certfr: {
+    "cert-fr": {
       name: "CERT-FR",
       url: "https://www.cert.ssi.gouv.fr/feed/",
       color: "#ef4444",
-      keywords: ["authentification", "identité", "MFA", "phishing", "mot de passe"]
+      keywords: ["authentification", "identité", "MFA", "phishing", "mot de passe", "compte"]
     },
-    anssi: {
+    "anssi": {
       name: "ANSSI",
       url: "https://www.ssi.gouv.fr/feed/",
       color: "#3b82f6",
-      keywords: ["sécurité", "authentification", "zero trust", "identité"]
+      keywords: ["sécurité", "authentification", "zero trust", "identité", "accès"]
     },
-    cybermalveillance: {
+    "cybermalveillance": {
       name: "Cybermalveillance",
       url: "https://www.cybermalveillance.gouv.fr/feed/",
       color: "#8b5cf6",
-      keywords: ["phishing", "arnaque", "compte", "mot de passe"]
+      keywords: ["phishing", "arnaque", "compte", "mot de passe", "hameçonnage"]
+    },
+    "hackernews": {
+      name: "The Hacker News",
+      url: "https://feeds.feedburner.com/TheHackersNews",
+      color: "#10b981",
+      keywords: ["MFA", "authentication", "identity", "phishing", "password", "credentials"]
+    },
+    "microsoft": {
+      name: "Microsoft Security",
+      url: "https://www.microsoft.com/en-us/security/blog/feed/",
+      color: "#0ea5e9",
+      keywords: ["identity", "authentication", "zero trust", "MFA", "Azure AD"]
+    },
+    "bleeping": {
+      name: "Bleeping Computer",
+      url: "https://www.bleepingcomputer.com/feed/",
+      color: "#f59e0b",
+      keywords: ["authentication", "password", "credentials", "phishing", "identity"]
     }
   };
 
-  // =========================================
-  // STOCKAGE LOCAL DES ARTICLES
-  // =========================================
-  const STORAGE_KEY = "veille-articles-cache";
-  const CACHE_DURATION = 3600000; // 1 heure en millisecondes
+  const STORAGE_PREFIX = "veille-source-";
+  const CACHE_DURATION = 3600000; // 1 heure
 
-  function getCachedArticles() {
+  // =========================================
+  // CACHE LOCAL
+  // =========================================
+  function getCachedArticles(sourceId) {
     try {
-      const cached = localStorage.getItem(STORAGE_KEY);
+      const cached = localStorage.getItem(STORAGE_PREFIX + sourceId);
       if (!cached) return null;
       
       const data = JSON.parse(cached);
       const now = Date.now();
       
-      // Vérifier si le cache est encore valide
       if (now - data.timestamp < CACHE_DURATION) {
-        console.log("✅ Articles chargés depuis le cache");
+        console.log(`✅ ${sourceId}: articles chargés depuis le cache`);
         return data.articles;
       }
       
-      console.log("⏰ Cache expiré, rechargement...");
       return null;
     } catch (e) {
-      console.error("Erreur lecture cache:", e);
       return null;
     }
   }
 
-  function setCachedArticles(articles) {
+  function setCachedArticles(sourceId, articles) {
     try {
       const data = {
         articles: articles,
         timestamp: Date.now()
       };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      console.log("💾 Articles mis en cache");
+      localStorage.setItem(STORAGE_PREFIX + sourceId, JSON.stringify(data));
     } catch (e) {
-      console.error("Erreur sauvegarde cache:", e);
+      console.error(`Erreur cache ${sourceId}:`, e);
     }
   }
 
   // =========================================
-  // RÉCUPÉRATION DES ARTICLES (via proxy CORS)
+  // RÉCUPÉRATION ARTICLES PAR SOURCE
   // =========================================
-  async function fetchArticlesFromSource(source) {
+  async function fetchArticlesFromSource(sourceId) {
+    const source = SOURCES[sourceId];
+    if (!source) return [];
+
+    // Vérifier le cache
+    const cached = getCachedArticles(sourceId);
+    if (cached && cached.length > 0) {
+      return cached;
+    }
+
     try {
-      // Utilisation d'un proxy CORS pour contourner les restrictions
       const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`;
       
       const response = await fetch(proxyUrl, {
@@ -92,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       const xmlText = data.contents;
 
-      // Parser le XML (RSS)
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, "text/xml");
       
@@ -100,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const articles = [];
 
       items.forEach((item, index) => {
-        if (index >= 3) return; // Max 3 articles par source
+        if (index >= 4) return; // Max 4 articles par source
 
         const title = item.querySelector("title")?.textContent || "Sans titre";
         const link = item.querySelector("link")?.textContent || "#";
@@ -117,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
           articles.push({
             title: cleanHtml(title),
             link: link,
-            description: cleanHtml(description).substring(0, 200) + "...",
+            description: cleanHtml(description).substring(0, 150) + "...",
             date: formatDate(pubDate),
             source: source.name,
             sourceColor: source.color
@@ -125,146 +146,78 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      console.log(`✅ ${articles.length} articles trouvés depuis ${source.name}`);
+      // Mettre en cache
+      if (articles.length > 0) {
+        setCachedArticles(sourceId, articles);
+      }
+
+      console.log(`✅ ${sourceId}: ${articles.length} articles trouvés`);
       return articles;
 
     } catch (error) {
-      console.error(`❌ Erreur ${source.name}:`, error);
+      console.error(`❌ Erreur ${sourceId}:`, error);
       return [];
     }
   }
 
   // =========================================
-  // RÉCUPÉRATION DE TOUS LES ARTICLES
+  // AFFICHAGE ARTICLES POUR UNE SOURCE
   // =========================================
-  async function fetchAllArticles() {
-    // Vérifier le cache d'abord
-    const cached = getCachedArticles();
-    if (cached && cached.length > 0) {
-      return cached;
-    }
-
-    showLoadingState();
-
-    const allArticles = [];
-    
-    // Récupérer depuis toutes les sources en parallèle
-    const promises = Object.values(SOURCES).map(source => 
-      fetchArticlesFromSource(source)
-    );
-
-    const results = await Promise.all(promises);
-    
-    // Fusionner tous les articles
-    results.forEach(articles => {
-      allArticles.push(...articles);
-    });
-
-    // Trier par date (plus récent en premier)
-    allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // Limiter à 6 articles max
-    const limitedArticles = allArticles.slice(0, 6);
-
-    // Mettre en cache
-    if (limitedArticles.length > 0) {
-      setCachedArticles(limitedArticles);
-    }
-
-    hideLoadingState();
-
-    return limitedArticles;
-  }
-
-  // =========================================
-  // AFFICHAGE DES ARTICLES
-  // =========================================
-  function displayArticles(articles) {
-    const container = veilleSection.querySelector(".veille-articles-container");
-    
-    if (!container) {
-      console.error("❌ Container .veille-articles-container non trouvé");
-      return;
-    }
+  function displayArticlesForSource(sourceId, articles) {
+    const container = document.getElementById(`articles-${sourceId}`);
+    if (!container) return;
 
     if (articles.length === 0) {
       container.innerHTML = `
-        <div class="veille-empty">
-          <p>Aucun article récent trouvé. Les articles seront chargés automatiquement.</p>
+        <div class="source-empty">
+          <p>Aucun article récent trouvé pour cette source</p>
         </div>
       `;
       return;
     }
 
-    container.innerHTML = articles.map((article, index) => `
-      <div class="veille-article reveal" style="animation-delay: ${index * 0.1}s">
-        <div class="veille-article-header">
-          <span class="veille-source-badge" style="background: ${article.sourceColor}">
-            ${article.source}
-          </span>
-          <span class="veille-date">${article.date}</span>
-        </div>
-        
-        <div class="veille-article-body">
-          <h4 class="veille-article-title">${article.title}</h4>
-          <p class="veille-article-description">${article.description}</p>
-          
-          <a 
-            href="${article.link}" 
-            class="veille-article-link" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            Lire l'article complet
-            <i class="fa fa-external-link"></i>
-          </a>
-        </div>
-      </div>
-    `).join('');
-
-    // Animer l'apparition
-    animateArticles();
-  }
-
-  // =========================================
-  // ÉTATS DE CHARGEMENT
-  // =========================================
-  function showLoadingState() {
-    const container = veilleSection.querySelector(".veille-articles-container");
-    if (!container) return;
-
     container.innerHTML = `
-      <div class="veille-loading">
-        <div class="loading-spinner"></div>
-        <p>Chargement des derniers articles...</p>
+      <div class="source-articles-list">
+        ${articles.map((article, index) => `
+          <article class="source-article reveal" style="animation-delay: ${index * 0.1}s">
+            <div class="article-date">${article.date}</div>
+            <h5 class="article-title">
+              <a href="${article.link}" target="_blank" rel="noopener noreferrer">
+                ${article.title}
+              </a>
+            </h5>
+            <p class="article-excerpt">${article.description}</p>
+            <a href="${article.link}" class="article-link" target="_blank" rel="noopener noreferrer">
+              Lire l'article
+              <i class="fa fa-external-link"></i>
+            </a>
+          </article>
+        `).join('')}
       </div>
     `;
-  }
 
-  function hideLoadingState() {
-    const loading = veilleSection.querySelector(".veille-loading");
-    if (loading) loading.remove();
+    // Animer l'apparition
+    setTimeout(() => {
+      container.querySelectorAll('.reveal').forEach(el => {
+        el.classList.add('is-visible');
+      });
+    }, 100);
   }
 
   // =========================================
-  // ANIMATIONS
+  // CHARGEMENT DE TOUTES LES SOURCES
   // =========================================
-  function animateArticles() {
-    const articles = veilleSection.querySelectorAll(".veille-article.reveal");
+  async function loadAllSources() {
+    const sourceIds = Object.keys(SOURCES);
     
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    console.log("🔄 Chargement de toutes les sources...");
 
-    articles.forEach(article => observer.observe(article));
+    for (const sourceId of sourceIds) {
+      const articles = await fetchArticlesFromSource(sourceId);
+      displayArticlesForSource(sourceId, articles);
+    }
+
+    console.log("✅ Toutes les sources chargées");
   }
 
   // =========================================
@@ -279,10 +232,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function formatDate(dateString) {
     try {
       const date = new Date(dateString);
+      const now = new Date();
+      const diffTime = Math.abs(now - date);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays === 0) return "Aujourd'hui";
+      if (diffDays === 1) return "Hier";
+      if (diffDays < 7) return `Il y a ${diffDays} jours`;
+
       return date.toLocaleDateString('fr-FR', {
-        year: 'numeric',
+        day: 'numeric',
         month: 'long',
-        day: 'numeric'
+        year: 'numeric'
       });
     } catch (e) {
       return dateString;
@@ -290,46 +251,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================
-  // BOUTON DE RAFRAÎCHISSEMENT MANUEL
+  // ANIMATIONS AU SCROLL
   // =========================================
-  function createRefreshButton() {
-    const header = veilleSection.querySelector(".section-header");
-    if (!header) return;
-
-    const refreshBtn = document.createElement("button");
-    refreshBtn.className = "veille-refresh-btn";
-    refreshBtn.innerHTML = `
-      <i class="fa fa-refresh"></i>
-      <span>Actualiser</span>
-    `;
+  function initScrollAnimations() {
+    const tools = veilleSection.querySelectorAll('.veille-tool, .veille-source-item');
     
-    refreshBtn.addEventListener("click", async () => {
-      refreshBtn.classList.add("loading");
-      localStorage.removeItem(STORAGE_KEY); // Forcer le rechargement
-      const articles = await fetchAllArticles();
-      displayArticles(articles);
-      refreshBtn.classList.remove("loading");
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    header.appendChild(refreshBtn);
+    tools.forEach(tool => {
+      tool.classList.add('reveal');
+      observer.observe(tool);
+    });
   }
 
   // =========================================
   // INITIALISATION
   // =========================================
   async function init() {
-    console.log("🔄 Initialisation du module de veille...");
+    console.log("🚀 Initialisation du module de veille...");
     
-    createRefreshButton();
-    
-    const articles = await fetchAllArticles();
-    displayArticles(articles);
+    initScrollAnimations();
+    await loadAllSources();
 
     // Auto-refresh toutes les heures
     setInterval(async () => {
       console.log("🔄 Auto-refresh des articles...");
-      const freshArticles = await fetchAllArticles();
-      displayArticles(freshArticles);
+      await loadAllSources();
     }, CACHE_DURATION);
 
     console.log("✅ Module de veille initialisé");

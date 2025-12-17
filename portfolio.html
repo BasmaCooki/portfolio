@@ -1302,14 +1302,6 @@
       <p class="section-subtitle">
         Cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs
       </p>
-
-      <div class="section-hero-media">
-        <img
-          src="image/Cybersécurité_identités.jpg"
-          alt="Cybersécurité et protection des identités numériques"
-          class="section-hero-image"
-        />
-      </div>
     </div>
 
     <div class="section-body">
@@ -1329,62 +1321,226 @@
         </p>
       </article>
 
-      <!-- ================= AXES DE VEILLE ================= -->
+      <!-- ================= 8 OUTILS DE VEILLE ================= -->
       <article class="veille-card">
-        <h3 class="example-title">🎯 Axes de veille</h3>
-        <div class="veille-tags">
-          <span class="veille-tag">🔐 Authentification MFA</span>
-          <span class="veille-tag">🎣 Phishing & Social Engineering</span>
-          <span class="veille-tag">🛡️ Zero Trust</span>
-          <span class="veille-tag">👤 Gestion des identités</span>
-          <span class="veille-tag">⚠️ Vol de credentials</span>
-        </div>
-      </article>
-
-      <!-- ================= SOURCES ================= -->
-      <article class="veille-card">
-        <h3 class="example-title">📚 Sources de veille</h3>
-        <div class="veille-sources">
-          <div class="source-item">
-            <i class="fa fa-rss"></i>
-            <span><strong>CERT-FR</strong> - Alertes de sécurité françaises</span>
-          </div>
-          <div class="source-item">
-            <i class="fa fa-rss"></i>
-            <span><strong>ANSSI</strong> - Publications officielles</span>
-          </div>
-          <div class="source-item">
-            <i class="fa fa-rss"></i>
-            <span><strong>Cybermalveillance.gouv.fr</strong> - Conseils grand public</span>
-          </div>
-        </div>
-        <p class="veille-info">
-          ℹ️ Les articles ci-dessous sont automatiquement récupérés depuis ces sources et filtrés
-          par mots-clés pertinents (MFA, phishing, authentification, etc.)
+        <h3 class="example-title">🛠️ 7 outils pour faire de la veille cyber</h3>
+        <p class="veille-tools-intro">
+          Pour effectuer ma veille technologique, j'utilise plusieurs outils permettant d'agréger,
+          organiser et suivre l'actualité de la cybersécurité en temps réel.
         </p>
-      </article>
 
-      <!-- ================= ARTICLES DYNAMIQUES ================= -->
-      <article class="veille-card">
-        <h3 class="example-title">📰 Derniers articles de veille</h3>
-        
-        <!-- Container qui sera rempli par JavaScript -->
-        <div class="veille-articles-container">
-          <!-- Les articles seront injectés ici automatiquement -->
-          <div class="veille-loading">
-            <div class="loading-spinner"></div>
-            <p>Chargement des derniers articles...</p>
+        <div class="veille-tools-grid">
+          <!-- Outil 1: Feedly -->
+          <div class="veille-tool" data-tool="feedly">
+            <div class="tool-icon">
+              <img src="image//feedly.png" alt="Feedly" />
+            </div>
+            <h4 class="tool-name">Feedly</h4>
+            <p class="tool-description">Agrégateur de flux RSS pour suivre mes sources préférées</p>
+          </div>
+
+          <!-- Outil 3: Start.me -->
+          <div class="veille-tool" data-tool="startme">
+            <div class="tool-icon">
+              <img src="image/start-me.png" alt="Start.me" />
+            </div>
+            <h4 class="tool-name">Start.me</h4>
+            <p class="tool-description">Tableau de bord personnalisé avec mes sources</p>
+          </div>
+
+          <!-- Outil 4: Dnstwist -->
+          <div class="veille-tool" data-tool="dnstwist">
+            <div class="tool-icon">
+              <img src="image/dnstwist-logo.png" alt="Dnstwist" />
+            </div>
+            <h4 class="tool-name">Dnstwist</h4>
+            <p class="tool-description">Détection de domaines frauduleux et phishing</p>
+          </div>
+
+          <!-- Outil 5: Google Alerts -->
+          <div class="veille-tool" data-tool="google-alerts">
+            <div class="tool-icon">
+              <img src="image/google-alerts.png" alt="Google Alerts" />
+            </div>
+            <h4 class="tool-name">Google Alerts</h4>
+            <p class="tool-description">Alertes automatiques sur mots-clés spécifiques</p>
+          </div>
+
+          <!-- Outil 6: Réseaux sociaux -->
+          <div class="veille-tool" data-tool="social">
+            <div class="tool-icon">
+              <img src="image/reseaux-sociaux.jpg" alt="Réseaux sociaux" />
+            </div>
+            <h4 class="tool-name">Réseaux sociaux</h4>
+            <p class="tool-description">Twitter, LinkedIn pour suivre les experts en cybersécurité</p>
+          </div>
+
+          <!-- Outil 7: Have I Been Pwned -->
+          <div class="veille-tool" data-tool="hibp">
+            <div class="tool-icon">
+              <img src="image/have-i-been-pwned.webp" alt="Have I Been Pwned" />
+            </div>
+            <h4 class="tool-name">Have I Been Pwned</h4>
+            <p class="tool-description">Vérification des fuites de données et comptes compromis</p>
+          </div>
+
+          <!-- Outil 8: IFTTT -->
+          <div class="veille-tool" data-tool="ifttt">
+            <div class="tool-icon">
+              <img src="image/ifttt.webp" alt="IFTTT" />
+            </div>
+            <h4 class="tool-name">IFTTT</h4>
+            <p class="tool-description">Automatisation de la collecte d'informations</p>
           </div>
         </div>
       </article>
 
-      <!-- ================= LIEN BTS / ALTERNANCE ================= -->
+      <!-- ================= SOURCES PRINCIPALES ================= -->
+      <article class="veille-card">
+        <h3 class="example-title">📚 Mes sources principales</h3>
+        
+        <div class="veille-sources-grid">
+          <!-- Source 1: CERT-FR -->
+          <div class="veille-source-item" data-source="cert-fr">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/CERT-FR.jpg" alt="CERT-FR" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">CERT-FR</h4>
+                <p class="source-url">cert.ssi.gouv.fr</p>
+              </div>
+            </div>
+            <p class="source-description">
+              Centre gouvernemental de veille, d'alerte et de réponse aux attaques informatiques
+            </p>
+            <div class="source-articles" id="articles-cert-fr">
+              <!-- Articles chargés dynamiquement -->
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source 2: ANSSI -->
+          <div class="veille-source-item" data-source="anssi">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/anssi.png" alt="ANSSI" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">ANSSI</h4>
+                <p class="source-url">ssi.gouv.fr</p>
+              </div>
+            </div>
+            <p class="source-description">
+              Agence nationale de la sécurité des systèmes d'information
+            </p>
+            <div class="source-articles" id="articles-anssi">
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source 3: Cybermalveillance -->
+          <div class="veille-source-item" data-source="cybermalveillance">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/Cybermalveillance.png" alt="Cybermalveillance" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">Cybermalveillance</h4>
+                <p class="source-url">cybermalveillance.gouv.fr</p>
+              </div>
+            </div>
+            <p class="source-description">
+              Assistance et prévention du risque numérique
+            </p>
+            <div class="source-articles" id="articles-cybermalveillance">
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source 4: The Hacker News -->
+          <div class="veille-source-item" data-source="hackernews">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/The-Hacker-News.jpg" alt="The Hacker News" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">The Hacker News</h4>
+                <p class="source-url">thehackernews.com</p>
+              </div>
+            </div>
+            <p class="source-description">
+              Actualités mondiales en cybersécurité et hacking éthique
+            </p>
+            <div class="source-articles" id="articles-hackernews">
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source 5: Microsoft Security Blog -->
+          <div class="veille-source-item" data-source="microsoft">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/microsoft.webp" alt="Microsoft Security" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">Microsoft Security</h4>
+                <p class="source-url">microsoft.com/security/blog</p>
+              </div>
+            </div>
+            <p class="source-description">
+              Blog officiel Microsoft sur la sécurité et Zero Trust
+            </p>
+            <div class="source-articles" id="articles-microsoft">
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source 6: Bleeping Computer -->
+          <div class="veille-source-item" data-source="bleeping">
+            <div class="source-header">
+              <div class="source-logo">
+                <img src="image/bleeping.webp" alt="Bleeping Computer" />
+              </div>
+              <div class="source-info">
+                <h4 class="source-name">Bleeping Computer</h4>
+                <p class="source-url">bleepingcomputer.com</p>
+              </div>
+            </div>
+            <p class="source-description">
+              News, tutoriels et analyses techniques en cybersécurité
+            </p>
+            <div class="source-articles" id="articles-bleeping">
+              <div class="source-loading">
+                <div class="spinner"></div>
+                <span>Chargement des articles...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= LIEN BTS ================= -->
       <article class="veille-card">
         <h3 class="example-title">🔗 Lien avec mon BTS SIO SISR et mon alternance</h3>
         <p>
-          Cette veille technologique est directement liée à mon alternance en support informatique.
-          Les incidents rencontrés concernent très souvent l'accès aux comptes, la sécurité des
-          identités et l'utilisation des outils cloud.
+          Cette veille technologique est directement liée à mon alternance en support informatique
+          au <strong>Club Med - IT Kiosk Informatique</strong>.
         </p>
         <ul class="veille-list">
           <li>✅ Assistance aux utilisateurs lors de problèmes d'authentification</li>
