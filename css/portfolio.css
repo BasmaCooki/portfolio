@@ -2436,3 +2436,289 @@ body.theme-light #poda .border::before {
   background: linear-gradient(180deg, var(--accent), var(--primary));
   box-shadow: 0 0 18px var(--primary-glow);
 }
+
+
+
+/* ========================================================
+   CORRECTIF CSS - CHARGEMENT ET VISIBILITÉ DES SECTIONS
+   À ajouter à la fin de portfolio.css
+   ======================================================== */
+
+/* Force l'affichage de toutes les sections même avant JS */
+.panel {
+  display: block !important;
+  visibility: visible !important;
+  min-height: auto;
+}
+
+/* S'assure que le contenu après E5 est visible */
+#bts-e5 ~ .panel,
+#entreprise ~ .panel,
+#docs,
+#veille,
+#certifications,
+#contact {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Fix pour les sous-menus qui ne s'ouvrent pas */
+.nav-submenu {
+  /* Assure que le sous-menu peut s'ouvrir même si max-height est à 0 */
+  display: block;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s ease,
+              transform 0.4s ease;
+}
+
+.nav-submenu:not(.nav-submenu--open) {
+  max-height: 0 !important;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.nav-submenu--open {
+  max-height: 500px !important; /* Augmenté pour contenir tous les sous-menus */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Fix chevron rotation pour les parents */
+.nav-btn--expanded .nav-btn__chevron i {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.nav-btn:not(.nav-btn--expanded) .nav-btn__chevron i {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+/* Assure que tous les panels sont chargés */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  /* Force le navigateur à calculer toute la hauteur du document */
+}
+
+/* Fix pour la sidebar qui reste fixe */
+.sidebar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* S'assure que le main prend l'espace */
+.main {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+}
+
+/* Fix pour les sections BTS qui ne s'affichent pas */
+#bts-presentation,
+#bts-options,
+#bts-blocs,
+#bts-e5 {
+  display: block !important;
+  opacity: 1 !important;
+  min-height: 400px;
+}
+
+/* Animation de chargement visible pendant que JS charge */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+}
+
+.panel:not(.panel--visible) {
+  animation: skeleton-pulse 2s ease-in-out infinite;
+}
+
+/* Force l'apparition après 2 secondes si JS bug */
+.panel {
+  animation: force-appear 0.5s ease-out 2s forwards;
+}
+
+@keyframes force-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fix pour les icônes qui manquent */
+.nav-sub-btn i,
+.nav-btn__icon i {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
+/* Amélioration de la visibilité des boutons actifs */
+.nav-sub-btn--active {
+  background: var(--bg-card) !important;
+  border-left: 3px solid var(--primary);
+  padding-left: calc(0.6rem - 3px);
+  font-weight: 600;
+  color: var(--primary) !important;
+}
+
+/* Fix pour le scroll spy qui peut bugger */
+body.scrolling-manually .panel {
+  scroll-margin-top: 80px; /* Compense la topbar */
+}
+
+/* Debug : voir toutes les sections (à retirer en prod) */
+/* 
+.panel {
+  outline: 1px solid red;
+  outline-offset: -1px;
+}
+*/
+
+
+/* ========================================================
+   CSS DEBUG - À AJOUTER TEMPORAIREMENT
+   Pour vérifier que les menus fonctionnent
+   ======================================================== */
+
+/* Force l'affichage des sous-menus pour tester */
+/* RETIRER EN PRODUCTION */
+/*
+.nav-submenu {
+  border: 2px solid red !important;
+  background: rgba(255, 0, 0, 0.1) !important;
+}
+
+.nav-submenu--open {
+  border-color: green !important;
+  background: rgba(0, 255, 0, 0.1) !important;
+}
+*/
+
+/* ========================================================
+   CORRECTIONS FINALES DES SOUS-MENUS
+   ======================================================== */
+
+/* S'assurer que les sous-menus sont bien cachés par défaut */
+.nav-submenu {
+  max-height: 0 !important;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: 
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease,
+    transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* État ouvert */
+.nav-submenu--open {
+  max-height: 600px !important; /* Assez grand pour tous les sous-menus */
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* Animation du chevron */
+.nav-btn__chevron {
+  transition: transform 0.3s ease;
+}
+
+.nav-btn--expanded .nav-btn__chevron {
+  transform: rotate(180deg);
+}
+
+/* Boutons parents : curseur pointer */
+.nav-btn,
+.nav-sub-btn {
+  cursor: pointer !important;
+}
+
+/* État actif du bouton parent */
+.nav-btn--active {
+  background: var(--bg-card) !important;
+  border-left: 3px solid var(--primary);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+/* État actif du sous-bouton */
+.nav-sub-btn--active {
+  background: var(--bg-card) !important;
+  color: var(--primary) !important;
+  font-weight: 600;
+  border-left: 3px solid var(--primary);
+  padding-left: calc(0.6rem - 3px);
+}
+
+/* Fix pour les sections qui ne s'affichent pas */
+.panel {
+  display: block !important;
+  opacity: 1;
+  min-height: 200px;
+}
+
+.panel:not(.panel--visible) {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel--visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* S'assurer que toutes les sections après E5 sont visibles */
+#bts-e5,
+#entreprise-alternance,
+#clubmed,
+#docs,
+#veille,
+#certifications,
+#contact {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* Amélioration de la visibilité en mode debug */
+.nav-btn[data-submenu]::after {
+  content: " ▼";
+  font-size: 0.7em;
+  opacity: 0.5;
+  margin-left: 4px;
+}
+
+.nav-btn--expanded[data-submenu]::after {
+  content: " ▲";
+}
+
+/* Test : bordure rouge si sous-menu ne s'ouvre pas */
+/*
+.nav-btn:hover {
+  outline: 2px solid yellow;
+  outline-offset: 2px;
+}
+
+.nav-btn--expanded {
+  outline: 2px solid green !important;
+  outline-offset: 2px;
+}
+*/

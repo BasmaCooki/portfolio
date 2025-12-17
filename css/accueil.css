@@ -822,3 +822,168 @@
     font-size: 2rem;
   }
 }
+
+/* ========================================================
+   SECTIONS DE CONTENU (Profil & Parcours)
+   ======================================================== */
+
+.section-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Headers de Section --- */
+.section-header { margin-bottom: 40px; }
+.section-number {
+  font-family: "Orbitron", sans-serif;
+  color: var(--accent-cyber);
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  color: #f6f7ff;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+/* --- Mise en page Profil --- */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+}
+
+.profile-main h3 {
+  color: var(--accent-cyber);
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  margin: 30px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-list { list-style: none; }
+.profile-list li {
+  padding: 10px 0 10px 25px;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.profile-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyber);
+  font-weight: bold;
+}
+
+.profile-photo__frame {
+  border: 1px solid var(--accent-cyber);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(26, 246, 196, 0.2);
+  margin-bottom: 20px;
+}
+
+/* --- Timeline Parcours --- */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  border-left: 2px solid rgba(26, 246, 196, 0.1);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-marker__dot {
+  position: absolute;
+  left: -49px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent-cyber);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--accent-cyber);
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.timeline-card:hover {
+  border-color: var(--accent-cyber);
+  background: rgba(26, 246, 196, 0.02);
+  transform: translateX(10px);
+}
+
+.timeline-title { color: var(--accent-cyber); margin-bottom: 5px; }
+.timeline-school { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; }
+
+/* --- Correction Aperçu CV --- */
+.cv-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(26, 246, 196, 0.2);
+    border-radius: 15px;
+}
+
+.cv-preview__frame {
+    width: 200px; /* Taille fixe pour l'aperçu */
+    height: 280px;
+    border: 1px solid var(--accent-cyber);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    flex-shrink: 0; /* Empêche l'image de s'écraser */
+}
+
+.cv-preview__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* L'image remplit le cadre proprement */
+}
+
+/* --- Correction Images Timeline (BTS SIO) --- */
+.timeline-image {
+    margin-top: 20px;
+    max-width: 500px; /* Limite la largeur de l'image BTS */
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-image img {
+    width: 100%; /* L'image prend 100% de son conteneur (les 500px) */
+    height: auto;
+    display: block;
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+    .cv-block {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cv-preview__frame {
+        width: 150px;
+        height: 210px;
+    }
+    .timeline-image {
+        max-width: 100%;
+    }
+}
+
