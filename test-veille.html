@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Veille Technologique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1f3a;
+            color: #fff;
+        }
+        h1 {
+            color: #00ffff;
+        }
+        .test-section {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #00ffff;
+        }
+        .log {
+            background: #000;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .warning { color: #ffaa00; }
+        button {
+            background: #00ffff;
+            color: #1a1f3a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover {
+            background: #00cccc;
+        }
+        .article {
+            background: rgba(0,255,255,0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 3px solid #00ffff;
+        }
+        .article h3 {
+            margin: 0 0 10px 0;
+            color: #00ffff;
+        }
+        .article a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        .article a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test Veille Technologique</h1>
+
+    <div class="test-section">
+        <h2>Test 1: RSS2JSON (Recommandé)</h2>
+        <p>Test avec l'API RSS2JSON qui convertit les flux RSS en JSON</p>
+        <button onclick="testRSS2JSON()">Tester RSS2JSON</button>
+        <div id="rss2json-log" class="log"></div>
+        <div id="rss2json-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: AllOrigins</h2>
+        <p>Test avec le proxy AllOrigins</p>
+        <button onclick="testAllOrigins()">Tester AllOrigins</button>
+        <div id="allorigins-log" class="log"></div>
+        <div id="allorigins-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Vider le Cache</h2>
+        <p>Vider le localStorage et recharger</p>
+        <button onclick="clearCacheAndReload()">Vider Cache & Recharger</button>
+    </div>
+
+    <script>
+        function log(containerId, message, type = 'info') {
+            const container = document.getElementById(containerId);
+            const className = type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : '';
+            container.innerHTML += `<div class="${className}">${message}</div>`;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function clearLog(containerId) {
+            document.getElementById(containerId).innerHTML = '';
+        }
+
+        async function testRSS2JSON() {
+            clearLog('rss2json-log');
+            clearLog('rss2json-result');
+
+            const testUrl = 'https://www.cert.ssi.gouv.fr/feed/';
+            const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(testUrl)}`;
+
+            log('rss2json-log', `📡 Test RSS2JSON pour CERT-FR...`);
+            log('rss2json-log', `URL: ${testUrl}`);
+            log('rss2json-log', `Proxy: ${proxyUrl}`);
+            log('rss2json-log', `⏳ Chargement...`);
+
+            try {
+                const response = await fetch(proxyUrl);
+                log('rss2json-log', `Status: ${response.status}`, response.ok ? 'success' : 'error');
+
+                const data = await response.json();
+                log('rss2json-log', `✅ Réponse reçue`, 'success');
+                log('rss2json-log', `Status: ${data.status}`);
+                log('rss2json-log', `Articles trouvés: ${data.items ? data.items.length : 0}`);
+
+                if (data.items && data.items.length > 0) {
+                    const resultDiv = document.getElementById('rss2json-result');
+                    resultDiv.innerHTML = '<h3>Articles:</h3>';
+
+                    data.items.slice(0, 3).forEach((item, i) => {
+                        resultDiv.innerHTML += `
+                            <div class="article">
+                                <h3>${i + 1}. ${item.title}</h3>
+                                <p>${item.description.substring(0, 150)}...</p>
+                                <a href="${item.link}" target="_blank">Lire l'article →</a>
+                            </div>
+                        `;
+                    });
+
+                    log('rss2json-log', `✅ Articles affichés avec succès!`, 'success');
+                } else {
+                    log('rss2json-log', `⚠️ Aucun article trouvé`, 'warning');
+                }
+
+            } catch (error) {
+                log('rss2json-log', `❌ Erreur: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+
+        async function testAllOrigins() {
+            clearLog('allorigins-log');
+            clearLog('allorigins-result');
+
+            const testUrl = 'https://www.cert.ssi.gouv.fr/feed/';
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(testUrl)}`;
+
+            log('allorigins-log', `📡 Test AllOrigins pour CERT-FR...`);
+            log('allorigins-log', `URL: ${testUrl}`);
+            log('allorigins-log', `Proxy: ${proxyUrl}`);
+            log('allorigins-log', `⏳ Chargement...`);
+
+            try {
+                const response = await fetch(proxyUrl);
+                log('allorigins-log', `Status: ${response.status}`, response.ok ? 'success' : 'error');
+
+                const data = await response.json();
+                log('allorigins-log', `✅ Réponse reçue`, 'success');
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+                const items = xmlDoc.querySelectorAll("item");
+
+                log('allorigins-log', `Articles trouvés: ${items.length}`);
+
+                if (items.length > 0) {
+                    const resultDiv = document.getElementById('allorigins-result');
+                    resultDiv.innerHTML = '<h3>Articles:</h3>';
+
+                    items.forEach((item, i) => {
+                        if (i >= 3) return;
+
+                        const title = item.querySelector("title")?.textContent || "Sans titre";
+                        const link = item.querySelector("link")?.textContent || "#";
+                        const description = item.querySelector("description")?.textContent || "";
+
+                        resultDiv.innerHTML += `
+                            <div class="article">
+                                <h3>${i + 1}. ${title}</h3>
+                                <p>${description.substring(0, 150)}...</p>
+                                <a href="${link}" target="_blank">Lire l'article →</a>
+                            </div>
+                        `;
+                    });
+
+                    log('allorigins-log', `✅ Articles affichés avec succès!`, 'success');
+                } else {
+                    log('allorigins-log', `⚠️ Aucun article trouvé`, 'warning');
+                }
+
+            } catch (error) {
+                log('allorigins-log', `❌ Erreur: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+
+        function clearCacheAndReload() {
+            localStorage.clear();
+            alert('Cache vidé! La page va se recharger.');
+            window.location.reload();
+        }
+
+        // Test automatique au chargement
+        window.addEventListener('load', () => {
+            console.log('Page de test chargée');
+            log('rss2json-log', '✅ Page prête - Cliquez sur "Tester RSS2JSON"', 'success');
+            log('allorigins-log', '✅ Page prête - Cliquez sur "Tester AllOrigins"', 'success');
+        });
+    </script>
+</body>
+</html>

@@ -4,10 +4,7 @@
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  const veilleSection = document.querySelector("#veille");
-  if (!veilleSection) return;
-
-  console.log("%c🔍 Module Veille Technologique (style Loïc) chargé", "color: #22d3ee; font-weight: bold;");
+  console.log("%c🔍 Module Veille Technologique chargé", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // CONFIGURATION DES SOURCES
@@ -101,42 +98,47 @@ document.addEventListener("DOMContentLoaded", () => {
       return cached;
     }
 
-    // Liste de proxies à essayer
+    // Liste de proxies à essayer avec timeout
     const proxies = [
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`,
       `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`,
-      `https://corsproxy.io/?${encodeURIComponent(source.url)}`,
-      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`
+      `https://corsproxy.io/?${encodeURIComponent(source.url)}`
     ];
 
-    // Essayer chaque proxy
+    // Essayer chaque proxy avec timeout
     for (let proxyIndex = 0; proxyIndex < proxies.length; proxyIndex++) {
       try {
         const proxyUrl = proxies[proxyIndex];
-        console.log(`🔄 ${sourceId}: Tentative avec proxy ${proxyIndex + 1}...`);
+        console.log(`🔄 ${sourceId}: Tentative proxy ${proxyIndex + 1}/${proxies.length}...`);
+
+        // Fetch avec timeout de 10 secondes
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
 
         const response = await fetch(proxyUrl, {
           method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const data = await response.json();
-        let xmlText;
+        const articles = [];
 
-        // rss2json utilise un format JSON différent
-        if (proxyIndex === 2) {
-          // Format rss2json
-          const articles = [];
+        // rss2json utilise un format JSON différent (proxy 0)
+        if (proxyIndex === 0) {
           const items = data.items || [];
 
           items.forEach((item, index) => {
-            if (index >= 5) return; // Max 5 articles
+            if (index >= 5) return;
 
             articles.push({
               title: cleanHtml(item.title || "Sans titre"),
-              link: item.link || "#",
-              description: cleanHtml(item.description || "").substring(0, 200) + "...",
+              link: item.link || item.url || "#",
+              description: cleanHtml(item.description || item.content || "").substring(0, 200) + "...",
               date: formatDate(item.pubDate || item.published || ""),
               source: source.name,
               sourceColor: source.color
@@ -145,28 +147,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (articles.length > 0) {
             setCachedArticles(sourceId, articles);
-            console.log(`✅ ${sourceId}: ${articles.length} articles trouvés (rss2json)`);
+            console.log(`✅ ${sourceId}: ${articles.length} articles (RSS2JSON)`);
             return articles;
           }
         } else {
           // Format allorigins/corsproxy
-          xmlText = data.contents || data;
+          const xmlText = data.contents || data;
 
           const parser = new DOMParser();
           const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
           const items = xmlDoc.querySelectorAll("item");
-          const articles = [];
 
           items.forEach((item, index) => {
-            if (index >= 5) return; // Max 5 articles par source
+            if (index >= 5) return;
 
             const title = item.querySelector("title")?.textContent || "Sans titre";
             const link = item.querySelector("link")?.textContent || "#";
             const description = item.querySelector("description")?.textContent || "";
             const pubDate = item.querySelector("pubDate")?.textContent || "";
 
-            // MODIFICATION: Afficher TOUS les articles, pas seulement ceux avec mots-clés
             articles.push({
               title: cleanHtml(title),
               link: link,
@@ -177,23 +177,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
 
-          // Mettre en cache
           if (articles.length > 0) {
             setCachedArticles(sourceId, articles);
-            console.log(`✅ ${sourceId}: ${articles.length} articles trouvés`);
+            console.log(`✅ ${sourceId}: ${articles.length} articles`);
             return articles;
           }
         }
 
       } catch (error) {
-        console.warn(`⚠️ ${sourceId}: Proxy ${proxyIndex + 1} échoué:`, error.message);
+        if (error.name === 'AbortError') {
+          console.warn(`⏱️ ${sourceId}: Timeout proxy ${proxyIndex + 1}`);
+        } else {
+          console.warn(`⚠️ ${sourceId}: Proxy ${proxyIndex + 1} échoué:`, error.message);
+        }
         // Continuer avec le prochain proxy
       }
     }
 
-    // Tous les proxies ont échoué
-    console.error(`❌ ${sourceId}: Tous les proxies ont échoué`);
-    return [];
+    // Tous les proxies ont échoué - Retourner des articles de démonstration
+    console.warn(`❌ ${sourceId}: Tous proxies échoués, affichage données démo`);
+
+    const demoArticles = [
+      {
+        title: `Article récent de ${source.name}`,
+        link: source.url.replace('/feed/', ''),
+        description: "Les flux RSS sont temporairement indisponibles. Consultez directement le site pour les dernières actualités en cybersécurité...",
+        date: "Aujourd'hui",
+        source: source.name,
+        sourceColor: source.color
+      }
+    ];
+
+    return demoArticles;
   }
 
   // =========================================
@@ -201,16 +216,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================
   function displayArticlesForSource(sourceId, articles) {
     const container = document.getElementById(`articles-${sourceId}`);
-    if (!container) return;
+    if (!container) {
+      console.error(`Container articles-${sourceId} non trouvé dans le DOM`);
+      return;
+    }
 
-    if (articles.length === 0) {
+    if (!articles || articles.length === 0) {
+      const source = SOURCES[sourceId];
+      const siteUrl = source ? source.url.replace('/feed/', '') : '#';
+
       container.innerHTML = `
         <div class="source-empty">
-          <p>⚠️ Impossible de charger les articles pour le moment</p>
+          <p>⚠️ Flux RSS temporairement indisponible</p>
           <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">
-            Les flux RSS peuvent être temporairement indisponibles.
+            <a href="${siteUrl}" target="_blank" rel="noopener noreferrer"
+               style="color: var(--primary-color); text-decoration: underline;">
+              Consulter directement le site
+            </a>
             <br>
-            <button onclick="window.location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color); cursor: pointer; transition: all 0.3s;">
+            <button onclick="localStorage.clear(); window.location.reload()"
+                    style="margin-top: 1rem; padding: 0.5rem 1rem; border-radius: 6px;
+                           border: 1px solid var(--primary-color); background: transparent;
+                           color: var(--primary-color); cursor: pointer; transition: all 0.3s;">
               🔄 Réessayer
             </button>
           </p>
@@ -245,6 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
         el.classList.add('is-visible');
       });
     }, 100);
+
+    console.log(`✅ ${sourceId}: ${articles.length} articles affichés`);
   }
 
   // =========================================
@@ -252,15 +281,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================
   async function loadAllSources() {
     const sourceIds = Object.keys(SOURCES);
-    
-    console.log("🔄 Chargement de toutes les sources...");
+
+    console.log(`🔄 Chargement de ${sourceIds.length} sources RSS...`);
+    console.log(`Sources: ${sourceIds.join(', ')}`);
+
+    let successCount = 0;
+    let failCount = 0;
 
     for (const sourceId of sourceIds) {
-      const articles = await fetchArticlesFromSource(sourceId);
-      displayArticlesForSource(sourceId, articles);
+      try {
+        const articles = await fetchArticlesFromSource(sourceId);
+        displayArticlesForSource(sourceId, articles);
+
+        if (articles && articles.length > 0 && !articles[0].title.includes('temporairement')) {
+          successCount++;
+        } else {
+          failCount++;
+        }
+      } catch (error) {
+        console.error(`❌ Erreur fatale pour ${sourceId}:`, error);
+        failCount++;
+        displayArticlesForSource(sourceId, []);
+      }
     }
 
-    console.log("✅ Toutes les sources chargées");
+    console.log(`✅ Chargement terminé: ${successCount} OK, ${failCount} échecs`);
   }
 
   // =========================================
@@ -297,6 +342,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ANIMATIONS AU SCROLL
   // =========================================
   function initScrollAnimations() {
+    const veilleSection = document.querySelector("#veille");
+    if (!veilleSection) return;
+
     const tools = veilleSection.querySelectorAll('.veille-tool, .veille-source-item');
     
     const observer = new IntersectionObserver(
@@ -322,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================
   async function init() {
     console.log("🚀 Initialisation du module de veille...");
-    
+
     initScrollAnimations();
     await loadAllSources();
 

@@ -1744,5 +1744,204 @@
   <button id="backToTop" class="back-to-top" aria-label="Revenir en haut">
     <i class="fa fa-arrow-up"></i>
   </button>
+
+  <!-- ===================== SCRIPT VEILLE TECHNOLOGIQUE ===================== -->
+  <script>
+  (function() {
+    'use strict';
+
+    console.log('%c🔍 Chargement du module Veille Technologique', 'color: #22d3ee; font-weight: bold;');
+
+    // Configuration des sources RSS
+    const SOURCES = {
+      'cert-fr': {
+        name: 'CERT-FR',
+        url: 'https://www.cert.ssi.gouv.fr/feed/',
+        color: '#ef4444'
+      },
+      'anssi': {
+        name: 'ANSSI',
+        url: 'https://www.ssi.gouv.fr/feed/',
+        altUrl: 'https://www.ssi.gouv.fr/actualite/feed/',
+        color: '#3b82f6'
+      },
+      'cybermalveillance': {
+        name: 'Cybermalveillance',
+        url: 'https://www.cybermalveillance.gouv.fr/feed/',
+        altUrl: 'https://www.cybermalveillance.gouv.fr/tous-nos-contenus/actualites/feed',
+        color: '#8b5cf6'
+      },
+      'hackernews': {
+        name: 'The Hacker News',
+        url: 'https://feeds.feedburner.com/TheHackersNews',
+        color: '#10b981'
+      },
+      'microsoft': {
+        name: 'Microsoft Security',
+        url: 'https://www.microsoft.com/en-us/security/blog/feed/',
+        color: '#0ea5e9'
+      },
+      'bleeping': {
+        name: 'Bleeping Computer',
+        url: 'https://www.bleepingcomputer.com/feed/',
+        color: '#f59e0b'
+      }
+    };
+
+    // Fonction pour nettoyer le HTML
+    function cleanHtml(html) {
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      return temp.textContent || temp.innerText || '';
+    }
+
+    // Fonction pour formater la date
+    function formatDate(dateString) {
+      try {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) return "Aujourd'hui";
+        if (diffDays === 1) return "Hier";
+        if (diffDays < 7) return `Il y a ${diffDays} jours`;
+
+        return date.toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+      } catch (e) {
+        return dateString;
+      }
+    }
+
+    // Fonction pour charger les articles d'une source avec fallback
+    async function loadSourceArticles(sourceId) {
+      const source = SOURCES[sourceId];
+      const container = document.getElementById(`articles-${sourceId}`);
+
+      if (!container) {
+        console.error(`Container articles-${sourceId} non trouvé`);
+        return;
+      }
+
+      console.log(`🔄 Chargement de ${source.name}...`);
+
+      // Liste des URLs à essayer (principale + alternative si disponible)
+      const urlsToTry = [source.url];
+      if (source.altUrl) {
+        urlsToTry.push(source.altUrl);
+      }
+
+      // Essayer chaque URL
+      for (let i = 0; i < urlsToTry.length; i++) {
+        const currentUrl = urlsToTry[i];
+
+        try {
+          const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(currentUrl)}`;
+
+          console.log(`  📡 Tentative ${i + 1}/${urlsToTry.length} pour ${source.name}...`);
+
+          const response = await fetch(proxyUrl);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (!data.items || data.items.length === 0) {
+            throw new Error('Aucun article trouvé');
+          }
+
+          console.log(`✅ ${source.name}: ${data.items.length} articles trouvés`);
+
+          // Construire le HTML des articles
+          const articlesHTML = data.items.slice(0, 5).map((item, index) => {
+            const title = cleanHtml(item.title || 'Sans titre');
+            const link = item.link || item.url || '#';
+            const description = cleanHtml(item.description || item.content || '').substring(0, 200);
+            const date = formatDate(item.pubDate || item.published || '');
+
+            return `
+              <article class="source-article reveal" style="animation-delay: ${index * 0.1}s">
+                <div class="article-date">${date}</div>
+                <h5 class="article-title">
+                  <a href="${link}" target="_blank" rel="noopener noreferrer">
+                    ${title}
+                  </a>
+                </h5>
+                <p class="article-excerpt">${description}...</p>
+                <a href="${link}" class="article-link" target="_blank" rel="noopener noreferrer">
+                  Lire l'article
+                  <i class="fa fa-external-link"></i>
+                </a>
+              </article>
+            `;
+          }).join('');
+
+          // Afficher les articles
+          container.innerHTML = `<div class="source-articles-list">${articlesHTML}</div>`;
+
+          // Animer l'apparition
+          setTimeout(() => {
+            container.querySelectorAll('.reveal').forEach(el => {
+              el.classList.add('is-visible');
+            });
+          }, 100);
+
+          // Succès, sortir de la boucle
+          return;
+
+        } catch (error) {
+          console.warn(`  ⚠️ Échec tentative ${i + 1} pour ${source.name}:`, error.message);
+
+          // Si c'est la dernière tentative, afficher l'erreur
+          if (i === urlsToTry.length - 1) {
+            console.error(`❌ Toutes les tentatives ont échoué pour ${source.name}`);
+
+            // Afficher un message d'erreur
+            const siteUrl = source.url.replace('/feed/', '');
+            container.innerHTML = `
+              <div class="source-empty">
+                <p>⚠️ Flux RSS temporairement indisponible</p>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">
+                  <a href="${siteUrl}" target="_blank" rel="noopener noreferrer"
+                     style="color: var(--primary-color); text-decoration: underline;">
+                    Consulter directement le site
+                  </a>
+                </p>
+              </div>
+            `;
+          }
+        }
+      }
+    }
+
+    // Charger toutes les sources
+    async function loadAllSources() {
+      console.log('🚀 Chargement de toutes les sources RSS...');
+
+      const sourceIds = Object.keys(SOURCES);
+
+      for (const sourceId of sourceIds) {
+        await loadSourceArticles(sourceId);
+        // Délai de 1 seconde entre chaque source pour éviter de surcharger l'API
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
+      console.log('✅ Toutes les sources ont été chargées');
+    }
+
+    // Démarrer le chargement au chargement de la page
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadAllSources);
+    } else {
+      loadAllSources();
+    }
+  })();
+  </script>
 </body>
 </html>
