@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const STORAGE_PREFIX = "veille-source-";
-  const CACHE_DURATION = 3600000; // 1 heure
+  const CACHE_DURATION = 900000; // 15 minutes (pour des articles plus frais)
 
   // =========================================
   // CACHE LOCAL
@@ -101,63 +101,99 @@ document.addEventListener("DOMContentLoaded", () => {
       return cached;
     }
 
-    try {
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`;
-      
-      const response = await fetch(proxyUrl, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      });
+    // Liste de proxies à essayer
+    const proxies = [
+      `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`,
+      `https://corsproxy.io/?${encodeURIComponent(source.url)}`,
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`
+    ];
 
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    // Essayer chaque proxy
+    for (let proxyIndex = 0; proxyIndex < proxies.length; proxyIndex++) {
+      try {
+        const proxyUrl = proxies[proxyIndex];
+        console.log(`🔄 ${sourceId}: Tentative avec proxy ${proxyIndex + 1}...`);
 
-      const data = await response.json();
-      const xmlText = data.contents;
+        const response = await fetch(proxyUrl, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
 
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-      
-      const items = xmlDoc.querySelectorAll("item");
-      const articles = [];
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-      items.forEach((item, index) => {
-        if (index >= 4) return; // Max 4 articles par source
+        const data = await response.json();
+        let xmlText;
 
-        const title = item.querySelector("title")?.textContent || "Sans titre";
-        const link = item.querySelector("link")?.textContent || "#";
-        const description = item.querySelector("description")?.textContent || "";
-        const pubDate = item.querySelector("pubDate")?.textContent || "";
+        // rss2json utilise un format JSON différent
+        if (proxyIndex === 2) {
+          // Format rss2json
+          const articles = [];
+          const items = data.items || [];
 
-        // Filtrer par mots-clés
-        const content = (title + " " + description).toLowerCase();
-        const matchesKeywords = source.keywords.some(keyword => 
-          content.includes(keyword.toLowerCase())
-        );
+          items.forEach((item, index) => {
+            if (index >= 5) return; // Max 5 articles
 
-        if (matchesKeywords) {
-          articles.push({
-            title: cleanHtml(title),
-            link: link,
-            description: cleanHtml(description).substring(0, 150) + "...",
-            date: formatDate(pubDate),
-            source: source.name,
-            sourceColor: source.color
+            articles.push({
+              title: cleanHtml(item.title || "Sans titre"),
+              link: item.link || "#",
+              description: cleanHtml(item.description || "").substring(0, 200) + "...",
+              date: formatDate(item.pubDate || item.published || ""),
+              source: source.name,
+              sourceColor: source.color
+            });
           });
+
+          if (articles.length > 0) {
+            setCachedArticles(sourceId, articles);
+            console.log(`✅ ${sourceId}: ${articles.length} articles trouvés (rss2json)`);
+            return articles;
+          }
+        } else {
+          // Format allorigins/corsproxy
+          xmlText = data.contents || data;
+
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+          const items = xmlDoc.querySelectorAll("item");
+          const articles = [];
+
+          items.forEach((item, index) => {
+            if (index >= 5) return; // Max 5 articles par source
+
+            const title = item.querySelector("title")?.textContent || "Sans titre";
+            const link = item.querySelector("link")?.textContent || "#";
+            const description = item.querySelector("description")?.textContent || "";
+            const pubDate = item.querySelector("pubDate")?.textContent || "";
+
+            // MODIFICATION: Afficher TOUS les articles, pas seulement ceux avec mots-clés
+            articles.push({
+              title: cleanHtml(title),
+              link: link,
+              description: cleanHtml(description).substring(0, 200) + "...",
+              date: formatDate(pubDate),
+              source: source.name,
+              sourceColor: source.color
+            });
+          });
+
+          // Mettre en cache
+          if (articles.length > 0) {
+            setCachedArticles(sourceId, articles);
+            console.log(`✅ ${sourceId}: ${articles.length} articles trouvés`);
+            return articles;
+          }
         }
-      });
 
-      // Mettre en cache
-      if (articles.length > 0) {
-        setCachedArticles(sourceId, articles);
+      } catch (error) {
+        console.warn(`⚠️ ${sourceId}: Proxy ${proxyIndex + 1} échoué:`, error.message);
+        // Continuer avec le prochain proxy
       }
-
-      console.log(`✅ ${sourceId}: ${articles.length} articles trouvés`);
-      return articles;
-
-    } catch (error) {
-      console.error(`❌ Erreur ${sourceId}:`, error);
-      return [];
     }
+
+    // Tous les proxies ont échoué
+    console.error(`❌ ${sourceId}: Tous les proxies ont échoué`);
+    return [];
   }
 
   // =========================================
@@ -170,7 +206,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (articles.length === 0) {
       container.innerHTML = `
         <div class="source-empty">
-          <p>Aucun article récent trouvé pour cette source</p>
+          <p>⚠️ Impossible de charger les articles pour le moment</p>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">
+            Les flux RSS peuvent être temporairement indisponibles.
+            <br>
+            <button onclick="window.location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color); cursor: pointer; transition: all 0.3s;">
+              🔄 Réessayer
+            </button>
+          </p>
         </div>
       `;
       return;

@@ -1,0 +1,112 @@
+/* ============================================
+   ENTREPRISE.CSS - Section Entreprise & Alternance
+   ============================================ */
+
+/* Section Entreprise */
+.entreprise-section {
+  padding: 2rem 0;
+}
+
+.entreprise-hero {
+  background: linear-gradient(135deg, var(--primary-color, #00ffff)22, var(--secondary-color, #ff00ff)22);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+  border: 1px solid var(--primary-color, #00ffff);
+}
+
+/* Timeline Alternance */
+.alternance-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+
+.alternance-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-color, #00ffff), var(--secondary-color, #ff00ff));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-color, #00ffff);
+  border-radius: 50%;
+  border: 3px solid var(--bg-primary, #0a0e27);
+  box-shadow: 0 0 10px var(--primary-color, #00ffff);
+}
+
+.timeline-date {
+  color: var(--primary-color, #00ffff);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Grille de Projets */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-color, rgba(0, 255, 255, 0.2));
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color, #00ffff);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+}
+
+.project-card h3 {
+  color: var(--primary-color, #00ffff);
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.project-tag {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--primary-color, #00ffff);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid var(--primary-color, #00ffff);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

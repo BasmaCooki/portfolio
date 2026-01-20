@@ -1,0 +1,122 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║           CORRECTION VEILLE TECHNOLOGIQUE - RÉSUMÉ RAPIDE            ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+📅 Date : 20 janvier 2026
+🎯 Problème : Les articles RSS ne se chargeaient pas
+✅ Statut : CORRIGÉ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 PROBLÈME IDENTIFIÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ❌ Filtrage par mots-clés trop strict → Aucun article trouvé
+2. ❌ Un seul proxy CORS → Pannes fréquentes
+3. ❌ Cache 1h → Articles pas à jour
+4. ❌ Messages d'erreur peu clairs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ SOLUTIONS APPLIQUÉES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✅ Affichage de TOUS les articles récents (5 par source)
+2. ✅ 3 proxies avec fallback automatique :
+   • AllOrigins (principal)
+   • CORSProxy (backup 1)
+   • RSS2JSON (backup 2)
+3. ✅ Cache réduit à 15 minutes
+4. ✅ Message d'erreur avec bouton "Réessayer"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 FICHIER MODIFIÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📄 js/veille.js
+   • Ligne 55 : Cache 1h → 15 min
+   • Lignes 94-197 : Multi-proxy avec fallback
+   • Lignes 202-243 : Meilleur affichage d'erreurs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 COMMENT TESTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ouvrir portfolio.html dans le navigateur
+2. Appuyer sur F12 (ouvrir console)
+3. Aller dans "Veille techno"
+4. Observer les messages dans la console :
+
+   ✅ Module Veille Technologique chargé
+   🔄 cert-fr: Tentative avec proxy 1...
+   ✅ cert-fr: 5 articles trouvés
+   ...
+   ✅ Toutes les sources chargées
+
+5. Vous devriez voir 5 articles par source s'afficher
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 DÉPANNAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si les articles ne s'affichent toujours pas :
+
+1. Vider le cache :
+   Console → localStorage.clear() → Recharger (F5)
+
+2. Vérifier la connexion internet
+
+3. Attendre 5-10 secondes (chargement des 6 sources)
+
+4. Consulter VEILLE-DEBUG.md pour debug avancé
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 SOURCES RSS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CERT-FR               (cert.ssi.gouv.fr)
+✅ ANSSI                 (ssi.gouv.fr)
+✅ Cybermalveillance     (cybermalveillance.gouv.fr)
+✅ The Hacker News       (thehackernews.com)
+✅ Microsoft Security    (microsoft.com/security)
+✅ Bleeping Computer     (bleepingcomputer.com)
+
+Chaque source affiche ses 5 derniers articles
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ FONCTIONNEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Premier chargement :
+   1. Script essaie proxy 1 (AllOrigins)
+   2. Si échec → essaie proxy 2 (CORSProxy)
+   3. Si échec → essaie proxy 3 (RSS2JSON)
+   4. Articles mis en cache 15 min
+
+Rechargements suivants (< 15 min) :
+   → Articles chargés instantanément depuis le cache
+
+Après 15 min :
+   → Rechargement automatique depuis les flux RSS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 FICHIERS DE DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• VEILLE-DEBUG.md          → Guide de debug détaillé
+• AMELIORATION-VEILLE.txt  → Ce fichier (résumé rapide)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VEILLE TECHNOLOGIQUE CORRIGÉE ET OPÉRATIONNELLE
+
+Portfolio BG TECH - Basma Guettouche
+BTS SIO SISR - INGETIS Paris
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
