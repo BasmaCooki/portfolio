@@ -61,3 +61,40 @@
 @media (max-width: 768px) {
   .docs-two-columns { grid-template-columns: 1fr; }
 }
+
+/* ========================================================
+   MODE CLAIR - DOCUMENTATION
+   ======================================================== */
+
+body.theme-light .column-title {
+  color: #0369a1;
+  border-bottom-color: rgba(3, 105, 161, 0.3);
+}
+
+body.theme-light .tp-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .tp-item:hover {
+  border-color: #0369a1;
+  background: rgba(224, 242, 254, 0.8);
+}
+
+body.theme-light .tp-info h4 {
+  color: #0f172a;
+}
+
+body.theme-light .tp-info p {
+  color: #64748b;
+}
+
+body.theme-light .tp-btn-view {
+  color: #0369a1;
+  border-color: #0369a1;
+}
+
+body.theme-light .tp-btn-view:hover {
+  background: #0369a1;
+  color: #ffffff;
+}

@@ -110,3 +110,50 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================================
+   MODE CLAIR - ENTREPRISE
+   ======================================================== */
+
+body.theme-light .entreprise-hero {
+  background: linear-gradient(135deg, rgba(3, 105, 161, 0.1), rgba(79, 70, 229, 0.08));
+  border-color: #0369a1;
+}
+
+body.theme-light .alternance-timeline::before {
+  background: linear-gradient(to bottom, #0369a1, #4f46e5);
+}
+
+body.theme-light .timeline-item::before {
+  background: #0369a1;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(3, 105, 161, 0.4);
+}
+
+body.theme-light .timeline-date {
+  color: #0369a1;
+}
+
+body.theme-light .project-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(3, 105, 161, 0.2);
+}
+
+body.theme-light .project-card:hover {
+  border-color: #0369a1;
+  box-shadow: 0 10px 30px rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .project-card h3 {
+  color: #0369a1;
+}
+
+body.theme-light .project-card p {
+  color: #334155;
+}
+
+body.theme-light .project-tag {
+  background: rgba(3, 105, 161, 0.1);
+  color: #0369a1;
+  border-color: #0369a1;
+}

@@ -987,3 +987,386 @@
     }
 }
 
+/* ========================================================
+   MODE CLAIR - STYLES SPÉCIFIQUES ACCUEIL
+   ======================================================== */
+
+/* Variables adaptées au mode clair */
+body.theme-light {
+  --accent-cyber: #0369a1;
+  --accent-secondary: #4f46e5;
+  --glow-intensity: 0.3;
+}
+
+/* Section Hero en mode clair */
+body.theme-light .panel--accueil {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(3, 105, 161, 0.06), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.05), transparent 50%);
+}
+
+body.theme-light .hero-bg {
+  filter: brightness(0.95) contrast(1.05) saturate(0.9);
+}
+
+body.theme-light .hero-scanner {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(3, 105, 161, 0.04) 50%,
+    transparent 100%
+  );
+}
+
+/* Badge de statut */
+body.theme-light .hero-badge {
+  background: rgba(3, 105, 161, 0.1);
+  border: 1px solid rgba(3, 105, 161, 0.3);
+}
+
+body.theme-light .hero-badge__dot {
+  background: var(--accent-cyber);
+  box-shadow: 0 0 8px var(--accent-cyber);
+}
+
+body.theme-light .hero-badge__text {
+  color: var(--accent-cyber);
+}
+
+/* Textes Hero */
+body.theme-light .hero-kicker {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .hero-title {
+  color: #0f172a;
+}
+
+body.theme-light .hero-title__highlight {
+  color: var(--accent-cyber);
+  text-shadow:
+    0 0 15px rgba(3, 105, 161, 0.4),
+    0 0 30px rgba(3, 105, 161, 0.2);
+}
+
+body.theme-light .hero-subtitle {
+  color: #334155;
+}
+
+body.theme-light .hero-subtitle strong {
+  color: var(--accent-cyber);
+}
+
+/* Boutons CTA */
+body.theme-light .btn-primary {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(3, 105, 161, 0.25);
+}
+
+body.theme-light .btn-primary:hover {
+  box-shadow: 0 8px 30px rgba(3, 105, 161, 0.35);
+}
+
+body.theme-light .btn-ghost {
+  color: #0f172a;
+  border: 2px solid rgba(15, 23, 42, 0.2);
+}
+
+body.theme-light .btn-ghost:hover {
+  background: rgba(3, 105, 161, 0.08);
+  border-color: var(--accent-cyber);
+  color: var(--accent-cyber);
+}
+
+/* Console Terminal */
+body.theme-light .hero-console__frame {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(3, 105, 161, 0.3);
+  box-shadow:
+    0 4px 30px rgba(3, 105, 161, 0.12),
+    inset 0 0 20px rgba(3, 105, 161, 0.03);
+}
+
+body.theme-light .hero-console__header {
+  background: rgba(241, 245, 249, 0.9);
+  border-bottom: 1px solid rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .console-title {
+  color: #64748b;
+}
+
+body.theme-light .hero-console__body {
+  background: #f8fafc;
+}
+
+body.theme-light .console-line {
+  color: #0369a1;
+}
+
+body.theme-light .hero-console__cursor {
+  background: #0369a1;
+  box-shadow: 0 0 8px rgba(3, 105, 161, 0.6);
+}
+
+body.theme-light .hero-console__frame::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(3, 105, 161, 0.08),
+    transparent
+  );
+}
+
+/* Tags de compétences */
+body.theme-light .tag {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #334155;
+}
+
+body.theme-light .tag::before {
+  background: linear-gradient(135deg, var(--accent-cyber), #0284c7);
+}
+
+body.theme-light .tag:hover {
+  border-color: var(--accent-cyber);
+  background: rgba(224, 242, 254, 0.9);
+  box-shadow: 0 4px 15px rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .tag i {
+  color: var(--accent-cyber);
+}
+
+/* Métriques */
+body.theme-light .hero-metrics {
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+body.theme-light .metric__value {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .metric__label {
+  color: #64748b;
+}
+
+/* Carte Hero */
+body.theme-light .hero-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+body.theme-light .hero-card__border {
+  background: linear-gradient(
+    45deg,
+    var(--accent-cyber),
+    #4f46e5,
+    var(--accent-cyber)
+  );
+  opacity: 0.2;
+  filter: blur(6px);
+}
+
+body.theme-light .hero-card__glow {
+  background:
+    radial-gradient(circle at 0 0, rgba(3, 105, 161, 0.08), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.08), transparent 60%);
+  opacity: 0.6;
+}
+
+body.theme-light .hero-card__header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .hero-card__title {
+  color: #64748b;
+}
+
+/* Avatar */
+body.theme-light .hero-avatar__ring {
+  background: linear-gradient(45deg, var(--accent-cyber), #4f46e5, var(--accent-cyber));
+  filter: blur(3px);
+}
+
+body.theme-light .hero-avatar__img {
+  border: 3px solid #ffffff;
+}
+
+body.theme-light .hero-avatar__status {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(3, 105, 161, 0.25);
+}
+
+body.theme-light .status-text {
+  color: var(--accent-cyber);
+}
+
+/* Liste Hero */
+body.theme-light .hero-list li {
+  color: #334155;
+}
+
+body.theme-light .hero-list .bullet {
+  background: var(--accent-cyber);
+  box-shadow: 0 0 6px rgba(3, 105, 161, 0.5);
+}
+
+/* Pills */
+body.theme-light .hero-pill {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .hero-pill:hover {
+  background: rgba(224, 242, 254, 0.9);
+  border-color: rgba(3, 105, 161, 0.3);
+}
+
+body.theme-light .hero-pill i {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .hero-pill__label {
+  color: #64748b;
+}
+
+body.theme-light .hero-pill__value {
+  color: #0f172a;
+}
+
+/* Barres de compétences */
+body.theme-light .skill-bar__label {
+  color: #334155;
+}
+
+body.theme-light .skill-bar__percent {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .skill-bar__track {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .skill-bar__fill {
+  background: linear-gradient(90deg, var(--accent-cyber), #0284c7);
+  box-shadow: 0 0 8px rgba(3, 105, 161, 0.4);
+}
+
+/* CTA Carte */
+body.theme-light .hero-card__cta {
+  background: linear-gradient(135deg, var(--accent-cyber), #0284c7);
+  color: #ffffff;
+}
+
+body.theme-light .hero-card__cta:hover {
+  box-shadow: 0 8px 25px rgba(3, 105, 161, 0.3);
+}
+
+/* Scroll hint */
+body.theme-light .scroll-hint {
+  color: #64748b;
+}
+
+body.theme-light .scroll-hint:hover {
+  color: var(--accent-cyber);
+}
+
+/* === SECTION PROFIL - MODE CLAIR === */
+body.theme-light .section-title {
+  color: #0f172a;
+}
+
+body.theme-light .profile-main h3 {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .profile-main h3::after {
+  background: linear-gradient(90deg, var(--accent-cyber), transparent);
+}
+
+body.theme-light .profile-main p {
+  color: #334155;
+}
+
+body.theme-light .profile-main strong {
+  color: var(--accent-cyber);
+  text-shadow: none;
+}
+
+body.theme-light .profile-list li {
+  color: #334155;
+  border-bottom-color: rgba(148, 163, 184, 0.15);
+}
+
+body.theme-light .profile-list li::before {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .profile-list li:hover {
+  color: #0f172a;
+}
+
+body.theme-light .profile-photo__frame {
+  border-color: var(--accent-cyber);
+  box-shadow: 0 0 20px rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .profile-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .profile-card:hover {
+  border-color: var(--accent-cyber);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* === TIMELINE - MODE CLAIR === */
+body.theme-light .timeline {
+  border-left-color: rgba(3, 105, 161, 0.2);
+}
+
+body.theme-light .timeline-marker__dot {
+  background: var(--accent-cyber);
+  box-shadow: 0 0 12px rgba(3, 105, 161, 0.4);
+}
+
+body.theme-light .timeline-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .timeline-card:hover {
+  border-color: var(--accent-cyber);
+  background: rgba(224, 242, 254, 0.5);
+}
+
+body.theme-light .timeline-title {
+  color: var(--accent-cyber);
+}
+
+body.theme-light .timeline-school {
+  color: #64748b;
+}
+
+body.theme-light .timeline-desc {
+  color: #334155;
+}
+
+/* === CV BLOCK - MODE CLAIR === */
+body.theme-light .cv-block {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(3, 105, 161, 0.2);
+}
+
+body.theme-light .cv-preview__frame {
+  border-color: var(--accent-cyber);
+  background: #f8fafc;
+}
+

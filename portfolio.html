@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,6 +64,7 @@
   <link rel="stylesheet" href="css/certif.css" />
   <link rel="stylesheet" href="css/veille.css" />
   <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/animations.css" />
 
 
   <!-- JS global -->
@@ -76,6 +76,7 @@
   <script src="js/entreprise.js" defer></script>
   <script src="js/certif.js" defer></script>
   <script src="js/contact.js" defer></script>
+  <script src="js/cursor.js" defer></script>
 </head>
 
 <body class="theme-dark">
@@ -1669,7 +1670,11 @@
         <div class="contact-col contact-col--form">
           <h3 class="example-title">M'envoyer un message</h3>
 
-          <form class="contact-form" method="post" action="">
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+            <input type="hidden" name="subject" value="Nouveau message depuis votre Portfolio">
+            <input type="hidden" name="from_name" value="Portfolio BG TECH">
+
             <div class="form-group">
               <label for="contact-name">Nom</label>
               <input type="text" id="contact-name" name="name" placeholder="Votre nom" required />
@@ -1685,7 +1690,12 @@
               <textarea id="contact-message" name="message" rows="5" placeholder="Votre message…" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="btn-text">Envoyer</span>
+              <span class="btn-loader" style="display: none;">
+                <i class="fa fa-spinner fa-spin"></i> Envoi...
+              </span>
+            </button>
           </form>
         </div>
       </div>

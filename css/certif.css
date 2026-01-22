@@ -92,3 +92,54 @@
 }
 
 .lightbox.active { display: flex; }
+
+/* ========================================================
+   MODE CLAIR - CERTIFICATIONS
+   ======================================================== */
+
+body.theme-light .certif-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(3, 105, 161, 0.2);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+}
+
+body.theme-light .certif-card:hover {
+  border-color: #0369a1;
+  box-shadow: 0 8px 30px rgba(3, 105, 161, 0.12);
+}
+
+body.theme-light .certif-title {
+  color: #0369a1;
+}
+
+body.theme-light .certif-card p,
+body.theme-light .certif-card ul li {
+  color: #334155;
+}
+
+body.theme-light .certif-preview {
+  border-color: rgba(3, 105, 161, 0.3);
+}
+
+body.theme-light .certif-module {
+  background: rgba(241, 245, 249, 0.8);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+body.theme-light .certif-module:hover {
+  border-color: #0369a1;
+  background: rgba(224, 242, 254, 0.8);
+}
+
+body.theme-light .module-label {
+  color: #64748b;
+}
+
+body.theme-light .lightbox {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+body.theme-light .lightbox img {
+  border-color: #0369a1;
+  box-shadow: 0 0 30px rgba(3, 105, 161, 0.3);
+}
