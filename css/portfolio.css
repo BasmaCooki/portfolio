@@ -534,8 +534,73 @@ body {
 }
 
 .social-btn:hover {
-  transform: translateY(-4px) scale(1.08) rotate(5deg);
+  transform: translateY(-4px) scale(1.1);
   box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+/* Icônes dans les boutons sociaux */
+.social-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.social-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* LinkedIn - Bleu professionnel */
+.social-btn--linkedin:hover {
+  background: #0A66C2;
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(10, 102, 194, 0.5);
+}
+
+.social-btn--linkedin:hover::before {
+  background: linear-gradient(45deg, #0A66C2, #0077B5, #00A0DC);
+}
+
+/* WordPress - Bleu/Gris moderne */
+.social-btn--wordpress:hover {
+  background: #21759B;
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(33, 117, 155, 0.5);
+}
+
+.social-btn--wordpress:hover::before {
+  background: linear-gradient(45deg, #21759B, #464646, #21759B);
+}
+
+/* GitHub - Violet/Noir */
+.social-btn--github:hover {
+  background: linear-gradient(135deg, #6e5494, #24292e);
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(110, 84, 148, 0.5);
+}
+
+.social-btn--github:hover::before {
+  background: linear-gradient(45deg, #6e5494, #24292e, #6e5494);
+}
+
+/* Mode clair - Couleurs de marque au survol */
+body.theme-light .social-btn--linkedin:hover {
+  background: #0A66C2;
+  color: #ffffff;
+  border-color: #0A66C2;
+  box-shadow: 0 8px 25px rgba(10, 102, 194, 0.3);
+}
+
+body.theme-light .social-btn--wordpress:hover {
+  background: #21759B;
+  color: #ffffff;
+  border-color: #21759B;
+  box-shadow: 0 8px 25px rgba(33, 117, 155, 0.3);
+}
+
+body.theme-light .social-btn--github:hover {
+  background: linear-gradient(135deg, #6e5494, #24292e);
+  color: #ffffff;
+  border-color: #6e5494;
+  box-shadow: 0 8px 25px rgba(110, 84, 148, 0.3);
 }
 
 .sidebar__footer {
