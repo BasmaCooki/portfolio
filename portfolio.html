@@ -65,6 +65,7 @@
   <link rel="stylesheet" href="css/veille.css" />
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 
 
   <!-- JS global -->
@@ -78,9 +79,20 @@
   <script src="js/contact.js" defer></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/effects.js" defer></script>
+  <script src="js/mobile-menu.js" defer></script>
 </head>
 
 <body class="theme-dark">
+  <!-- ===================== HAMBURGER MENU MOBILE ===================== -->
+  <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu" style="display: none;">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- ===================== SIDEBAR OVERLAY ===================== -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
   <!-- ===================== PARTICLES BACKGROUND ===================== -->
   <div id="particles-container" class="particles-bg"></div>
 
