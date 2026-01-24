@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Page principale du portfolio -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Section Accueil -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#accueil</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Section Profil -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#profil</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Section Parcours -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#parcours</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Section BTS SIO -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#bts-sio</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Section Alternance -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#alternance</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Section Documentation -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#documentation</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Section Veille Technologique -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#veille</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Section Certifications -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#certifications</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Section Contact -->
+  <url>
+    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#contact</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

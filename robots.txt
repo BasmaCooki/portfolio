@@ -1,0 +1,54 @@
+# robots.txt pour Portfolio BTS SIO SISR - Basma Guettouche
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Allow: /portfolio.html
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Bloquer l'indexation de la page d'entrée Star Wars
+Disallow: /index.html
+
+# Bloquer les fichiers de documents (PDFs privés)
+Disallow: /documents/
+
+# Bloquer les fichiers système
+Disallow: /.git/
+Disallow: /.gitignore
+Disallow: /README.md
+
+# Bloquer les fichiers de configuration
+Disallow: /*.backup
+Disallow: /*~
+Disallow: /*.tmp
+
+# Sitemap
+Sitemap: https://votre-domaine.github.io/portfolio/sitemap.xml
+
+# Crawl-delay (optionnel, en secondes)
+# Crawl-delay: 10
+
+# Règles spécifiques pour différents bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Bingbot
+Allow: /
+
+# Bloquer les mauvais bots (spam, scrapers)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
