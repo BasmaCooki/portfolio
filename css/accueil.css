@@ -3,12 +3,6 @@
    (Profil, Parcours, Hero)
    ======================================================== */
 
-/* ========= VARIABLES SPÉCIFIQUES ACCUEIL ========= */
-:root {
-  --accent-cyber: #1af6c4;
-  --accent-secondary: #8000ff;
-  --glow-intensity: 0.6;
-}
 
 /* ========= SECTION ACCUEIL / HERO ========= */
 .panel--accueil {
@@ -990,13 +984,6 @@
 /* ========================================================
    MODE CLAIR - STYLES SPÉCIFIQUES ACCUEIL
    ======================================================== */
-
-/* Variables adaptées au mode clair */
-body.theme-light {
-  --accent-cyber: #0369a1;
-  --accent-secondary: #4f46e5;
-  --glow-intensity: 0.3;
-}
 
 /* Section Hero en mode clair */
 body.theme-light .panel--accueil {

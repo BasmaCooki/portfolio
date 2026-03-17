@@ -3,7 +3,6 @@
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("%c🚀 Portfolio initialisé", "color: #1af6c4; font-weight: bold; font-size: 16px;");
 
   // ======================================================
   // GESTION DU THÈME
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
       body.classList.add("theme-dark");
       if (themeToggle) themeToggle.checked = true;
     }
-    console.log(`✓ Thème appliqué : ${theme}`);
   }
 
   const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
@@ -61,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    console.log(`📂 Ouverture du sous-menu : ${submenuId}`);
     
     // Fermer les autres
     closeAllSubmenus();
@@ -89,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    console.log(`➡️ Scroll vers : ${targetId}`);
     
     // Indiquer qu'on scroll manuellement
     body.classList.add('scrolling-manually');
@@ -115,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const submenuId = button.getAttribute('data-submenu');
       const targetId = button.getAttribute('data-target');
 
-      console.log(`🖱️ Clic sur bouton parent :`, { submenuId, targetId });
 
       // CAS 1 : Bouton avec sous-menu (Accueil, BTS SIO, Entreprise)
       if (submenuId) {
@@ -123,8 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const isOpen = submenu && submenu.classList.contains('nav-submenu--open');
         
         if (isOpen) {
-          // Fermer si déjà ouvert
-          console.log(`🔒 Fermeture du sous-menu`);
           closeAllSubmenus();
         } else {
           // Ouvrir le sous-menu
@@ -154,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      console.log(`🖱️ Clic sur sous-bouton : ${targetId}`);
 
       // Désactiver tous les sous-boutons
       document.querySelectorAll('.nav-sub-btn').forEach(btn => {
@@ -181,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (entry.isIntersecting) {
         const sectionId = '#' + entry.target.id;
-        console.log(`👁️ Section visible : ${sectionId}`);
         
         // Trouver le bouton correspondant
         const matchingSubBtn = document.querySelector(`.nav-sub-btn[data-target="${sectionId}"]`);
@@ -285,27 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ======================================================
-  // BOUTON RETOUR EN HAUT
-  // ======================================================
-  const backToTop = document.getElementById("backToTop");
-  
-  window.addEventListener("scroll", () => {
-    if (backToTop) {
-      if (window.scrollY > 500) {
-        backToTop.classList.add("visible");
-      } else {
-        backToTop.classList.remove("visible");
-      }
-    }
-  });
-
-  if (backToTop) {
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // ======================================================
   // BOUTONS JS-SCROLL-TO
   // ======================================================
   document.querySelectorAll('.js-scroll-to').forEach(button => {
@@ -321,11 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================================================
   setTimeout(() => {
     const accueilBtn = document.querySelector('[data-submenu="#submenu-accueil"]');
-    if (accueilBtn) {
-      console.log('🏠 Ouverture automatique du menu Accueil');
-      openSubmenu('#submenu-accueil', accueilBtn);
-    }
+    if (accueilBtn) openSubmenu('#submenu-accueil', accueilBtn);
   }, 300);
-
-  console.log("%c✅ Tout est prêt !", "color: #22c55e; font-weight: bold;");
 });

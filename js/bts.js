@@ -4,8 +4,6 @@
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("%c⚡ BTS Section Cyber Activée", 
-    "color: #1af6c4; font-size: 16px; font-weight: bold;");
 
   // ======================================================
   // INTERSECTION OBSERVER - Animations au scroll
@@ -438,15 +436,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ======================================================
-  // STATS & DEBUG
-  // ======================================================
-  
-  console.log("%c✨ BTS Section Stats:", "color: #22d3ee; font-weight: bold;");
-  console.log(`  • Example blocks: ${document.querySelectorAll('.example-block').length}`);
-  console.log(`  • Bloc cards: ${document.querySelectorAll('.bloc-card').length}`);
-  console.log(`  • Hero images: ${document.querySelectorAll('.section-hero-media').length}`);
-  console.log(`  • Animations activées: ✓`);
 });
 
 
@@ -457,8 +446,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("%c📄 BTS E5 Section Activée", 
-    "color: #1af6c4; font-size: 16px; font-weight: bold;");
 
   // ======================================================
   // CRÉATION DE LA MODAL D'AGRANDISSEMENT
@@ -849,18 +836,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       downloadCount++;
-      console.log(`%c📥 Téléchargement #${downloadCount}`, 
-        "color: #1af6c4; font-weight: bold;");
     });
   }
 
-  // ======================================================
-  // STATS & DEBUG
-  // ======================================================
-  
-  console.log("%c✨ BTS E5 Stats:", "color: #22d3ee; font-weight: bold;");
-  console.log(`  • Modal créée: ✓`);
-  console.log(`  • Preview interactive: ✓`);
-  console.log(`  • Bouton téléchargement: ${downloadBtn ? '✓' : '✗'}`);
-  console.log(`  • Animations activées: ✓`);
 });

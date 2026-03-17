@@ -35,13 +35,6 @@
     font-size: 2.2rem !important;
   }
 
-  /* BTS - Example blocks */
-  .example-block {
-    grid-template-columns: 1fr !important;
-    gap: 30px !important;
-    padding: 30px !important;
-  }
-
   .bloc-columns {
     gap: 25px !important;
   }

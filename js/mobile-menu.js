@@ -74,8 +74,4 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation();
   });
 
-  console.log(
-    "%c📱 Menu mobile initialisé",
-    "color: #1af6c4; font-weight: bold;"
-  );
 });

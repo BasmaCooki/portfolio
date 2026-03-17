@@ -4,7 +4,6 @@
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("%c🔍 Module Veille Technologique chargé", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // CONFIGURATION DES SOURCES
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const now = Date.now();
       
       if (now - data.timestamp < CACHE_DURATION) {
-        console.log(`✅ ${sourceId}: articles chargés depuis le cache`);
         return data.articles;
       }
       
@@ -109,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let proxyIndex = 0; proxyIndex < proxies.length; proxyIndex++) {
       try {
         const proxyUrl = proxies[proxyIndex];
-        console.log(`🔄 ${sourceId}: Tentative proxy ${proxyIndex + 1}/${proxies.length}...`);
 
         // Fetch avec timeout de 10 secondes
         const controller = new AbortController();
@@ -147,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (articles.length > 0) {
             setCachedArticles(sourceId, articles);
-            console.log(`✅ ${sourceId}: ${articles.length} articles (RSS2JSON)`);
             return articles;
           }
         } else {
@@ -179,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (articles.length > 0) {
             setCachedArticles(sourceId, articles);
-            console.log(`✅ ${sourceId}: ${articles.length} articles`);
             return articles;
           }
         }
@@ -273,7 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }, 100);
 
-    console.log(`✅ ${sourceId}: ${articles.length} articles affichés`);
   }
 
   // =========================================
@@ -282,8 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadAllSources() {
     const sourceIds = Object.keys(SOURCES);
 
-    console.log(`🔄 Chargement de ${sourceIds.length} sources RSS...`);
-    console.log(`Sources: ${sourceIds.join(', ')}`);
 
     let successCount = 0;
     let failCount = 0;
@@ -305,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    console.log(`✅ Chargement terminé: ${successCount} OK, ${failCount} échecs`);
   }
 
   // =========================================
@@ -369,18 +360,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // INITIALISATION
   // =========================================
   async function init() {
-    console.log("🚀 Initialisation du module de veille...");
-
     initScrollAnimations();
     await loadAllSources();
 
     // Auto-refresh toutes les heures
     setInterval(async () => {
-      console.log("🔄 Auto-refresh des articles...");
       await loadAllSources();
     }, CACHE_DURATION);
-
-    console.log("✅ Module de veille initialisé");
   }
 
   // Lancer l'initialisation

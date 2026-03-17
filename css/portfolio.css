@@ -137,22 +137,17 @@ body {
   width: 260px;
   display: flex;
   flex-direction: column;
-  
-  /* Lignes de correction : */
-  position: fixed; /* <-- DOIT ÊTRE 'FIXED' */
+  position: fixed;
   top: 0;
-  left: 0; /* <-- Assurez-vous qu'elle est bien ancrée à gauche */
-  
+  left: 0;
   height: 100vh;
   padding: 1.5rem 1.25rem 1.25rem;
   backdrop-filter: blur(20px);
-  z-index: 100; /* Plus haut que le contenu principal */
+  z-index: 100;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--bg-elevated);
   box-shadow: 8px 0 40px var(--shadow);
   border-right: 1px solid var(--border);
-  
-  /* Retirez la règle 'position: relative;' si elle est encore présente plus bas */
 }
 
 /* Bordure néon animée sur le côté */

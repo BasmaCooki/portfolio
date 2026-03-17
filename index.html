@@ -11,7 +11,7 @@
     <meta name="robots" content="noindex, follow" />
 
     <!-- Favicon -->
-    <link rel="icon" type="images/png" href="images/bgtech.png" />
+    <link rel="icon" type="image/png" href="images/bgtech.png" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#000000" />
@@ -121,6 +121,28 @@
             object-position: center; 
         }
 
+        #skip-intro {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 999;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        #skip-intro:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
         @media (max-width: 600px) {
             .game-button {
                 font-size: 5vw;
@@ -130,6 +152,8 @@
     </style>
 </head>
 <body>
+    <a href="portfolio.html" id="skip-intro">Passer →</a>
+
     <div class="image-container">
         <img src="images/starwarsgaming.gif" alt="Image de fond Star Wars">
         <div class="button-container">

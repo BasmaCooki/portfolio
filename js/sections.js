@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  console.log('Doc.js chargé avec succès');
 });
 /**
  * ENTREPRISE.JS - Gestion de la section Entreprise & Alternance
@@ -92,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  console.log('Entreprise.js chargé avec succès');
 });
 /**
  * FORMATION.JS - Gestion de la section Formation
@@ -132,5 +130,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  console.log('Formation.js chargé avec succès');
 });

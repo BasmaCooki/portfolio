@@ -6,7 +6,7 @@
 
   <!-- Page principale du portfolio -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Section Accueil -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#accueil</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#accueil</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Section Profil -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#profil</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#profil</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!-- Section Parcours -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#parcours</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#parcours</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
 
   <!-- Section BTS SIO -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#bts-sio</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#bts-sio</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -46,7 +46,7 @@
 
   <!-- Section Alternance -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#alternance</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#alternance</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -54,7 +54,7 @@
 
   <!-- Section Documentation -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#documentation</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#documentation</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -62,7 +62,7 @@
 
   <!-- Section Veille Technologique -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#veille</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#veille</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -70,7 +70,7 @@
 
   <!-- Section Certifications -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#certifications</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#certifications</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -78,7 +78,7 @@
 
   <!-- Section Contact -->
   <url>
-    <loc>https://votre-domaine.github.io/portfolio/portfolio.html#contact</loc>
+    <loc>https://basmacooki.github.io/portfolio/portfolio.html#contact</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

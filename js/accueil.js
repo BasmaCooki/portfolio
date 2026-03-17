@@ -78,7 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
     
-    setInterval(drawMatrix, 50);
+    const matrixInterval = setInterval(drawMatrix, 50);
+
+    // Arrêter la boucle quand le canvas quitte le viewport
+    const matrixObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          clearInterval(matrixInterval);
+          matrixObserver.disconnect();
+        }
+      });
+    });
+    matrixObserver.observe(codeRain);
   }
 
   // =====================================================
@@ -139,57 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     skillBars.forEach(bar => skillObserver.observe(bar));
   }
 
-  // =====================================================
-  // ANIMATION DES ÉLÉMENTS DE LA TIMELINE
-  // =====================================================
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  const profileBlocks = document.querySelectorAll('.profile-main, .profile-side, .cv-block');
-  
-  const elementsToAnimate = [...timelineItems, ...profileBlocks];
-  
-  if (elementsToAnimate.length > 0) {
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-visible');
-          // On arrête d'observer une fois animé
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    
-    elementsToAnimate.forEach(el => {
-      el.classList.add('fade-in-element'); // Classe CSS pour l'état initial
-      fadeObserver.observe(el);
-    });
-  }
 
-  // =====================================================
-  // GESTION DES BOUTONS JS-SCROLL-TO
-  // =====================================================
-  document.querySelectorAll('.js-scroll-to').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = button.getAttribute('data-target');
-      const targetElement = document.querySelector(targetId);
-      
-      if (targetElement) {
-        // Notifier le système de navigation principal qu'on scroll manuellement
-        document.body.classList.add('scrolling-manually');
-        
-        targetElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
-        
-        // Retirer la classe après un délai suffisant
-        setTimeout(() => {
-          document.body.classList.remove('scrolling-manually');
-        }, 1500);
-      }
-    });
-  });
-  
-  console.log("%c✅ Accueil.js chargé avec succès", 
-    "color: #1af6c4; font-weight: bold; font-size: 14px;");
+  // Listener .js-scroll-to supprimé : déjà géré dans portfolio.js
 });

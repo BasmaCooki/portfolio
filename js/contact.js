@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isTyping = true;
 
     function animatePlaceholder() {
-      if (!document.activeElement === messageTextarea) {
+      if (document.activeElement !== messageTextarea) {
         if (isTyping) {
           messageTextarea.placeholder = originalPlaceholder.substring(0, placeholderIndex);
           placeholderIndex++;
@@ -232,5 +232,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  console.log("%c📧 Module Contact initialisé", "color: #22d3ee; font-weight: bold;");
 });

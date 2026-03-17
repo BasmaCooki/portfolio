@@ -25,7 +25,7 @@ Disallow: /*~
 Disallow: /*.tmp
 
 # Sitemap
-Sitemap: https://votre-domaine.github.io/portfolio/sitemap.xml
+Sitemap: https://basmacooki.github.io/portfolio/sitemap.xml
 
 # Crawl-delay (optionnel, en secondes)
 # Crawl-delay: 10

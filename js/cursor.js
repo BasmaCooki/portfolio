@@ -122,5 +122,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(document.body, { childList: true, subtree: true });
 
-  console.log("%c🖱️ Curseur personnalisé activé", "color: #1af6c4; font-weight: bold;");
 });

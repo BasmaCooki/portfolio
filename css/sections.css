@@ -202,9 +202,6 @@ body.theme-light .lightbox img {
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .docs-two-columns { grid-template-columns: 1fr; }
-}
 
 /* ========================================================
    MODE CLAIR - DOCUMENTATION
@@ -251,11 +248,11 @@ body.theme-light .tp-btn-view:hover {
 }
 
 .entreprise-hero {
-  background: linear-gradient(135deg, var(--primary-color, #00ffff)22, var(--secondary-color, #ff00ff)22);
+  background: linear-gradient(135deg, var(--primary)22, var(--secondary)22);
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 3rem;
-  border: 1px solid var(--primary-color, #00ffff);
+  border: 1px solid var(--primary);
 }
 
 /* Timeline Alternance */
@@ -272,7 +269,7 @@ body.theme-light .tp-btn-view:hover {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--primary-color, #00ffff), var(--secondary-color, #ff00ff));
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
 }
 
 .timeline-item {
@@ -288,14 +285,14 @@ body.theme-light .tp-btn-view:hover {
   top: 0.5rem;
   width: 12px;
   height: 12px;
-  background: var(--primary-color, #00ffff);
+  background: var(--primary);
   border-radius: 50%;
-  border: 3px solid var(--bg-primary, #0a0e27);
-  box-shadow: 0 0 10px var(--primary-color, #00ffff);
+  border: 3px solid var(--bg-base);
+  box-shadow: 0 0 10px var(--primary);
 }
 
 .timeline-date {
-  color: var(--primary-color, #00ffff);
+  color: var(--primary);
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
@@ -310,8 +307,8 @@ body.theme-light .tp-btn-view:hover {
 }
 
 .project-card {
-  background: var(--card-bg, rgba(255, 255, 255, 0.05));
-  border: 1px solid var(--border-color, rgba(0, 255, 255, 0.2));
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -321,12 +318,12 @@ body.theme-light .tp-btn-view:hover {
 
 .project-card:hover {
   transform: translateY(-5px);
-  border-color: var(--primary-color, #00ffff);
+  border-color: var(--primary);
   box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
 }
 
 .project-card h3 {
-  color: var(--primary-color, #00ffff);
+  color: var(--primary);
   margin-bottom: 1rem;
   font-family: 'Orbitron', sans-serif;
 }
@@ -340,19 +337,14 @@ body.theme-light .tp-btn-view:hover {
 
 .project-tag {
   background: rgba(0, 255, 255, 0.1);
-  color: var(--primary-color, #00ffff);
+  color: var(--primary);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.85rem;
-  border: 1px solid var(--primary-color, #00ffff);
+  border: 1px solid var(--primary);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* ========================================================
    MODE CLAIR - ENTREPRISE
@@ -424,19 +416,19 @@ body.theme-light .project-tag {
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
-  background: var(--card-bg, rgba(255, 255, 255, 0.05));
-  border: 1px solid var(--border-color, rgba(0, 255, 255, 0.2));
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
 .formation-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 255, 255, 0.1);
-  border-color: var(--primary-color, #00ffff);
+  border-color: var(--primary);
 }
 
 .formation-item h3 {
-  color: var(--primary-color, #00ffff);
+  color: var(--primary);
   margin-bottom: 0.5rem;
   font-family: 'Orbitron', sans-serif;
 }
@@ -453,11 +445,6 @@ body.theme-light .project-tag {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .formation-item {
-    padding: 1rem;
-  }
-}
 
 /* ========================================================
    DIFFÉRENCE ATTESTATION vs CERTIFICATION
@@ -718,6 +705,16 @@ body.theme-light .certif-section-title {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .docs-two-columns { grid-template-columns: 1fr; }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formation-item {
+    padding: 1rem;
+  }
+
   .certif-grid {
     grid-template-columns: 1fr;
     gap: 20px;

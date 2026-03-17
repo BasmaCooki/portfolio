@@ -205,22 +205,8 @@ body.theme-light #contact .btn-primary {
   color: #ef4444;
 }
 
-/* =========================================
-   Animation d'apparition (avec JS)
-   ========================================= */
-#contact .reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-
-#contact .reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Responsive */
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   #contact .contact-layout {
     grid-template-columns: 1fr;
   }
@@ -398,6 +384,3 @@ body.theme-light #contact textarea:valid:not(:placeholder-shown) {
   display: inline-block;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}

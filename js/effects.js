@@ -46,12 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   createParticles();
-  console.log("%c🌟 Particules créées", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // 3. THEME TRANSITION AMÉLIORÉE
   // =========================================
-  const themeToggle = document.querySelector('.theme-toggle, [data-theme-toggle], #theme-toggle');
+  const themeToggle = document.querySelector('#themeToggle, .theme-toggle, [data-theme-toggle]');
 
   // Créer l'overlay de transition
   const transitionOverlay = document.createElement("div");
@@ -80,83 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle.addEventListener("click", enhancedThemeToggle);
   }
 
-  // Observer les changements de classe sur body pour le thème
-  const bodyObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.attributeName === "class") {
-        const isLight = document.body.classList.contains("theme-light");
-        // Mettre à jour les couleurs des particules
-        document.querySelectorAll(".particle-float").forEach((p) => {
-          p.style.background = isLight ? "#0369a1" : "#1af6c4";
-        });
-      }
-    });
-  });
 
-  bodyObserver.observe(document.body, { attributes: true });
-
-  console.log("%c🎨 Transition de thème améliorée", "color: #8000ff; font-weight: bold;");
 
   // =========================================
-  // 4. BACK TO TOP BUTTON
-  // =========================================
-  let backToTopBtn = document.querySelector(".back-to-top");
-
-  // Créer le bouton s'il n'existe pas
-  if (!backToTopBtn) {
-    backToTopBtn = document.createElement("button");
-    backToTopBtn.className = "back-to-top";
-    backToTopBtn.innerHTML = `
-      <div class="back-to-top__progress"></div>
-      <i class="fa fa-arrow-up back-to-top__icon"></i>
-    `;
-    backToTopBtn.setAttribute("aria-label", "Retour en haut");
-    document.body.appendChild(backToTopBtn);
-  }
-
-  function updateBackToTop() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / scrollHeight) * 100;
-
-    // Afficher/cacher le bouton
-    if (scrollTop > 300) {
-      backToTopBtn.classList.add("visible");
-    } else {
-      backToTopBtn.classList.remove("visible");
-    }
-
-    // Mettre à jour la barre de progression
-    const progressEl = backToTopBtn.querySelector(".back-to-top__progress");
-    if (progressEl) {
-      progressEl.style.setProperty("--progress", `${progress}%`);
-    }
-  }
-
-  // Scroll fluide vers le haut
-  backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-
-  // Mise à jour au scroll avec throttle
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        updateBackToTop();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  console.log("%c⬆️ Bouton retour en haut initialisé", "color: #1af6c4; font-weight: bold;");
-
-  // =========================================
-  // 5. PARALLAX EFFECT
+  // 4. PARALLAX EFFECT
   // =========================================
   const parallaxElements = document.querySelectorAll("[data-parallax]");
   const heroSection = document.querySelector("#accueil, .hero, .panel[data-section='accueil']");
@@ -206,15 +132,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  let tickingParallax = false;
   window.addEventListener("scroll", () => {
-    if (!ticking) {
+    if (!tickingParallax) {
       requestAnimationFrame(() => {
         updateParallax();
+        tickingParallax = false;
       });
+      tickingParallax = true;
     }
   });
 
-  console.log("%c🎭 Effet parallaxe activé", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // 6. LAZY LOADING IMAGES
@@ -269,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  console.log("%c🖼️ Lazy loading activé", "color: #8000ff; font-weight: bold;");
 
   // =========================================
   // 7. TYPING ANIMATION AMÉLIORÉE
@@ -326,13 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
     typingObserver.observe(el);
   });
 
-  console.log("%c⌨️ Animation typing améliorée", "color: #1af6c4; font-weight: bold;");
 
   // =========================================
   // 8. SMOOTH REVEAL ANIMATIONS
   // =========================================
   const revealElements = document.querySelectorAll(
-    ".reveal, [data-reveal], .card, .project-card, .doc-card, .certif-module"
+    ".reveal, [data-reveal], .card, .project-card, .doc-card, .certif-module, .timeline-item, .profile-main, .profile-side, .cv-block"
   );
 
   const revealObserver = new IntersectionObserver(
@@ -362,13 +288,8 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(el);
   });
 
-  console.log("%c👁️ Animations de révélation activées", "color: #22d3ee; font-weight: bold;");
 
   // =========================================
   // FIN DE L'INITIALISATION
   // =========================================
-  console.log(
-    "%c🚀 Tous les effets visuels sont initialisés!",
-    "color: #1af6c4; font-weight: bold; font-size: 14px; padding: 5px;"
-  );
 });
