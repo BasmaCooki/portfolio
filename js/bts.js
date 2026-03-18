@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.5 });
 
-  document.querySelectorAll('#bts .section-header, #bts-options .section-header, #bts-blocs .section-header').forEach((header) => {
+  document.querySelectorAll('#bts .section-header').forEach((header) => {
     typingObserver.observe(header);
   });
 
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================================================
   // NETTOYAGE DES GLOWS AU MOUSELEAVE
   // ======================================================
-  
+
   document.querySelectorAll('.example-block, .bloc-card').forEach((card) => {
     card.addEventListener('mouseleave', () => {
       const glow = card.querySelector('.mouse-glow');
@@ -433,6 +433,31 @@ document.addEventListener("DOMContentLoaded", () => {
         glow.style.opacity = '0';
         setTimeout(() => glow.remove(), 300);
       }
+    });
+  });
+
+  // ======================================================
+  // ONGLETS BTS (Formation / Compétences / Épreuve E6)
+  // ======================================================
+
+  const btsTabs = document.querySelectorAll('.bts-tab');
+  const btsTabContents = document.querySelectorAll('.bts-tab-content');
+
+  btsTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+
+      btsTabs.forEach(t => {
+        t.classList.remove('bts-tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      btsTabContents.forEach(c => c.classList.remove('bts-tab-content--active'));
+
+      tab.classList.add('bts-tab--active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const activeContent = document.querySelector(`[data-tab-content="${target}"]`);
+      if (activeContent) activeContent.classList.add('bts-tab-content--active');
     });
   });
 

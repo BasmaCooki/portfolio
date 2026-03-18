@@ -16,8 +16,7 @@ body {
 }
 
 body {
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   overflow-y: scroll;
   overflow-x: hidden;
   transition: background 0.6s ease, color 0.6s ease;
@@ -27,8 +26,19 @@ body {
    VARIABLES DE COULEURS PAR THÈME
    ============================= */
 
+/* =============================
+   VARIABLES GLOBALES STATIQUES
+   ============================= */
+:root {
+  --logo-size: 80px;
+  --logo-size-mobile: 56px;
+  --font-title: 'Orbitron', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 /* MODE SOMBRE - Palette cyan/purple avec néons vifs */
 body.theme-dark {
+  --bg-section: rgba(15, 23, 55, 0.45);
   --primary: #1af6c4;
   --primary-glow: rgba(26, 246, 196, 0.6);
   --primary-dim: rgba(26, 246, 196, 0.15);
@@ -52,6 +62,7 @@ body.theme-dark {
 
 /* MODE CLAIR - Palette bleue/indigo avec contrastes RENFORCÉS */
 body.theme-light {
+  --bg-section: rgba(224, 242, 254, 0.55);
   --primary: #0369a1;
   --primary-glow: rgba(3, 105, 161, 0.35);
   --primary-dim: rgba(3, 105, 161, 0.12);
@@ -187,13 +198,14 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
+  background: transparent;
 }
 
 .sidebar__logo::before {
   content: "";
   position: absolute;
-  width: 160%;
-  height: 160%;
+  width: 200%;
+  height: 200%;
   border-radius: 999px;
   background: radial-gradient(
     circle,
@@ -222,8 +234,11 @@ body {
 }
 
 .sidebar__logo img {
-  width: 140px;
-  height: auto;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  object-fit: contain;
+  background: transparent;
+  padding: 6px;
   filter: drop-shadow(0 0 20px var(--primary-glow));
   animation: logo-float-enhanced 6s ease-in-out infinite;
   transition: transform 0.3s ease;
@@ -241,7 +256,7 @@ body {
 }
 
 .sidebar__name {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: var(--font-title);
   font-size: 0.95rem;
   margin-bottom: 0.25rem;
   background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -1566,7 +1581,7 @@ body.theme-light #poda .border::before {
 }
 
 .section-title {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: var(--font-title);
   font-size: 1.5rem;
   letter-spacing: 0.12em;
   position: relative;
@@ -1617,7 +1632,7 @@ body.theme-light #poda .border::before {
 .hero-console__frame {
   border-radius: 18px;
   padding: 0.9rem 1.3rem;
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: var(--font-title);
   font-size: 0.8rem;
   position: relative;
   overflow: hidden;
@@ -2024,7 +2039,7 @@ body.theme-light #poda .border::before {
 
 @media (max-width: 600px) {
   .sidebar__logo img {
-    width: 100px;
+    width: var(--logo-size-mobile);
   }
 
   .sidebar__name {
@@ -2070,6 +2085,11 @@ body.theme-light #poda .border::before {
   overflow: hidden;
 }
 
+/* Fond légèrement alterné pour distinguer les sections visuellement */
+.panel--section:nth-child(even) {
+  background: var(--bg-section);
+}
+
 .panel--section::before {
   content: "";
   position: absolute;
@@ -2081,7 +2101,7 @@ body.theme-light #poda .border::before {
 
 .section-number {
   display: inline-block;
-  font-family: "Orbitron", system-ui;
+  font-family: var(--font-title);
   font-size: 0.9rem;
   color: var(--primary);
   padding: 6px 16px;
@@ -2462,18 +2482,9 @@ body.theme-light #poda .border::before {
   width: 100%;
 }
 
-/* Grille cyber background */
+/* Grille cyber — masquée sur toutes les sections */
 .cyber-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  opacity: 0.4;
-  animation: grid-scroll 25s linear infinite;
-  z-index: 0;
+  display: none !important;
 }
 
 @keyframes grid-scroll {
@@ -3058,10 +3069,7 @@ body.theme-light .profile-photo__frame::before {
 
 /* === GRILLE CYBER EN MODE CLAIR === */
 body.theme-light .cyber-grid {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
-  opacity: 0.5;
+  display: none !important;
 }
 
 /* === BOUTON RETOUR EN HAUT - MODE CLAIR === */
@@ -3146,4 +3154,44 @@ body.theme-light *::after {
   transition-property: color, background-color, border-color, box-shadow, transform, opacity;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   ESPACEMENT UNIFORME DES SECTIONS + SÉPARATEURS
+   ========================================================= */
+
+.panel--section {
+  scroll-margin-top: 80px;
+}
+
+/* Séparateur subtil entre sections (sauf la dernière) */
+.panel--section:not(:last-of-type)::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(26, 246, 196, 0.15),
+    transparent
+  );
+  position: relative;
+  bottom: 0;
+}
+
+body.theme-light .panel--section:not(:last-of-type)::after {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(3, 105, 161, 0.2),
+    transparent
+  );
+}
+
+@media (max-width: 768px) {
+  .panel--section {
+    padding: 48px 1.5rem;
+  }
 }

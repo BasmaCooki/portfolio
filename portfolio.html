@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
 
   <!-- Font Awesome -->
@@ -66,6 +66,7 @@
   <script src="js/bts.js" defer></script>
   <script src="js/sections.js" defer></script>
   <script src="js/veille.js" defer></script>
+  <script src="js/e6.js" defer></script>
   <script src="js/contact.js" defer></script>
   <script src="js/mobile-menu.js" defer></script>
 </head>
@@ -135,19 +136,11 @@
         <div id="submenu-bts" class="nav-submenu">
           <button class="nav-sub-btn" data-target="#bts">
             <span class="nav-sub-btn__line"></span>
-            <span><i class="fa fa-university"></i> Présentation</span>
+            <span><i class="fa fa-university"></i> Formation</span>
           </button>
-          <button class="nav-sub-btn" data-target="#bts-options">
+          <button class="nav-sub-btn" data-target="#bts-e6">
             <span class="nav-sub-btn__line"></span>
-            <span><i class="fa fa-exchange"></i> Options</span>
-          </button>
-          <button class="nav-sub-btn" data-target="#bts-blocs">
-            <span class="nav-sub-btn__line"></span>
-            <span><i class="fa fa-th-large"></i> Blocs</span>
-          </button>
-          <button class="nav-sub-btn" data-target="#bts-e5">
-            <span class="nav-sub-btn__line"></span>
-            <span><i class="fa fa-file-text"></i> Epreuve E5</span>
+            <span><i class="fa fa-briefcase"></i> Épreuve E6</span>
           </button>
         </div>
 
@@ -746,164 +739,91 @@
   </div>
 </section>
 
-<!-- ========= SECTION BTS SIO - PRÉSENTATION ========= -->
+<!-- ========= SECTION BTS SIO - ONGLETS ========= -->
 <section id="bts" class="panel panel--section">
   <div class="section-inner">
+
     <div class="section-header">
       <span class="section-number">03</span>
       <h2 class="section-title">BTS SIO – Services Informatiques aux Organisations</h2>
-      <p class="section-subtitle">
-        Une formation en deux ans pour devenir technicienne en informatique au service des organisations.
-      </p>
+      <p class="section-subtitle">Option SISR — Formation, compétences &amp; épreuve professionnelle</p>
+    </div>
 
-      <div class="section-hero-media">
+    <!-- ── ONGLETS ── -->
+    <div class="bts-tabs" role="tablist">
+      <button class="bts-tab bts-tab--active" data-tab="formation" role="tab" aria-selected="true">
+        <i class="fas fa-graduation-cap"></i> Formation
+      </button>
+      <button class="bts-tab" data-tab="competences" role="tab" aria-selected="false">
+        <i class="fas fa-th-large"></i> Compétences
+      </button>
+    </div>
+
+    <!-- ── ONGLET : FORMATION ── -->
+    <div class="bts-tab-content bts-tab-content--active" data-tab-content="formation" role="tabpanel">
+      <div class="section-body">
+        <p>Le <strong>BTS SIO</strong> forme des professionnels capables d’installer, configurer, sécuriser
+        et maintenir des solutions informatiques en entreprise. La formation est orientée <strong>terrain</strong> :
+        ateliers, projets, mises en situation et travail en équipe.</p>
+        <p>Elle développe des compétences en <strong>administration</strong>, <strong>réseaux</strong>,
+        <strong>cybersécurité</strong> et/ou <strong>développement</strong> selon l’option choisie.
+        À l’issue du BTS : entrée sur le marché du travail ou poursuite en licence, bachelor ou école.</p>
+      </div>
+
+      <div class="section-hero-media reveal">
         <img src="images/btssio.jpg" alt="Illustration BTS SIO" class="section-hero-image" />
       </div>
-    </div>
 
-    <div class="section-body">
-      <p>
-        Le <strong>BTS SIO</strong> forme des professionnels capables d’installer, configurer, sécuriser
-        et maintenir des solutions informatiques dans un contexte d’entreprise. La formation est orientée
-        <strong>terrain</strong> : ateliers, projets, mises en situation, documentation et travail en équipe.
-      </p>
-
-      <p>
-        Elle développe des compétences en <strong>support utilisateur</strong>, <strong>administration</strong>,
-        <strong>réseaux</strong>, <strong>cybersécurité</strong> et/ou <strong>développement</strong>, selon l’option choisie.
-      </p>
-
-      <p>
-        Le BTS SIO se réalise en général avec des périodes en <strong>stage</strong> ou en <strong>alternance</strong>,
-        permettant d’appliquer concrètement les notions vues en cours et de construire une expérience professionnelle.
-      </p>
-
-      <p>
-        À l’issue du BTS, il est possible d’entrer sur le marché du travail (technicienne / administratrice junior)
-        ou de poursuivre en <strong>licence professionnelle</strong>, <strong>bachelor</strong> ou <strong>école</strong>
-        (réseaux, systèmes, cybersécurité ou développement).
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ========= SECTION BTS OPTIONS ========= -->
-<section id="bts-options" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Options du BTS SIO</h2>
-      <p class="section-subtitle">
-        Deux spécialités : SISR pour l’infrastructure (systèmes/réseaux) et SLAM pour le développement d’applications.
-      </p>
-
-      <div class="section-hero-media">
-        <img src="images/BTS-SIO-1200x480.jpg" alt="Options SISR et SLAM" class="section-hero-image" />
-      </div>
-    </div>
-
-    <div class="section-body">
       <div class="section-examples">
-        <!-- ===== SISR ===== -->
         <article class="example-block">
           <div class="example-text">
-            <h3 class="example-title">Option SISR – Solutions d’Infrastructure, Systèmes et Réseaux</h3>
-            <p>
-              L’option <strong>SISR</strong> est centrée sur l’<strong>administration</strong> et la <strong>sécurité</strong>
-              d’une infrastructure : serveurs, réseaux, postes, services, supervision.
-            </p>
+            <h3 class="example-title">Option SISR – Infrastructure, Systèmes &amp; Réseaux</h3>
+            <p>Centrée sur l’<strong>administration</strong> et la <strong>sécurité</strong> des infrastructures :
+            serveurs, réseaux, postes et services.</p>
             <ul>
-              <li>Administration Windows / Linux (comptes, droits, services, AD…)</li>
+              <li>Administration Windows / Linux, Active Directory</li>
               <li>Réseaux : VLAN, DHCP/DNS, routage, VPN, pare-feu</li>
               <li>Virtualisation &amp; déploiement (Hyper-V, VMware…)</li>
-              <li>Scripts &amp; automatisation : <strong>PowerShell</strong>, <strong>Bash</strong></li>
-              <li>Supervision, inventaire, gestion de parc (ex : Intune…)</li>
-            </ul>
-
-            <p><strong>Métiers possibles :</strong></p>
-            <ul>
-              <li>Technicienne support / proximité</li>
-              <li>Technicienne systèmes &amp; réseaux</li>
-              <li>Administratrice systèmes/réseaux junior</li>
-              <li>Technicienne cybersécurité (niveau junior)</li>
-            </ul>
-
-            <p><strong>Poursuites d’études :</strong></p>
-            <ul>
-              <li>Licence pro Réseaux &amp; Télécoms / Admin Systèmes</li>
-              <li>Bachelor Cybersécurité / Cloud / Admin &amp; Infra</li>
-              <li>École (parcours systèmes, réseaux, cybersécurité)</li>
+              <li>Scripts : <strong>PowerShell</strong>, <strong>Bash</strong></li>
+              <li>Supervision, Intune, gestion de parc</li>
             </ul>
           </div>
-
           <div class="example-media">
             <img src="images/network-Diagram.gif" alt="Illustration SISR" class="example-image" />
           </div>
         </article>
 
-        <!-- ===== SLAM ===== -->
         <article class="example-block">
           <div class="example-text">
-            <h3 class="example-title">Option SLAM – Solutions Logicielles et Applications Métiers</h3>
-            <p>
-              L’option <strong>SLAM</strong> est centrée sur la <strong>conception</strong> et le <strong>développement</strong>
-              d’applications (web / métier), en lien avec les besoins d’une organisation.
-            </p>
+            <h3 class="example-title">Option SLAM – Solutions Logicielles &amp; Applications</h3>
+            <p>Centrée sur la <strong>conception</strong> et le <strong>développement</strong>
+            d’applications web et métier.</p>
             <ul>
               <li>Front : <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong></li>
               <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong>, <strong>C#</strong>…</li>
               <li>Bases de données : <strong>SQL</strong>, MySQL, PostgreSQL…</li>
-              <li>Conception (UML, cahier des charges), tests, maintenance</li>
-              <li>Sécurité applicative (authentification, rôles, protections XSS/SQLi…)</li>
-            </ul>
-
-            <p><strong>Métiers possibles :</strong></p>
-            <ul>
-              <li>Développeuse web / applicative (junior)</li>
-              <li>Développeuse back-end / full-stack (junior)</li>
-              <li>Technicienne applicative / support logiciel</li>
-              <li>Testeuse / QA (selon parcours)</li>
-            </ul>
-
-            <p><strong>Poursuites d’études :</strong></p>
-            <ul>
-              <li>Licence pro Développement / Applications Web</li>
-              <li>Bachelor Développement / Data / Cybersécurité applicative</li>
-              <li>École informatique (développement logiciel, ingénierie)</li>
+              <li>Conception (UML), tests, maintenance</li>
+              <li>Sécurité applicative (XSS, SQLi…)</li>
             </ul>
           </div>
-
           <div class="example-media">
             <img src="images/slam.gif" alt="Illustration SLAM" class="example-image" />
           </div>
         </article>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ========= SECTION BTS BLOCS ========= -->
-<section id="bts-blocs" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Blocs de compétences du BTS SIO</h2>
-      <p class="section-subtitle">
-        Des compétences communes, appliquées différemment selon l’option SISR ou SLAM.
-      </p>
-
-      <div class="section-hero-media">
-        <img src="images/skills.gif" alt="Compétences BTS SIO" class="section-hero-image" />
+    <!-- ── ONGLET : COMPÉTENCES ── -->
+    <div class="bts-tab-content" data-tab-content="competences" role="tabpanel">
+      <div class="section-body">
+        <p>Le BTS SIO est structuré en <strong>4 blocs de compétences</strong> communs aux deux options,
+        avec une spécialisation technique selon l’option choisie.</p>
       </div>
-    </div>
 
-    <div class="section-body">
-      <!-- ===== Bloc 1 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
           <h3 class="example-title">Bloc 1 – Support et mise à disposition de services informatiques</h3>
-          <p>
-            Bloc commun : assistance, résolution d’incidents, déploiement, documentation et qualité de service.
-          </p>
-
+          <p>Assistance, résolution d’incidents, déploiement, documentation et qualité de service.</p>
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR</h4>
@@ -913,7 +833,6 @@
                 <li>Configuration réseau (IP, DNS, proxy…)</li>
               </ul>
             </div>
-
             <div class="bloc-column">
               <h4>SLAM</h4>
               <ul>
@@ -924,56 +843,43 @@
             </div>
           </div>
         </div>
-
         <div class="bloc-media">
           <img src="images/bts-net-pro.gif" alt="Support informatique" class="example-image" />
         </div>
       </article>
 
-      <!-- ===== Bloc 2 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
           <h3 class="example-title">Bloc 2 – Cœur de métier : Infrastructure (SISR) / Développement (SLAM)</h3>
-          <p>
-            Bloc de spécialisation : il différencie clairement les compétences techniques SISR et SLAM.
-          </p>
-
+          <p>Bloc de spécialisation différenciant les compétences SISR et SLAM.</p>
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR – Systèmes &amp; Réseaux</h4>
               <ul>
                 <li>Serveurs Windows/Linux, Active Directory</li>
                 <li>Réseaux : VLAN, routage, VPN, pare-feu</li>
-                <li>Virtualisation &amp; services (DNS/DHCP, fichiers…)</li>
                 <li>Scripts : <strong>PowerShell</strong>, <strong>Bash</strong></li>
               </ul>
             </div>
-
             <div class="bloc-column">
               <h4>SLAM – Développement</h4>
               <ul>
                 <li>Front : <strong>HTML</strong>, <strong>CSS</strong>, <strong>JS</strong></li>
-                <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong>, <strong>C#</strong></li>
-                <li>Bases de données : <strong>SQL</strong></li>
+                <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong></li>
                 <li>API, frameworks, architecture applicative</li>
               </ul>
             </div>
           </div>
         </div>
-
         <div class="bloc-media">
           <img src="images/osi.gif" alt="Infrastructure et développement" class="example-image" />
         </div>
       </article>
 
-      <!-- ===== Bloc 3 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
           <h3 class="example-title">Bloc 3 – Cybersécurité des services informatiques</h3>
-          <p>
-            Bloc commun : protection des systèmes, des données, des accès et bonnes pratiques de sécurité.
-          </p>
-
+          <p>Protection des systèmes, des données, des accès et bonnes pratiques de sécurité.</p>
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR</h4>
@@ -983,7 +889,6 @@
                 <li>Supervision, mises à jour, sauvegardes</li>
               </ul>
             </div>
-
             <div class="bloc-column">
               <h4>SLAM</h4>
               <ul>
@@ -994,21 +899,15 @@
             </div>
           </div>
         </div>
-
         <div class="bloc-media">
           <img src="images/cyber.gif" alt="Cybersécurité" class="example-image" />
         </div>
       </article>
 
-      <!-- ===== Bloc 4 ===== -->
       <article class="bloc-card">
         <div class="bloc-text">
           <h3 class="example-title">Bloc 4 – Gestion de projet, documentation et communication</h3>
-          <p>
-            Bloc commun : méthodologie, organisation, travail en équipe, documentation technique/utilisateur,
-            suivi et qualité.
-          </p>
-
+          <p>Méthodologie, organisation, travail en équipe, documentation technique et suivi qualité.</p>
           <div class="bloc-columns">
             <div class="bloc-column">
               <h4>SISR</h4>
@@ -1018,7 +917,6 @@
                 <li>Suivi d’incidents / changements</li>
               </ul>
             </div>
-
             <div class="bloc-column">
               <h4>SLAM</h4>
               <ul>
@@ -1029,51 +927,187 @@
             </div>
           </div>
         </div>
-
         <div class="bloc-media">
           <img src="images/skills.gif" alt="Gestion de projet" class="example-image" />
         </div>
       </article>
     </div>
+
   </div>
 </section>
 
 
-<section id="bts-e5" class="panel panel--section">
+<!-- ========= BTS E6 — TABLEAU DE SYNTHÈSE & ANNEXES ========= -->
+<section id="bts-e6" class="panel panel--section">
   <div class="section-inner">
+
     <div class="section-header">
-      <h2 class="section-title">Épreuve E5 – Tableau de synthèse</h2>
+      <h2 class="section-title">
+        <span class="e6-label">E6</span> Épreuve E6
+      </h2>
+      <p class="section-subtitle">Tableau de synthèse &amp; annexes professionnelles</p>
     </div>
-    
-    <div class="section-body e5-layout">
-      <div class="e5-info">
-        <p>Ce tableau récapitule l'ensemble de mes réalisations professionnelles et atteste de la validation de mes compétences durant mon cursus BTS SIO.</p>
-        <div class="e5-actions">
-          <a href="documents/Tableau-de-syntheseE5.pdf" class="btn btn-primary" download="Tableau_Synthese_E5_NOM.pdf">
-            <i class="fas fa-file-download"></i> Télécharger le PDF
+
+    <!-- ── BLOC 1 : TABLEAU DE SYNTHÈSE ──────────────────── -->
+    <div class="e6-synthese-card reveal">
+
+      <!-- Mini-aperçu PDF cliquable (ouvre la modale) -->
+      <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
+      <div class="e6-pdf-preview"
+           onclick="openE6PdfModal('docs/e6/Tableau_de_synthese_E5.pdf', 'Tableau de synthèse E6')"
+           role="button"
+           aria-label="Visualiser le tableau de synthèse">
+        <iframe
+          src="docs/e6/Tableau_de_synthese_E5.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+          class="e6-pdf-iframe"
+          scrolling="no"
+          tabindex="-1"
+          aria-hidden="true">
+        </iframe>
+        <div class="e6-pdf-preview-overlay">
+          <span class="e6-pdf-preview-hint">
+            <i class="fas fa-eye"></i> Cliquer pour agrandir
+          </span>
+        </div>
+      </div>
+
+      <!-- Infos + actions -->
+      <div class="e6-synthese-info">
+        <span class="e6-file-badge e6-file-badge--pdf">
+          <i class="fas fa-file-pdf"></i> Document PDF
+        </span>
+        <h3 class="e6-synthese-title">
+          Tableau de synthèse des réalisations professionnelles
+        </h3>
+        <p class="e6-synthese-sub">BTS SIO SISR — Session 2026</p>
+        <p class="e6-synthese-desc">
+          Récapitulatif de l'ensemble des réalisations professionnelles
+          validant les compétences du référentiel BTS SIO option SISR
+          acquises durant le cursus.
+        </p>
+        <div class="e6-synthese-actions">
+          <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
+          <button
+            class="e6-btn e6-btn--primary"
+            onclick="openE6PdfModal('documents/tableau-de-synthese.pdf', 'Tableau de synthèse E6')">
+            <i class="fas fa-eye"></i> Visualiser
+          </button>
+          <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
+          <a
+            href="documents/tableau-de-synthese.pdf"
+            class="e6-btn e6-btn--secondary"
+            download="Tableau_Synthese_E6_GUETTOUCHE.pdf">
+            <i class="fas fa-download"></i> Télécharger
           </a>
         </div>
       </div>
 
-      <div class="e5-preview" onclick="openE5Modal()">
-        <div class="e5-preview-corner"></div>
-        <div class="e5-preview-corner"></div>
-        <div class="e5-preview-corner"></div>
-        <div class="e5-preview-corner"></div>
-        <img src="images/e5.png" alt="Aperçu du Tableau E5" class="e5-preview-image" />
-        <div class="e5-preview-overlay">
-           <span><i class="fas fa-search-plus"></i> VOIR LE TABLEAU</span>
+    </div>
+
+    <!-- ── BLOC 2 : ANNEXES ───────────────────────────────── -->
+    <h3 class="e6-annexes-heading">
+      <i class="fas fa-paperclip"></i> Mes annexes
+    </h3>
+
+    <div class="e6-annexes-grid">
+
+      <!-- ── CARTE 1 : ANNEXE RÉSEAU ── -->
+      <div class="e6-annexe-card reveal">
+        <div class="e6-annexe-thumb e6-annexe-thumb--reseau">
+          <div class="e6-thumb-glow"></div>
+          <i class="fas fa-network-wired e6-thumb-icon"></i>
+          <div class="e6-thumb-lines">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="e6-file-badge e6-file-badge--word">
+            <i class="fas fa-file-word"></i> Document Word
+          </span>
+        </div>
+        <div class="e6-annexe-body">
+          <div class="e6-annexe-header">
+            <span class="e6-annexe-emoji">🌐</span>
+            <h4 class="e6-annexe-title">Cas pratique — Réseau &amp; Infrastructure</h4>
+          </div>
+          <p class="e6-annexe-desc">
+            Configuration et administration d'une infrastructure réseau :
+            mise en place de VLANs sur switch, déploiement d'un contrôleur
+            de domaine Active Directory, et sécurisation des accès réseau.
+          </p>
+          <div class="e6-badges">
+            <span class="e6-tbadge e6-tbadge--reseau">Cisco</span>
+            <span class="e6-tbadge e6-tbadge--reseau">pfSense</span>
+            <span class="e6-tbadge e6-tbadge--reseau">VLAN</span>
+            <span class="e6-tbadge e6-tbadge--windows">Active Directory</span>
+          </div>
+          <!-- TODO: remplacer docs/e6/Annexe_E6_Network.docx par le chemin réel -->
+          <a
+            href="docs/e6/Annexe_E6_Network.docx"
+            class="e6-btn e6-btn--reseau"
+            download="Annexe_E6_Reseau_GUETTOUCHE.docx">
+            <i class="fas fa-download"></i> Télécharger l'annexe Réseau
+          </a>
         </div>
       </div>
+
+      <!-- ── CARTE 2 : ANNEXE SYSTÈME ── -->
+      <div class="e6-annexe-card reveal">
+        <div class="e6-annexe-thumb e6-annexe-thumb--systeme">
+          <div class="e6-thumb-glow"></div>
+          <i class="fas fa-server e6-thumb-icon"></i>
+          <div class="e6-thumb-lines">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="e6-file-badge e6-file-badge--word">
+            <i class="fas fa-file-word"></i> Document Word
+          </span>
+        </div>
+        <div class="e6-annexe-body">
+          <div class="e6-annexe-header">
+            <span class="e6-annexe-emoji">🖥️</span>
+            <h4 class="e6-annexe-title">Cas pratique — Systèmes &amp; Sécurité</h4>
+          </div>
+          <p class="e6-annexe-desc">
+            Déploiement et gestion de postes utilisateurs via Microsoft Intune,
+            automatisation via scripts PowerShell, administration Active Directory
+            et renforcement de la sécurité des postes (analyse vulnérabilités, correctifs).
+          </p>
+          <div class="e6-badges">
+            <span class="e6-tbadge e6-tbadge--windows">Windows Server</span>
+            <span class="e6-tbadge e6-tbadge--violet">Intune</span>
+            <span class="e6-tbadge e6-tbadge--orange">PowerShell</span>
+            <span class="e6-tbadge e6-tbadge--secu">Cybersécurité</span>
+          </div>
+          <!-- TODO: remplacer docs/e6/Annexe_E6_System.docx par le chemin réel -->
+          <a
+            href="docs/e6/Annexe_E6_System.docx"
+            class="e6-btn e6-btn--systeme"
+            download="Annexe_E6_Systeme_GUETTOUCHE.docx">
+            <i class="fas fa-download"></i> Télécharger l'annexe Système
+          </a>
+        </div>
+      </div>
+
     </div>
-    <p class="e5-preview-caption">Cliquer sur l'aperçu pour agrandir l'image</p>
+
   </div>
 </section>
 
-<div id="e5Modal" class="e5-modal" onclick="closeE5Modal()">
-  <button class="e5-modal-close">&times;</button>
-  <div class="e5-modal-content">
-    <img src="images/e5.png" alt="Tableau E5 Agrandi">
+<!-- ======= MODALE PDF E6 ======= -->
+<div id="e6PdfModal" class="e6-pdf-modal" onclick="closeE6PdfModal(event)">
+  <div class="e6-pdf-modal-bar">
+    <span class="e6-pdf-modal-name" id="e6PdfModalName"></span>
+    <div class="e6-pdf-modal-actions">
+      <!-- TODO: href et download mis à jour dynamiquement par JS -->
+      <a id="e6PdfModalDl" href="#" download class="e6-pdf-modal-btn e6-pdf-modal-btn--dl">
+        <i class="fas fa-download"></i> Télécharger
+      </a>
+      <button class="e6-pdf-modal-btn e6-pdf-modal-btn--close" onclick="closeE6PdfModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="e6-pdf-modal-body" onclick="event.stopPropagation()">
+    <iframe id="e6PdfModalFrame" src="" title="Visualisation PDF E6"></iframe>
   </div>
 </div>
 
@@ -1372,7 +1406,7 @@
           <!-- Outil 1: Feedly -->
           <div class="veille-tool" data-tool="feedly">
             <div class="tool-icon">
-              <img src="images//feedly.png" alt="Feedly" />
+              <img src="images/feedly.png" alt="Feedly" />
             </div>
             <h4 class="tool-name">Feedly</h4>
             <p class="tool-description">Agrégateur de flux RSS pour suivre mes sources préférées</p>

@@ -52,28 +52,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Fonction pour ouvrir un sous-menu
-  function openSubmenu(submenuId, parentButton) {
+  // noScroll=true : ouvre le menu sans déclencher scrollToSection (utile à l'init)
+  function openSubmenu(submenuId, parentButton, noScroll = false) {
     const submenu = document.querySelector(submenuId);
     if (!submenu) {
       console.warn(`Sous-menu non trouvé : ${submenuId}`);
       return;
     }
 
-    
+
     // Fermer les autres
     closeAllSubmenus();
-    
+
     // Ouvrir celui-ci
     submenu.classList.add('nav-submenu--open');
     parentButton.classList.add('nav-btn--expanded', 'nav-btn--active');
-    
+
     // Activer le premier sous-bouton
     const firstSubBtn = submenu.querySelector('.nav-sub-btn');
     if (firstSubBtn) {
       firstSubBtn.classList.add('nav-sub-btn--active');
-      const target = firstSubBtn.getAttribute('data-target');
-      if (target) {
-        scrollToSection(target);
+      if (!noScroll) {
+        const target = firstSubBtn.getAttribute('data-target');
+        if (target) scrollToSection(target);
       }
     }
   }
@@ -288,9 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ======================================================
   // INITIALISATION : Ouvrir Accueil par défaut
+  // Scroll immédiat en haut (évite l'ouverture sur profil/une autre section)
   // ======================================================
+  window.scrollTo({ top: 0, behavior: 'instant' });
   setTimeout(() => {
     const accueilBtn = document.querySelector('[data-submenu="#submenu-accueil"]');
-    if (accueilBtn) openSubmenu('#submenu-accueil', accueilBtn);
+    if (accueilBtn) openSubmenu('#submenu-accueil', accueilBtn, true);
   }, 300);
 });

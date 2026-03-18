@@ -782,7 +782,7 @@ body.theme-light .bloc-column:hover {
 .doc-card h4 {
   color: #fff;
   margin-bottom: 10px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
 }
 
 .doc-card p {
@@ -1428,5 +1428,784 @@ body.theme-light .e5-preview {
 
   .e5-modal {
     padding: 20px;
+  }
+}
+
+
+/* ========================================================
+   E6 — ÉPREUVE E6 : TABLEAU DE SYNTHÈSE & ANNEXES
+   ======================================================== */
+
+/* ---- Label E6 dans le titre ---- */
+.e6-label {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #000;
+  font-size: 0.8em;
+  font-weight: 900;
+  padding: 3px 12px;
+  border-radius: 6px;
+  margin-right: 10px;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   BLOC 1 — CARTE TABLEAU DE SYNTHÈSE
+   ============================================================ */
+
+.e6-synthese-card {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(26, 246, 196, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.e6-synthese-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 40px var(--primary-glow), 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Mini-aperçu PDF ---- */
+/* iframe rendue 3× sa taille puis réduite à 33% → thumbnail fidèle */
+.e6-pdf-preview {
+  width: 280px;
+  min-width: 280px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-elevated);
+  cursor: pointer;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(26, 246, 196, 0.12);
+}
+
+.e6-pdf-iframe {
+  width: 300%;
+  height: 660px;
+  border: none;
+  transform: scale(0.333);
+  transform-origin: 0 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* Overlay cliquable au-dessus de l'iframe */
+.e6-pdf-preview-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+  background: linear-gradient(to bottom, transparent 45%, rgba(0, 0, 0, 0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.e6-pdf-preview:hover .e6-pdf-preview-overlay {
+  opacity: 1;
+}
+
+.e6-pdf-preview-hint {
+  font-size: 0.78rem;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(26, 246, 196, 0.4);
+}
+
+/* ---- Informations + actions ---- */
+.e6-synthese-info {
+  flex: 1;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.e6-synthese-title {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #e2e8f0);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.e6-synthese-sub {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.e6-synthese-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-secondary, #94a3b8);
+  margin: 6px 0 14px;
+}
+
+.e6-synthese-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   BADGES FICHIER (PDF / Word)
+   ============================================================ */
+
+.e6-file-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.e6-file-badge--pdf {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Badge Word : positionné en absolu en bas de la vignette */
+.e6-file-badge--word {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 5;
+}
+
+/* ============================================================
+   BOUTONS E6
+   ============================================================ */
+
+.e6-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.e6-btn--primary {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.e6-btn--primary:hover {
+  background: var(--accent);
+  box-shadow: 0 6px 25px var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+.e6-btn--secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.e6-btn--secondary:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 4px 20px var(--primary-glow);
+  transform: translateY(-2px);
+}
+
+.e6-btn--reseau {
+  background: rgba(26, 246, 196, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(26, 246, 196, 0.35);
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.e6-btn--reseau:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 4px 20px var(--primary-glow);
+}
+
+.e6-btn--systeme {
+  background: rgba(128, 0, 255, 0.08);
+  color: #c084fc;
+  border: 1px solid rgba(128, 0, 255, 0.35);
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.e6-btn--systeme:hover {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(128, 0, 255, 0.5);
+}
+
+/* ============================================================
+   BLOC 2 — GRILLE D'ANNEXES
+   ============================================================ */
+
+.e6-annexes-heading {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary, #94a3b8);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.e6-annexes-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.e6-annexes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+/* ---- Carte annexe ---- */
+.e6-annexe-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(26, 246, 196, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.e6-annexe-card:hover {
+  transform: translateY(-5px);
+}
+
+.e6-annexe-card:nth-child(1):hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 40px rgba(26, 246, 196, 0.2);
+}
+
+.e6-annexe-card:nth-child(2):hover {
+  border-color: #8000ff;
+  box-shadow: 0 10px 40px rgba(128, 0, 255, 0.2);
+}
+
+/* ---- Vignette DOCX 160px ---- */
+.e6-annexe-thumb {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.e6-annexe-thumb--reseau {
+  background: linear-gradient(135deg, rgba(26, 246, 196, 0.07) 0%, rgba(5, 8, 20, 0.95) 70%);
+  border-bottom: 1px solid rgba(26, 246, 196, 0.15);
+}
+
+.e6-annexe-thumb--systeme {
+  background: linear-gradient(135deg, rgba(128, 0, 255, 0.09) 0%, rgba(5, 8, 20, 0.95) 70%);
+  border-bottom: 1px solid rgba(128, 0, 255, 0.15);
+}
+
+/* Glow animé en fond */
+.e6-thumb-glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(45px);
+  opacity: 0.2;
+  animation: e6GlowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.e6-annexe-thumb--reseau .e6-thumb-glow  { background: var(--primary); }
+.e6-annexe-thumb--systeme .e6-thumb-glow { background: #8000ff; animation-delay: 1.5s; }
+
+.e6-annexe-card:hover .e6-thumb-glow { opacity: 0.45; }
+
+@keyframes e6GlowPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.2; }
+  50%       { transform: scale(1.3); opacity: 0.4; }
+}
+
+/* Icône centrale */
+.e6-thumb-icon {
+  font-size: 2.8rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.e6-annexe-thumb--reseau .e6-thumb-icon  { color: var(--primary); }
+.e6-annexe-thumb--systeme .e6-thumb-icon { color: #c084fc; }
+
+.e6-annexe-card:hover .e6-thumb-icon { transform: scale(1.1); }
+
+/* Lignes décoratives HUD */
+.e6-thumb-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 32px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.e6-thumb-lines span {
+  display: block;
+  height: 1px;
+  border-radius: 1px;
+  animation: e6LineScan 4s ease-in-out infinite;
+}
+
+.e6-annexe-thumb--reseau  .e6-thumb-lines span { background: var(--primary); }
+.e6-annexe-thumb--systeme .e6-thumb-lines span { background: #8000ff; }
+
+.e6-thumb-lines span:nth-child(1) { opacity: 0.15; }
+.e6-thumb-lines span:nth-child(2) { opacity: 0.12; width: 70%; animation-delay: 0.6s; }
+.e6-thumb-lines span:nth-child(3) { opacity: 0.09; width: 45%; animation-delay: 1.2s; }
+
+@keyframes e6LineScan {
+  0%, 100% { opacity: 0.12; transform: scaleX(1); }
+  50%       { opacity: 0.3;  transform: scaleX(1.04); }
+}
+
+/* ---- Corps de la carte annexe ---- */
+.e6-annexe-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.e6-annexe-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.e6-annexe-emoji {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.e6-annexe-title {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary, #e2e8f0);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.e6-annexe-desc {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #94a3b8);
+  margin: 0;
+}
+
+/* ---- Badges technos ---- */
+.e6-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.e6-tbadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.e6-tbadge--reseau  { background: rgba(26,246,196,0.1);  color: var(--primary); border: 1px solid rgba(26,246,196,0.3);  }
+.e6-tbadge--windows { background: rgba(59,130,246,0.1);  color: #60a5fa;        border: 1px solid rgba(59,130,246,0.3);  }
+.e6-tbadge--violet  { background: rgba(128,0,255,0.1);   color: #c084fc;        border: 1px solid rgba(128,0,255,0.3);   }
+.e6-tbadge--orange  { background: rgba(245,158,11,0.1);  color: #fbbf24;        border: 1px solid rgba(245,158,11,0.3);  }
+.e6-tbadge--secu    { background: rgba(239,68,68,0.1);   color: #f87171;        border: 1px solid rgba(239,68,68,0.3);   }
+
+/* ============================================================
+   MODALE PDF
+   ============================================================ */
+
+.e6-pdf-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9000;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+}
+
+.e6-pdf-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 54px;
+  background: rgba(10, 14, 39, 0.98);
+  border-bottom: 1px solid rgba(26, 246, 196, 0.2);
+  flex-shrink: 0;
+}
+
+.e6-pdf-modal-name {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  color: var(--primary);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.e6-pdf-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.e6-pdf-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+}
+
+.e6-pdf-modal-btn--dl {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(26, 246, 196, 0.4);
+}
+
+.e6-pdf-modal-btn--dl:hover {
+  background: var(--primary);
+  color: #000;
+}
+
+.e6-pdf-modal-btn--close {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-size: 0.95rem;
+  padding: 7px 12px;
+}
+
+.e6-pdf-modal-btn--close:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.e6-pdf-modal-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.e6-pdf-modal-body iframe {
+  width: 90vw;
+  height: 85vh;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+/* ============================================================
+   MODE CLAIR (WHITE THEME)
+   ============================================================ */
+
+body.theme-light .e6-synthese-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(3, 105, 161, 0.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+}
+
+body.theme-light .e6-synthese-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 30px var(--primary-glow), 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-light .e6-pdf-preview {
+  background: #dce9f0;
+  border-right-color: rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .e6-synthese-title { color: #1e293b; }
+body.theme-light .e6-synthese-desc  { color: #475569; }
+
+body.theme-light .e6-annexe-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(3, 105, 161, 0.18);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light .e6-annexe-card:nth-child(1):hover {
+  box-shadow: 0 10px 40px rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .e6-annexe-card:nth-child(2):hover {
+  border-color: #4f46e5;
+  box-shadow: 0 10px 40px rgba(79, 70, 229, 0.12);
+}
+
+body.theme-light .e6-annexe-thumb--reseau {
+  background: linear-gradient(135deg, rgba(3, 105, 161, 0.1), rgba(240, 249, 255, 0.85));
+  border-bottom-color: rgba(3, 105, 161, 0.15);
+}
+
+body.theme-light .e6-annexe-thumb--systeme {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(238, 242, 255, 0.85));
+  border-bottom-color: rgba(79, 70, 229, 0.15);
+}
+
+body.theme-light .e6-annexe-title { color: #1e293b; }
+body.theme-light .e6-annexe-desc  { color: #475569; }
+
+body.theme-light .e6-annexes-heading { color: #64748b; }
+body.theme-light .e6-annexes-heading::after { background: rgba(0, 0, 0, 0.1); }
+
+body.theme-light .e6-tbadge--reseau  { background: rgba(3,105,161,0.08);  color: #0369a1; border-color: rgba(3,105,161,0.22);  }
+body.theme-light .e6-tbadge--windows { background: rgba(37,99,235,0.07);  color: #2563eb; border-color: rgba(37,99,235,0.2);   }
+body.theme-light .e6-tbadge--violet  { background: rgba(79,70,229,0.07);  color: #4f46e5; border-color: rgba(79,70,229,0.2);   }
+body.theme-light .e6-tbadge--orange  { background: rgba(217,119,6,0.07);  color: #d97706; border-color: rgba(217,119,6,0.2);   }
+body.theme-light .e6-tbadge--secu    { background: rgba(220,38,38,0.07);  color: #dc2626; border-color: rgba(220,38,38,0.2);   }
+
+body.theme-light .e6-btn--reseau {
+  background: rgba(3, 105, 161, 0.07);
+  color: #0369a1;
+  border-color: rgba(3, 105, 161, 0.28);
+}
+
+body.theme-light .e6-btn--reseau:hover  { background: var(--primary); color: #fff; }
+
+body.theme-light .e6-btn--systeme {
+  background: rgba(79, 70, 229, 0.07);
+  color: #4f46e5;
+  border-color: rgba(79, 70, 229, 0.28);
+}
+
+body.theme-light .e6-btn--systeme:hover { background: #4f46e5; color: #fff; }
+
+body.theme-light .e6-file-badge--word {
+  background: rgba(37, 99, 235, 0.09);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+body.theme-light .e6-pdf-modal-bar {
+  background: rgba(240, 249, 255, 0.99);
+  border-bottom-color: rgba(3, 105, 161, 0.2);
+}
+
+/* ============================================================
+   RESPONSIVE E6
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .e6-synthese-card {
+    flex-direction: column;
+  }
+
+  .e6-pdf-preview {
+    width: 100%;
+    min-width: unset;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid rgba(26, 246, 196, 0.12);
+  }
+
+  .e6-synthese-info {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .e6-annexes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .e6-synthese-actions {
+    flex-direction: column;
+  }
+
+  .e6-btn--primary,
+  .e6-btn--secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .e6-pdf-modal-name {
+    display: none;
+  }
+}
+
+/* =========================================================
+   ONGLETS BTS (Formation / Compétences / Épreuve E6)
+   ========================================================= */
+
+.bts-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0 1.5rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.bts-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+  margin-bottom: -2px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.bts-tab:hover {
+  color: var(--primary);
+}
+
+.bts-tab--active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Tab content: hidden by default, visible when active */
+.bts-tab-content {
+  display: none;
+  animation: btsTabFadeIn 0.35s ease both;
+}
+
+.bts-tab-content--active {
+  display: block;
+}
+
+@keyframes btsTabFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* E6 tab: action buttons grid */
+.bts-e6-tab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Light theme */
+body.theme-light .bts-tabs {
+  border-bottom-color: var(--border);
+}
+
+body.theme-light .bts-tab {
+  color: var(--text-muted);
+}
+
+body.theme-light .bts-tab:hover,
+body.theme-light .bts-tab--active {
+  color: var(--primary);
+}
+
+body.theme-light .bts-tab--active {
+  border-bottom-color: var(--primary);
+}
+
+@media (max-width: 600px) {
+  .bts-tabs {
+    gap: 0.25rem;
+  }
+
+  .bts-tab {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.72rem;
+  }
+
+  .bts-e6-tab-actions {
+    flex-direction: column;
+  }
+
+  .bts-e6-tab-actions .e6-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

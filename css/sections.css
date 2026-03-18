@@ -14,7 +14,7 @@
 }
 
 .certif-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   color: #1af6c4;
   margin-bottom: 15px;
   font-size: 1.3rem;
@@ -150,7 +150,7 @@ body.theme-light .lightbox img {
 }
 
 .column-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   color: #1af6c4;
   border-bottom: 2px solid rgba(26, 246, 196, 0.3);
   padding-bottom: 10px;
@@ -325,7 +325,7 @@ body.theme-light .tp-btn-view:hover {
 .project-card h3 {
   color: var(--primary);
   margin-bottom: 1rem;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
 }
 
 .project-tags {
@@ -430,7 +430,7 @@ body.theme-light .project-tag {
 .formation-item h3 {
   color: var(--primary);
   margin-bottom: 0.5rem;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
 }
 
 .formation-item .date {
@@ -507,7 +507,7 @@ body.theme-light .certif-info-box {
 }
 
 .certif-section-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   font-size: 1.8rem;
   color: var(--primary);
   margin-bottom: 10px;
@@ -845,7 +845,7 @@ body.theme-light .priority-box--free {
 }
 
 .priority-header h4 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   font-size: 1.4rem;
   color: var(--primary);
   margin: 0;
@@ -892,7 +892,7 @@ body.theme-light .priority-item:hover {
 }
 
 .priority-rank {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary);
@@ -913,7 +913,7 @@ body.theme-light .priority-item:hover {
 }
 
 .priority-content h5 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   font-size: 1.1rem;
   color: var(--primary);
   margin: 0 0 8px 0;
@@ -989,7 +989,7 @@ body.theme-light .free-certif-item:hover {
 }
 
 .free-certif-item h5 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-title);
   font-size: 1rem;
   color: var(--primary);
   margin: 0 0 10px 0;
