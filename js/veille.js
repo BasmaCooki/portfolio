@@ -83,6 +83,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function parseXmlItems(xmlText, source) {
+    if (!xmlText || xmlText.length < 50) return [];
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+    const items = Array.from(xmlDoc.querySelectorAll("item"));
+    return items.slice(0, 5).map(item => ({
+      title: cleanHtml(item.querySelector("title")?.textContent || "Sans titre"),
+      link: item.querySelector("link")?.textContent?.trim() || "#",
+      description: cleanHtml(item.querySelector("description")?.textContent || "").substring(0, 200) + "...",
+      date: item.querySelector("pubDate")?.textContent || "",
+      source: source.name,
+      sourceColor: source.color
+    }));
+  }
+
   // =========================================
   // RÉCUPÉRATION ARTICLES PAR SOURCE
   // =========================================
@@ -96,24 +111,46 @@ document.addEventListener("DOMContentLoaded", () => {
       return cached;
     }
 
-    // Proxies : allorigins (proxy direct) → rss2json (JSON fiable) → corsproxy (texte brut)
     const proxies = [
       {
-        url: `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`,
-        getXml: async (r) => { const d = await r.json(); return d.contents || ""; }
-      },
-      {
-        url: `https://corsproxy.io/?${encodeURIComponent(source.url)}`,
-        getXml: async (r) => r.text()
-      },
-      {
+        label: 'rss2json',
         url: `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}&count=5`,
-        getJson: async (r) => r.json()
+        parse: async (r) => {
+          const data = await r.json();
+          console.log(`[${sourceId}] rss2json status:`, data.status, 'items:', data.items?.length);
+          return (data.items || []).slice(0, 5).map(item => ({
+            title: cleanHtml(item.title || "Sans titre"),
+            link: item.link || item.url || "#",
+            description: cleanHtml(item.description || item.content || "").substring(0, 200) + "...",
+            date: item.pubDate || item.published || "",
+            source: source.name,
+            sourceColor: source.color
+          }));
+        }
+      },
+      {
+        label: 'allorigins',
+        url: `https://api.allorigins.win/raw?url=${encodeURIComponent(source.url)}`,
+        parse: async (r) => {
+          const xmlText = await r.text();
+          console.log(`[${sourceId}] allorigins XML length:`, xmlText.length);
+          return parseXmlItems(xmlText, source);
+        }
+      },
+      {
+        label: 'corsproxy',
+        url: `https://corsproxy.io/?${encodeURIComponent(source.url)}`,
+        parse: async (r) => {
+          const xmlText = await r.text();
+          console.log(`[${sourceId}] corsproxy XML length:`, xmlText.length);
+          return parseXmlItems(xmlText, source);
+        }
       }
     ];
 
     for (const proxy of proxies) {
       try {
+        console.log(`[${sourceId}] Essai proxy: ${proxy.label}`);
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
         const response = await fetch(proxy.url, { signal: controller.signal });
@@ -121,49 +158,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-        const articles = [];
-
-        if (proxy.getJson) {
-          // Format rss2json
-          const data = await proxy.getJson(response);
-          (data.items || []).slice(0, 5).forEach(item => {
-            articles.push({
-              title: cleanHtml(item.title || "Sans titre"),
-              link: item.link || item.url || "#",
-              description: cleanHtml(item.description || item.content || "").substring(0, 200) + "...",
-              date: item.pubDate || item.published || "",
-              source: source.name,
-              sourceColor: source.color
-            });
-          });
-        } else {
-          // Format XML brut
-          const xmlText = await proxy.getXml(response);
-          const parser = new DOMParser();
-          const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-          Array.from(xmlDoc.querySelectorAll("item")).slice(0, 5).forEach(item => {
-            articles.push({
-              title: cleanHtml(item.querySelector("title")?.textContent || "Sans titre"),
-              link: item.querySelector("link")?.textContent?.trim() || "#",
-              description: cleanHtml(item.querySelector("description")?.textContent || "").substring(0, 200) + "...",
-              date: item.querySelector("pubDate")?.textContent || "",
-              source: source.name,
-              sourceColor: source.color
-            });
-          });
-        }
+        const articles = await proxy.parse(response);
 
         if (articles.length > 0) {
+          console.log(`[${sourceId}] ✅ ${proxy.label}: ${articles.length} articles`);
           setCachedArticles(sourceId, articles);
           return articles;
+        } else {
+          console.warn(`[${sourceId}] ⚠️ ${proxy.label}: réponse OK mais 0 articles`);
         }
 
       } catch (error) {
-        const label = proxy.url.split('?')[0].replace('https://', '');
         if (error.name === 'AbortError') {
-          console.warn(`⏱️ ${sourceId}: Timeout (${label})`);
+          console.warn(`[${sourceId}] ⏱️ Timeout: ${proxy.label}`);
         } else {
-          console.warn(`⚠️ ${sourceId}: Échec (${label}):`, error.message);
+          console.warn(`[${sourceId}] ❌ Échec ${proxy.label}:`, error.message);
         }
       }
     }
