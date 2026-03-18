@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const STORAGE_PREFIX = "veille-source-";
+  const STORAGE_PREFIX = "veille-source-v2-";
   const CACHE_DURATION = 900000; // 15 minutes (pour des articles plus frais)
 
   // =========================================
@@ -96,70 +96,53 @@ document.addEventListener("DOMContentLoaded", () => {
       return cached;
     }
 
-    // Liste de proxies à essayer avec timeout
+    // Liste de proxies à essayer avec timeout (allorigins en premier = proxy direct, pas de cache serveur)
     const proxies = [
-      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`,
-      `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`,
-      `https://corsproxy.io/?${encodeURIComponent(source.url)}`
+      { url: `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`, type: 'xml' },
+      { url: `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}&count=5`, type: 'json' },
+      { url: `https://corsproxy.io/?${encodeURIComponent(source.url)}`, type: 'xml' }
     ];
 
     // Essayer chaque proxy avec timeout
-    for (let proxyIndex = 0; proxyIndex < proxies.length; proxyIndex++) {
+    for (const proxy of proxies) {
       try {
-        const proxyUrl = proxies[proxyIndex];
-
-        // Fetch avec timeout de 10 secondes
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-        const response = await fetch(proxyUrl, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-          signal: controller.signal
-        });
-
+        const response = await fetch(proxy.url, { signal: controller.signal });
         clearTimeout(timeoutId);
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-        const data = await response.json();
         const articles = [];
 
-        // rss2json utilise un format JSON différent (proxy 0)
-        if (proxyIndex === 0) {
+        if (proxy.type === 'json') {
+          const data = await response.json();
           const items = data.items || [];
 
-          items.forEach((item, index) => {
-            if (index >= 5) return;
-
+          items.slice(0, 5).forEach(item => {
             articles.push({
               title: cleanHtml(item.title || "Sans titre"),
               link: item.link || item.url || "#",
               description: cleanHtml(item.description || item.content || "").substring(0, 200) + "...",
-              date: formatDate(item.pubDate || item.published || ""),
+              date: item.pubDate || item.published || "",
               source: source.name,
               sourceColor: source.color
             });
           });
-
-          if (articles.length > 0) {
-            setCachedArticles(sourceId, articles);
-            return articles;
-          }
         } else {
-          // Format allorigins/corsproxy
-          const xmlText = data.contents || data;
+          const data = await response.json();
+          const xmlText = data.contents || "";
 
           const parser = new DOMParser();
           const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
           const items = xmlDoc.querySelectorAll("item");
 
-          items.forEach((item, index) => {
-            if (index >= 5) return;
-
+          Array.from(items).slice(0, 5).forEach(item => {
             const title = item.querySelector("title")?.textContent || "Sans titre";
-            const link = item.querySelector("link")?.textContent || "#";
+            const linkEl = item.querySelector("link");
+            // <link> en RSS peut être un nœud texte ou un élément
+            const link = linkEl?.textContent?.trim() || linkEl?.nextSibling?.textContent?.trim() || "#";
             const description = item.querySelector("description")?.textContent || "";
             const pubDate = item.querySelector("pubDate")?.textContent || "";
 
@@ -167,25 +150,24 @@ document.addEventListener("DOMContentLoaded", () => {
               title: cleanHtml(title),
               link: link,
               description: cleanHtml(description).substring(0, 200) + "...",
-              date: formatDate(pubDate),
+              date: pubDate,
               source: source.name,
               sourceColor: source.color
             });
           });
+        }
 
-          if (articles.length > 0) {
-            setCachedArticles(sourceId, articles);
-            return articles;
-          }
+        if (articles.length > 0) {
+          setCachedArticles(sourceId, articles);
+          return articles;
         }
 
       } catch (error) {
         if (error.name === 'AbortError') {
-          console.warn(`⏱️ ${sourceId}: Timeout proxy ${proxyIndex + 1}`);
+          console.warn(`⏱️ ${sourceId}: Timeout (${proxy.url.split('?')[0]})`);
         } else {
-          console.warn(`⚠️ ${sourceId}: Proxy ${proxyIndex + 1} échoué:`, error.message);
+          console.warn(`⚠️ ${sourceId}: Échec (${proxy.url.split('?')[0]}):`, error.message);
         }
-        // Continuer avec le prochain proxy
       }
     }
 
@@ -245,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="source-articles-list">
         ${articles.map((article, index) => `
           <article class="source-article reveal" style="animation-delay: ${index * 0.1}s">
-            <div class="article-date">${article.date}</div>
+            <div class="article-date">${formatDate(article.date)}</div>
             <h5 class="article-title">
               <a href="${article.link}" target="_blank" rel="noopener noreferrer">
                 ${article.title}
@@ -360,6 +342,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // INITIALISATION
   // =========================================
   async function init() {
+    // Purger les anciennes entrées de cache (format pré-v2)
+    Object.keys(localStorage)
+      .filter(k => k.startsWith("veille-source-") && !k.startsWith("veille-source-v2-"))
+      .forEach(k => localStorage.removeItem(k));
+
     initScrollAnimations();
     await loadAllSources();
 
