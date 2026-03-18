@@ -61,7 +61,6 @@
   <!-- JS global -->
   <script src="js/portfolio.js" defer></script>
   <script src="js/effects.js" defer></script>
-  <script src="js/cursor.js" defer></script>
   <script src="js/accueil.js" defer></script>
   <script src="js/bts.js" defer></script>
   <script src="js/sections.js" defer></script>
@@ -952,13 +951,12 @@
     <div class="e6-synthese-card reveal">
 
       <!-- Mini-aperçu PDF cliquable (ouvre la modale) -->
-      <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
       <div class="e6-pdf-preview"
-           onclick="openE6PdfModal('docs/e6/Tableau_de_synthese_E5.pdf', 'Tableau de synthèse E6')"
+           onclick="openE6PdfModal('documents/tableau-de-synthese.pdf', 'Tableau de synthèse E6')"
            role="button"
            aria-label="Visualiser le tableau de synthèse">
         <iframe
-          src="docs/e6/Tableau_de_synthese_E5.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+          src="documents/tableau-de-synthese.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
           class="e6-pdf-iframe"
           scrolling="no"
           tabindex="-1"
@@ -986,13 +984,11 @@
           acquises durant le cursus.
         </p>
         <div class="e6-synthese-actions">
-          <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
           <button
             class="e6-btn e6-btn--primary"
             onclick="openE6PdfModal('documents/tableau-de-synthese.pdf', 'Tableau de synthèse E6')">
             <i class="fas fa-eye"></i> Visualiser
           </button>
-          <!-- TODO: remplacer docs/e6/Tableau_de_synthese_E5.pdf par le chemin réel -->
           <a
             href="documents/tableau-de-synthese.pdf"
             class="e6-btn e6-btn--secondary"
@@ -1019,8 +1015,8 @@
           <div class="e6-thumb-lines">
             <span></span><span></span><span></span>
           </div>
-          <span class="e6-file-badge e6-file-badge--word">
-            <i class="fas fa-file-word"></i> Document Word
+          <span class="e6-file-badge e6-file-badge--pdf">
+            <i class="fas fa-file-pdf"></i> Document PDF
           </span>
         </div>
         <div class="e6-annexe-body">
@@ -1039,11 +1035,10 @@
             <span class="e6-tbadge e6-tbadge--reseau">VLAN</span>
             <span class="e6-tbadge e6-tbadge--windows">Active Directory</span>
           </div>
-          <!-- TODO: remplacer docs/e6/Annexe_E6_Network.docx par le chemin réel -->
           <a
-            href="docs/e6/Annexe_E6_Network.docx"
+            href="documents/7- Annexes 7 - Epreuve E5 - BTS SIO Network 2026 (1).pdf"
             class="e6-btn e6-btn--reseau"
-            download="Annexe_E6_Reseau_GUETTOUCHE.docx">
+            download="Annexe_E6_Reseau_GUETTOUCHE.pdf">
             <i class="fas fa-download"></i> Télécharger l'annexe Réseau
           </a>
         </div>
@@ -1057,8 +1052,8 @@
           <div class="e6-thumb-lines">
             <span></span><span></span><span></span>
           </div>
-          <span class="e6-file-badge e6-file-badge--word">
-            <i class="fas fa-file-word"></i> Document Word
+          <span class="e6-file-badge e6-file-badge--pdf">
+            <i class="fas fa-file-pdf"></i> Document PDF
           </span>
         </div>
         <div class="e6-annexe-body">
@@ -1077,11 +1072,10 @@
             <span class="e6-tbadge e6-tbadge--orange">PowerShell</span>
             <span class="e6-tbadge e6-tbadge--secu">Cybersécurité</span>
           </div>
-          <!-- TODO: remplacer docs/e6/Annexe_E6_System.docx par le chemin réel -->
           <a
-            href="docs/e6/Annexe_E6_System.docx"
+            href="documents/7- Annexes 7 - Epreuve E5 - BTS SIO System 2026 (2).pdf"
             class="e6-btn e6-btn--systeme"
-            download="Annexe_E6_Systeme_GUETTOUCHE.docx">
+            download="Annexe_E6_Systeme_GUETTOUCHE.pdf">
             <i class="fas fa-download"></i> Télécharger l'annexe Système
           </a>
         </div>
@@ -1097,7 +1091,6 @@
   <div class="e6-pdf-modal-bar">
     <span class="e6-pdf-modal-name" id="e6PdfModalName"></span>
     <div class="e6-pdf-modal-actions">
-      <!-- TODO: href et download mis à jour dynamiquement par JS -->
       <a id="e6PdfModalDl" href="#" download class="e6-pdf-modal-btn e6-pdf-modal-btn--dl">
         <i class="fas fa-download"></i> Télécharger
       </a>
@@ -1370,7 +1363,7 @@
 <section id="veille" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-number">08</span>
+      <span class="section-number">09</span>
       <h2 class="section-title">Veille technologique</h2>
       <p class="section-subtitle">
         Cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs
@@ -1692,76 +1685,10 @@
         </p>
       </div>
 
-      <!-- Top 5 PRIORITÉS pour Cyber DevOps -->
-      <div class="priority-box priority-box--critical">
-        <div class="priority-header">
-          <i class="fa fa-fire"></i>
-          <h4>Top 5 PRIORITÉS pour Cyber DevOps</h4>
         </div>
-        <p class="priority-subtitle">Les certifications les plus importantes pour devenir Architecte DevOps/Cloud</p>
-
-        <div class="priority-list">
-          <div class="priority-item priority-item--1">
-            <span class="priority-rank">1</span>
-            <div class="priority-content">
-              <h5>Linux (LPIC-1 ou Linux+)</h5>
-              <p>Base absolue pour DevOps - 90% des serveurs en production</p>
-              <div class="priority-meta">
-                <span class="badge badge--price">~120-200€</span>
-                <span class="priority-fire">🔥🔥🔥🔥🔥</span>
-              </div>
             </div>
           </div>
 
-          <div class="priority-item priority-item--2">
-            <span class="priority-rank">2</span>
-            <div class="priority-content">
-              <h5>CompTIA Security+</h5>
-              <p>Référence mondiale en cybersécurité - Base DevSecOps</p>
-              <div class="priority-meta">
-                <span class="badge badge--price">~350€</span>
-                <span class="priority-fire">🔥🔥🔥🔥🔥</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="priority-item priority-item--3">
-            <span class="priority-rank">3</span>
-            <div class="priority-content">
-              <h5>AWS Cloud Practitioner</h5>
-              <p>Leader du cloud (33% du marché) - Essentiel pour DevOps</p>
-              <div class="priority-meta">
-                <span class="badge badge--price">~100€</span>
-                <span class="priority-fire">🔥🔥🔥🔥</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="priority-item priority-item--4">
-            <span class="priority-rank">4</span>
-            <div class="priority-content">
-              <h5>Kubernetes CKA</h5>
-              <p>Orchestration conteneurs - Futur du DevOps moderne</p>
-              <div class="priority-meta">
-                <span class="badge badge--price">~375€</span>
-                <span class="priority-fire">🔥🔥🔥🔥</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="priority-item priority-item--5">
-            <span class="priority-rank">5</span>
-            <div class="priority-content">
-              <h5>Azure DevOps Engineer (AZ-400)</h5>
-              <p>Pipeline CI/CD complet - Automatisation de bout en bout</p>
-              <div class="priority-meta">
-                <span class="badge badge--price">~165€</span>
-                <span class="priority-fire">🔥🔥🔥</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Certifications 100% GRATUITES -->
       <div class="priority-box priority-box--free">
@@ -1820,186 +1747,6 @@
         </div>
       </div>
 
-      <div class="certif-grid">
-        <!-- Microsoft Azure Fundamentals -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">En cours</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa-brands fa-microsoft" style="color: #0078D4;"></i>
-          </div>
-          <h3 class="certif-title">Microsoft Azure Fundamentals (AZ-900)</h3>
-          <p class="certif-description">
-            Certification Microsoft sur les concepts fondamentaux du cloud Azure : services cloud,
-            modèles de déploiement, sécurité et conformité.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Concepts du cloud computing</li>
-            <li><i class="fa fa-check-circle"></i> Services Azure (compute, réseau, stockage)</li>
-            <li><i class="fa fa-check-circle"></i> Sécurité et gouvernance</li>
-            <li><i class="fa fa-check-circle"></i> Gestion des coûts Azure</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://learn.microsoft.com/fr-fr/certifications/azure-fundamentals/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-gift"></i> Gratuit</span>
-          </div>
-        </article>
-
-        <!-- Cisco Introduction to Cybersecurity -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">À venir</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa fa-shield" style="color: #049fd9;"></i>
-          </div>
-          <h3 class="certif-title">Cisco Introduction to Cybersecurity</h3>
-          <p class="certif-description">
-            Formation Cisco Networking Academy sur les bases de la cybersécurité,
-            les menaces courantes et les meilleures pratiques de protection.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Fondamentaux de la cybersécurité</li>
-            <li><i class="fa fa-check-circle"></i> Menaces et vulnérabilités</li>
-            <li><i class="fa fa-check-circle"></i> Protection des données</li>
-            <li><i class="fa fa-check-circle"></i> Sécurité des réseaux</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-gift"></i> Gratuit</span>
-          </div>
-        </article>
-
-        <!-- Google IT Support Professional Certificate -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">À venir</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa-brands fa-google" style="color: #4285F4;"></i>
-          </div>
-          <h3 class="certif-title">Google IT Support Professional Certificate</h3>
-          <p class="certif-description">
-            Programme Google sur Coursera couvrant les fondamentaux du support IT :
-            dépannage, réseaux, systèmes d'exploitation et sécurité.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Dépannage et support utilisateur</li>
-            <li><i class="fa fa-check-circle"></i> Réseaux informatiques</li>
-            <li><i class="fa fa-check-circle"></i> Systèmes d'exploitation (Windows, Linux)</li>
-            <li><i class="fa fa-check-circle"></i> Sécurité informatique</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://www.coursera.org/professional-certificates/google-it-support"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-info-circle"></i> Essai gratuit</span>
-          </div>
-        </article>
-
-        <!-- CompTIA ITF+ -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">À venir</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa fa-laptop" style="color: #e2231a;"></i>
-          </div>
-          <h3 class="certif-title">CompTIA IT Fundamentals (ITF+)</h3>
-          <p class="certif-description">
-            Certification de base CompTIA validant les connaissances fondamentales en IT :
-            matériel, logiciels, bases de données et sécurité.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Infrastructure IT</li>
-            <li><i class="fa fa-check-circle"></i> Applications et logiciels</li>
-            <li><i class="fa fa-check-circle"></i> Développement de logiciels</li>
-            <li><i class="fa fa-check-circle"></i> Sécurité des bases de données</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://www.comptia.org/certifications/it-fundamentals"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-dollar"></i> Payante</span>
-          </div>
-        </article>
-
-        <!-- Linux Essentials (LPI) -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">À venir</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa-brands fa-linux" style="color: #FCC624;"></i>
-          </div>
-          <h3 class="certif-title">Linux Essentials (LPI)</h3>
-          <p class="certif-description">
-            Certification Linux Professional Institute (LPI) sur les bases de Linux :
-            ligne de commande, système de fichiers, gestion des utilisateurs.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Concepts open source et Linux</li>
-            <li><i class="fa fa-check-circle"></i> Ligne de commande Linux</li>
-            <li><i class="fa fa-check-circle"></i> Système de fichiers et permissions</li>
-            <li><i class="fa fa-check-circle"></i> Scripts shell basiques</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://www.lpi.org/our-certifications/linux-essentials-overview"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-dollar"></i> Payante</span>
-          </div>
-        </article>
-
-        <!-- EC-Council Ethical Hacking Essentials -->
-        <article class="certif-card certif-card--pending">
-          <div class="certif-badge">
-            <span class="badge badge--pending">À venir</span>
-          </div>
-          <div class="certif-icon">
-            <i class="fa fa-user-secret" style="color: #e2231a;"></i>
-          </div>
-          <h3 class="certif-title">EC-Council Ethical Hacking Essentials (EHE)</h3>
-          <p class="certif-description">
-            Formation EC-Council sur les fondamentaux du hacking éthique :
-            reconnaissance, exploitation, post-exploitation et reporting.
-          </p>
-          <ul class="certif-topics">
-            <li><i class="fa fa-check-circle"></i> Introduction au hacking éthique</li>
-            <li><i class="fa fa-check-circle"></i> Footprinting et reconnaissance</li>
-            <li><i class="fa fa-check-circle"></i> Scanning et énumération</li>
-            <li><i class="fa fa-check-circle"></i> Exploitation de vulnérabilités</li>
-          </ul>
-          <div class="certif-footer">
-            <a href="https://www.eccouncil.org/train-certify/ethical-hacking-essentials-ehe/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn--small">
-              <i class="fa fa-external-link"></i> En savoir plus
-            </a>
-            <span class="certif-info"><i class="fa fa-gift"></i> Gratuit</span>
-          </div>
-        </article>
       </div>
     </div>
   </div>
