@@ -96,19 +96,26 @@ document.addEventListener("DOMContentLoaded", () => {
       return cached;
     }
 
-    // Liste de proxies à essayer avec timeout (allorigins en premier = proxy direct, pas de cache serveur)
+    // Proxies : allorigins (proxy direct) → rss2json (JSON fiable) → corsproxy (texte brut)
     const proxies = [
-      { url: `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`, type: 'xml' },
-      { url: `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}&count=5`, type: 'json' },
-      { url: `https://corsproxy.io/?${encodeURIComponent(source.url)}`, type: 'xml' }
+      {
+        url: `https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`,
+        getXml: async (r) => { const d = await r.json(); return d.contents || ""; }
+      },
+      {
+        url: `https://corsproxy.io/?${encodeURIComponent(source.url)}`,
+        getXml: async (r) => r.text()
+      },
+      {
+        url: `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}&count=5`,
+        getJson: async (r) => r.json()
+      }
     ];
 
-    // Essayer chaque proxy avec timeout
     for (const proxy of proxies) {
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
-
         const response = await fetch(proxy.url, { signal: controller.signal });
         clearTimeout(timeoutId);
 
@@ -116,11 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const articles = [];
 
-        if (proxy.type === 'json') {
-          const data = await response.json();
-          const items = data.items || [];
-
-          items.slice(0, 5).forEach(item => {
+        if (proxy.getJson) {
+          // Format rss2json
+          const data = await proxy.getJson(response);
+          (data.items || []).slice(0, 5).forEach(item => {
             articles.push({
               title: cleanHtml(item.title || "Sans titre"),
               link: item.link || item.url || "#",
@@ -131,26 +137,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           });
         } else {
-          const data = await response.json();
-          const xmlText = data.contents || "";
-
+          // Format XML brut
+          const xmlText = await proxy.getXml(response);
           const parser = new DOMParser();
           const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-          const items = xmlDoc.querySelectorAll("item");
-
-          Array.from(items).slice(0, 5).forEach(item => {
-            const title = item.querySelector("title")?.textContent || "Sans titre";
-            const linkEl = item.querySelector("link");
-            // <link> en RSS peut être un nœud texte ou un élément
-            const link = linkEl?.textContent?.trim() || linkEl?.nextSibling?.textContent?.trim() || "#";
-            const description = item.querySelector("description")?.textContent || "";
-            const pubDate = item.querySelector("pubDate")?.textContent || "";
-
+          Array.from(xmlDoc.querySelectorAll("item")).slice(0, 5).forEach(item => {
             articles.push({
-              title: cleanHtml(title),
-              link: link,
-              description: cleanHtml(description).substring(0, 200) + "...",
-              date: pubDate,
+              title: cleanHtml(item.querySelector("title")?.textContent || "Sans titre"),
+              link: item.querySelector("link")?.textContent?.trim() || "#",
+              description: cleanHtml(item.querySelector("description")?.textContent || "").substring(0, 200) + "...",
+              date: item.querySelector("pubDate")?.textContent || "",
               source: source.name,
               sourceColor: source.color
             });
@@ -163,10 +159,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
       } catch (error) {
+        const label = proxy.url.split('?')[0].replace('https://', '');
         if (error.name === 'AbortError') {
-          console.warn(`⏱️ ${sourceId}: Timeout (${proxy.url.split('?')[0]})`);
+          console.warn(`⏱️ ${sourceId}: Timeout (${label})`);
         } else {
-          console.warn(`⚠️ ${sourceId}: Échec (${proxy.url.split('?')[0]}):`, error.message);
+          console.warn(`⚠️ ${sourceId}: Échec (${label}):`, error.message);
         }
       }
     }
@@ -179,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         title: `Article récent de ${source.name}`,
         link: source.url.replace('/feed/', ''),
         description: "Les flux RSS sont temporairement indisponibles. Consultez directement le site pour les dernières actualités en cybersécurité...",
-        date: "Aujourd'hui",
+        date: new Date().toUTCString(),
         source: source.name,
         sourceColor: source.color
       }
