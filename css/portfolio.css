@@ -34,6 +34,7 @@ body {
   --logo-size-mobile: 56px;
   --font-title: 'Orbitron', sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --sidebar-width: 260px;
 }
 
 /* MODE SOMBRE - Palette cyan/purple avec néons vifs */
@@ -638,22 +639,13 @@ body.theme-light .social-btn--github:hover {
    ============================= */
 
 .main {
-  /* GARDEZ ces règles de Flexbox */
-  flex: 1;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
-  /* NOUVELLES RÈGLES DE POSITIONNEMENT : */
-  
-  /* 1. Crée l'espace vide pour la sidebar */
-  margin-left: 260px; 
-  
-  /* 2. Empêche le chevauchement en limitant sa largeur maximale.
-     (100% de la fenêtre - 260px de la sidebar) */
-  width: calc(100% - 260px); 
-  /* OU utilisez overflow: hidden sur le parent si vous préférez, 
-     mais width: calc est plus propre ici. */
+  min-height: 100vh;
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  /* flex: 1 retiré : il forçait flex-basis:0 et entrait en conflit avec width */
+  box-sizing: border-box;
 }
 
 .topbar {
@@ -2003,6 +1995,7 @@ body.theme-light #poda .border::before {
   .main {
     min-height: auto;
     margin-left: 0;
+    width: 100%;
   }
 
   .panel {
@@ -2082,7 +2075,7 @@ body.theme-light #poda .border::before {
   position: relative;
   min-height: 100vh;
   padding: 100px 3rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Fond légèrement alterné pour distinguer les sections visuellement */
@@ -2594,13 +2587,6 @@ body::after {
   height: 100vh;
   overflow-y: auto;
   z-index: 100;
-}
-
-/* S'assure que le main prend l'espace */
-.main {
-  margin-left: 260px;
-  width: calc(100% - 260px);
-  min-height: 100vh;
 }
 
 /* Fix pour les sections BTS qui ne s'affichent pas */
