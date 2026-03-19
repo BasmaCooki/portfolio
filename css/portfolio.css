@@ -2521,7 +2521,7 @@ body.theme-light #poda .border::before {
   min-height: auto;
 }
 
-/* S'assure que le contenu après E5 est visible */
+/* S'assure que le contenu après E5 est visible + transform réinitialisé */
 #bts-e5 ~ .panel,
 #entreprise ~ .panel,
 #docs,
@@ -2530,6 +2530,7 @@ body.theme-light #poda .border::before {
 #contact {
   opacity: 1 !important;
   pointer-events: auto !important;
+  transform: none !important;
 }
 
 /* Fix pour les sous-menus qui ne s'ouvrent pas */
@@ -2759,6 +2760,7 @@ body.scrolling-manually .panel {
 #contact {
   display: block !important;
   opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Amélioration de la visibilité en mode debug */
