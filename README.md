@@ -210,35 +210,7 @@ portfolio/
 - Navigateur web moderne (Chrome, Firefox, Safari, Edge)
 - Serveur web local (optionnel) : Live Server, Python SimpleHTTPServer, etc.
 
-### Installation locale
 
-1. **Cloner le repository**
-```bash
-git clone https://github.com/votre-username/portfolio.git
-cd portfolio
-```
-
-2. **Ouvrir le projet**
-```bash
-# Option 1 : Directement dans le navigateur
-open index.html
-
-# Option 2 : Avec un serveur local (recommandé)
-python3 -m http.server 8000
-# Puis ouvrir http://localhost:8000
-
-# Option 3 : Avec Live Server (VS Code)
-# Clic droit sur index.html > Open with Live Server
-```
-
-3. **Configuration du formulaire de contact**
-   - Obtenir une clé API sur [Web3Forms](https://web3forms.com)
-   - Remplacer la clé dans `js/contact.js` :
-   ```javascript
-   const WEB3FORMS_KEY = "VOTRE_CLE_ICI";
-   ```
-
----
 
 ## ⚡ Optimisations
 
