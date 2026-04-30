@@ -20,14 +20,37 @@
   font-size: 1.3rem;
 }
 
-/* Preview de l'ANSSI */
+/* Preview des certifications (ANSSI, Cisco…) */
 .certif-preview {
-  max-width: 400px;
+  max-width: 420px;
   margin-bottom: 20px;
-  border: 2px solid #333;
-  border-radius: 8px;
+  border: 2px solid rgba(26, 246, 196, 0.3);
+  border-radius: 10px;
   overflow: hidden;
   cursor: zoom-in;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.certif-preview:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.certif-preview--cisco {
+  border-color: rgba(4, 159, 217, 0.35);
+}
+
+.certif-preview--cisco:hover {
+  border-color: #049fd9;
+  box-shadow: 0 0 20px rgba(4, 159, 217, 0.25);
+}
+
+body.theme-light .certif-preview {
+  border-color: rgba(3, 105, 161, 0.25);
+}
+
+body.theme-light .certif-preview:hover {
+  border-color: var(--primary);
 }
 
 /* Grille des modules RGPD (5 modules) */
@@ -1037,4 +1060,114 @@ body.theme-light .free-badge {
 body.theme-light .free-certif-cta {
   background: rgba(3, 105, 161, 0.08);
   border-left-color: var(--primary);
+}
+
+/* =========================================================
+   CARTE CISCO — Certificat obtenu
+   ========================================================= */
+
+.certif-card--cisco {
+  border-color: rgba(4, 159, 217, 0.35);
+  background: linear-gradient(135deg, rgba(4,159,217,0.06) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+.certif-card--cisco:hover {
+  border-color: #049fd9;
+  box-shadow: 0 0 30px rgba(4, 159, 217, 0.18), 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.certif-cisco-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.certif-cisco-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(4, 159, 217, 0.12);
+  border: 1px solid rgba(4, 159, 217, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.certif-cisco-logo i {
+  font-size: 1.5rem;
+  color: #049fd9;
+}
+
+.certif-cisco-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.certif-card--cisco .certif-title {
+  color: #049fd9;
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.certif-cisco-issuer {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.certif-cisco-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 20px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.certif-cisco-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.certif-cisco-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.certif-cisco-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(4, 159, 217, 0.1);
+  color: #049fd9;
+  border: 1px solid rgba(4, 159, 217, 0.25);
+  letter-spacing: 0.03em;
+}
+
+/* Light theme */
+body.theme-light .certif-card--cisco {
+  background: linear-gradient(135deg, rgba(4,159,217,0.06) 0%, rgba(255,255,255,0.9) 100%);
+  border-color: rgba(4, 159, 217, 0.3);
+}
+
+body.theme-light .certif-cisco-desc { color: #475569; }
+body.theme-light .certif-cisco-issuer { color: #64748b; }
+
+@media (max-width: 600px) {
+  .certif-cisco-header { flex-wrap: wrap; }
+  .certif-cisco-status { width: 100%; justify-content: center; }
 }

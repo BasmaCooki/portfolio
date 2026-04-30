@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+html {
+  font-size: 20px;
+}
+
 html,
 body {
   width: 100%;
@@ -1675,8 +1679,8 @@ body.theme-light #poda .border::before {
 
 .section-body {
   margin-top: 1.6rem;
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
   animation: fade-in 0.8s ease 0.4s both;
   color: var(--text);
 }
@@ -3182,4 +3186,76 @@ body.theme-light .panel--section:not(:last-of-type)::after {
   .panel--section {
     padding: 48px 1.5rem;
   }
+}
+/* =====================================================
+   LISIBILITÉ GLOBALE — overrides tailles de texte
+   ===================================================== */
+
+/* Texte principal des sections */
+.section-body,
+.section-body p,
+.section-body li,
+.section-body ul,
+.section-body ol {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Titres de section */
+.section-title  { font-size: clamp(1.4rem, 3vw, 2rem); }
+.section-subtitle { font-size: 1rem; }
+.section-number { font-size: 0.75rem; }
+
+/* Profil, parcours, hero */
+.hero-subtitle  { font-size: 1.05rem; }
+.hero-list li   { font-size: 1rem; }
+.profile-list li { font-size: 1rem; }
+.timeline-title  { font-size: 1.05rem; }
+.timeline-desc   { font-size: 1rem; }
+.timeline-school { font-size: 0.9rem; }
+
+/* BTS — exemple blocks, blocs compétences */
+.example-text p,
+.example-text li  { font-size: 1rem; }
+.bloc-text p,
+.bloc-column li   { font-size: 0.95rem; }
+.example-title    { font-size: 1.15rem; }
+
+/* Veille */
+.veille-card p,
+.veille-list li,
+.tool-description,
+.source-description { font-size: 1rem; }
+.tool-name          { font-size: 1rem; }
+.source-name        { font-size: 1rem; }
+
+/* Certifications */
+.certif-card p,
+.certif-card li      { font-size: 1rem; }
+.certif-title        { font-size: 1.15rem; }
+.certif-cisco-desc   { font-size: 1rem; }
+.certif-cisco-issuer { font-size: 0.85rem; }
+
+/* Contact */
+.contact-text { font-size: 1rem; }
+.form-group label { font-size: 0.95rem; }
+.form-group input,
+.form-group textarea { font-size: 1rem; }
+
+/* Entreprise / Club Med */
+.profile-card li,
+.profile-main p,
+.profile-main li { font-size: 1rem; }
+
+/* Sidebar nav — un peu plus lisible */
+.nav-btn__label   { font-size: 0.85rem; }
+.nav-sub-btn span { font-size: 0.83rem; }
+
+/* Réajustement responsive : sur petit écran garder cohérence */
+@media (max-width: 768px) {
+  html { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 16px; }
 }

@@ -865,3 +865,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+// =========================================================
+// INGETIS TAB — Compteurs animés + activation depuis sidebar
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Compteur animé ──────────────────────────────────────
+  function animateIngetisCounter(el) {
+    const target   = parseInt(el.dataset.ingetisTarget, 10);
+    const prefix   = el.dataset.ingetisPrefix  || '';
+    const suffix   = el.dataset.ingetisSuffix  || '';
+    const duration = 1200;
+    const start    = performance.now();
+
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Lance les compteurs quand le tab INGETIS devient visible
+  function triggerIngetisCounters() {
+    document.querySelectorAll('.ingetis-stat-num[data-ingetis-target]').forEach(el => {
+      animateIngetisCounter(el);
+    });
+  }
+
+  // ── Activation du tab depuis la sidebar ─────────────────
+  // Quand on clique sur le bouton sidebar INGETIS (data-open-tab="bts-ingetis"),
+  // on active le bon onglet BTS en plus du scroll.
+  document.querySelectorAll('[data-open-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-open-tab');
+
+      const btsTabs     = document.querySelectorAll('.bts-tab');
+      const btsContents = document.querySelectorAll('.bts-tab-content');
+
+      btsTabs.forEach(t => {
+        t.classList.remove('bts-tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      btsContents.forEach(c => c.classList.remove('bts-tab-content--active'));
+
+      const targetTab     = document.querySelector(`.bts-tab[data-tab="${tabId}"]`);
+      const targetContent = document.querySelector(`[data-tab-content="${tabId}"]`);
+
+      if (targetTab) {
+        targetTab.classList.add('bts-tab--active');
+        targetTab.setAttribute('aria-selected', 'true');
+      }
+      if (targetContent) {
+        targetContent.classList.add('bts-tab-content--active');
+        // Lance les compteurs INGETIS si c'est cet onglet
+        if (tabId === 'bts-ingetis') triggerIngetisCounters();
+      }
+    });
+  });
+
+  // ── Lance les compteurs aussi lors du clic sur l'onglet BTS ─
+  document.querySelectorAll('.bts-tab[data-tab="bts-ingetis"]').forEach(tab => {
+    tab.addEventListener('click', triggerIngetisCounters);
+  });
+
+});

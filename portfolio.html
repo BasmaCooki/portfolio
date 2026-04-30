@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
     rel="stylesheet" />
 
   <!-- Font Awesome -->
@@ -133,13 +133,17 @@
         </button>
 
         <div id="submenu-bts" class="nav-submenu">
-          <button class="nav-sub-btn" data-tab="ingetis">
+          <button class="nav-sub-btn" data-target="#bts">
+            <span class="nav-sub-btn__line"></span>
+            <span><i class="fa fa-graduation-cap"></i> Formation</span>
+          </button>
+          <button class="nav-sub-btn" data-target="#bts" data-open-tab="bts-ingetis">
             <span class="nav-sub-btn__line"></span>
             <span><i class="fa fa-university"></i> INGETIS</span>
           </button>
-          <button class="nav-sub-btn" data-target="#bts">
+          <button class="nav-sub-btn" data-target="#bts" data-open-tab="docs-tp">
             <span class="nav-sub-btn__line"></span>
-            <span><i class="fa fa-university"></i> Formation</span>
+            <span><i class="fa fa-book"></i> Documentation</span>
           </button>
           <button class="nav-sub-btn" data-target="#bts-e6">
             <span class="nav-sub-btn__line"></span>
@@ -173,12 +177,6 @@
   </button>
 </div>
 
-
-        <!-- AUTRES LIENS SIMPLES -->
-        <button class="nav-btn" data-target="#docs">
-          <span class="nav-btn__icon"><i class="fa fa-book"></i></span>
-          <span class="nav-btn__label">Documentation</span>
-        </button>
 
         <!-- Veille techno -->
         <button class="nav-btn" data-target="#veille">
@@ -757,8 +755,14 @@
       <button class="bts-tab bts-tab--active" data-tab="formation" role="tab" aria-selected="true">
         <i class="fas fa-graduation-cap"></i> Formation
       </button>
+      <button class="bts-tab" data-tab="bts-ingetis" role="tab" aria-selected="false">
+        <i class="fas fa-university"></i> INGETIS
+      </button>
       <button class="bts-tab" data-tab="competences" role="tab" aria-selected="false">
         <i class="fas fa-th-large"></i> Compétences
+      </button>
+      <button class="bts-tab" data-tab="docs-tp" role="tab" aria-selected="false">
+        <i class="fas fa-book"></i> Documentation
       </button>
     </div>
 
@@ -823,101 +827,185 @@
 
 
 <!-- ── ONGLET : INGETIS ── -->
-<div class="bts-tab-content" data-tab-content="ingetis" role="tabpanel">
-  <div class="section-body">
-    <p><strong>INGETIS</strong> est une école spécialisée dans les métiers de l’informatique,
-    proposant des formations en alternance orientées vers le développement,
-    les systèmes et réseaux ainsi que la cybersécurité.</p>
+    <div class="bts-tab-content" data-tab-content="bts-ingetis" role="tabpanel">
+      <div class="ingetis-section">
 
-    <p>L’établissement met l’accent sur la <strong>professionnalisation</strong> avec des projets concrets,
-    des stages et de l’alternance, permettant une insertion rapide dans le monde du travail.</p>
-  </div>
+        <div class="ingetis-header">
 
-  <div class="section-hero-media reveal">
-    <img src="images/ingetis.jpg" alt="Illustration INGETIS" class="section-hero-image" />
-  </div>
+          <!-- Logo : remplace images/ingetis-logo.png par ton fichier -->
+          <div class="ingetis-logo-wrap">
+            <img src="images/ingetis.png" alt="Logo INGETIS" class="ingetis-logo" />
+          </div>
 
-  <div class="section-examples">
-    <article class="example-block">
-      <div class="example-text">
-        <h3 class="example-title">Formation en alternance</h3>
-        <p>Les étudiants alternent entre école et entreprise afin d’acquérir une expérience professionnelle solide.</p>
-        <ul>
-          <li>Contrat d’apprentissage ou professionnalisation</li>
-          <li>Expérience en entreprise</li>
-          <li>Mise en pratique directe</li>
-        </ul>
+          <div class="ingetis-header-info">
+            <p class="ingetis-eyebrow">// formation · Paris 5ᵉ</p>
+            <h2 class="ingetis-title">Ingetis — École d’<span>Informatique</span></h2>
+            <p class="ingetis-subtitle">
+              École d’ingénierie informatique reconnue par l’État, formant des professionnels
+              du numérique depuis plus de 15 ans. Alternance dès la 1ʳᵉ année, coaching
+              individuel et 94&nbsp;% d’embauche à 6 mois.
+            </p>
+            <p class="ingetis-address">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              62 bis Rue Gay-Lussac, 75005 Paris, France
+            </p>
+          </div>
+
+        </div><!-- /ingetis-header -->
+
+        <div class="ingetis-badges">
+          <span class="ingetis-badge">Certifiée CFA</span>
+          <span class="ingetis-badge">Label Qualiopi</span>
+          <span class="ingetis-badge">RNCP niv. 6 &amp; 7</span>
+          <span class="ingetis-badge">Parcoursup</span>
+          <span class="ingetis-badge">+15 ans d’expérience</span>
+          <span class="ingetis-badge">500+ entreprises partenaires</span>
+        </div>
+
+        <p class="ingetis-section-label">Chiffres clés</p>
+        <div class="ingetis-stats-grid">
+          <div class="ingetis-stat-card">
+            <div class="ingetis-stat-num" data-ingetis-target="94" data-ingetis-suffix="%">0%</div>
+            <div class="ingetis-stat-label">Taux d’embauche à 6 mois</div>
+          </div>
+          <div class="ingetis-stat-card">
+            <div class="ingetis-stat-num">40 k€</div>
+            <div class="ingetis-stat-label">Salaire moyen après 6 mois</div>
+          </div>
+          <div class="ingetis-stat-card">
+            <div class="ingetis-stat-num" data-ingetis-target="20" data-ingetis-prefix="~">0</div>
+            <div class="ingetis-stat-label">Étudiants par classe</div>
+          </div>
+          <div class="ingetis-stat-card">
+            <div class="ingetis-stat-num">0 €</div>
+            <div class="ingetis-stat-label">Reste à charge en alternance</div>
+          </div>
+        </div>
+
+        <p class="ingetis-section-label">Filières &amp; parcours</p>
+        <div class="ingetis-tracks-grid">
+
+          <div class="ingetis-track-card">
+            <div class="ingetis-track-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="ingetis-track-name">Développement</div>
+            <div class="ingetis-track-levels">
+              <span class="ingetis-track-level">BTS SIO SLAM</span>
+              <span class="ingetis-track-level">Prépa Bachelor</span>
+              <span class="ingetis-track-level">Bachelor Développement</span>
+              <span class="ingetis-track-level">Mastère Dev Logiciels</span>
+            </div>
+          </div>
+
+          <div class="ingetis-track-card ingetis-track-card--active">
+            <div class="ingetis-track-icon ingetis-track-icon--active">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="ingetis-track-name">Cybersécurité</div>
+            <div class="ingetis-track-levels">
+              <span class="ingetis-track-level ingetis-track-level--highlight">BTS SIO SISR ✓</span>
+              <span class="ingetis-track-level">Prépa Bachelor</span>
+              <span class="ingetis-track-level">Bachelor Cyber</span>
+              <span class="ingetis-track-level">Mastère Cybersécurité</span>
+            </div>
+          </div>
+
+          <div class="ingetis-track-card">
+            <div class="ingetis-track-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div class="ingetis-track-name">Data / IA</div>
+            <div class="ingetis-track-levels">
+              <span class="ingetis-track-level">BTS SIO SLAM</span>
+              <span class="ingetis-track-level">Prépa Bachelor</span>
+              <span class="ingetis-track-level">Bachelor Data Engineer</span>
+              <span class="ingetis-track-level">Mastère Data Engineer</span>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="ingetis-section-label">Points forts</p>
+        <div class="ingetis-perks-grid">
+          <div class="ingetis-perk">
+            <div class="ingetis-perk-dot"></div>
+            <p class="ingetis-perk-text">Labo de pointe — serveurs Cisco, firewalls Fortigate, IoT &amp; cloud</p>
+          </div>
+          <div class="ingetis-perk">
+            <div class="ingetis-perk-dot"></div>
+            <p class="ingetis-perk-text">Coaching CV, entretiens &amp; posture professionnelle inclus</p>
+          </div>
+          <div class="ingetis-perk">
+            <div class="ingetis-perk-dot"></div>
+            <p class="ingetis-perk-text">Vie étudiante : BDE, hackathons, e-sport, afterworks</p>
+          </div>
+          <div class="ingetis-perk">
+            <div class="ingetis-perk-dot"></div>
+            <p class="ingetis-perk-text">Réseau alumni actif : ingénieurs, experts cyber, tech leads</p>
+          </div>
+        </div>
+
+        <div class="ingetis-cta-wrap">
+          <a class="ingetis-cta-link" href="https://ingetis.com" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            visiter ingetis.com ↗
+          </a>
+        </div>
+
       </div>
-    </article>
+    </div>
 
-    <article class="example-block">
-      <div class="example-text">
-        <h3 class="example-title">Domaines enseignés</h3>
-        <ul>
-          <li>Développement web et logiciel</li>
-          <li>Administration systèmes et réseaux</li>
-          <li>Cybersécurité</li>
-          <li>Gestion de projet IT</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-</div>
-
-
-    
-
-    <!-- ── ONGLET : FORMATION ── -->
-    <div class="bts-tab-content bts-tab-content--active" data-tab-content="formation" role="tabpanel">
+    <!-- ── ONGLET : DOCUMENTATION ── -->
+    <div class="bts-tab-content" data-tab-content="docs-tp" role="tabpanel">
       <div class="section-body">
-        <p>Le <strong>BTS SIO</strong> forme des professionnels capables d’installer, configurer, sécuriser
-        et maintenir des solutions informatiques en entreprise. La formation est orientée <strong>terrain</strong> :
-        ateliers, projets, mises en situation et travail en équipe.</p>
-        <p>Elle développe des compétences en <strong>administration</strong>, <strong>réseaux</strong>,
-        <strong>cybersécurité</strong> et/ou <strong>développement</strong> selon l’option choisie.
-        À l’issue du BTS : entrée sur le marché du travail ou poursuite en licence, bachelor ou école.</p>
+        <p>Travaux pratiques et procédures réalisés en cours de formation BTS SIO SISR.</p>
       </div>
+      <div class="docs-two-columns">
 
-      <div class="section-hero-media reveal">
-        <img src="images/btssio.jpg" alt="Illustration BTS SIO" class="section-hero-image" />
-      </div>
+        <div class="docs-column">
+          <h3 class="column-title"><i class="fa-solid fa-server"></i> Système</h3>
+          <div class="tp-list">
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Windows Server</h4>
+                <p>Configuration et administration Windows Server.</p>
+              </div>
+              <a href="documents/TP1WindowsServer.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
+            </div>
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Déploiement Système</h4>
+                <p>Création d'une machine propre (Master).</p>
+              </div>
+              <a href="documents/Creation-machine_propre_TPDHCP.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
+            </div>
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Serveur DHCP 2019</h4>
+                <p>Installation et rôle DHCP sous Windows Server.</p>
+              </div>
+              <a href="documents/Serveur DHCP 2019.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
+            </div>
+          </div>
+        </div>
 
-      <div class="section-examples">
-        <article class="example-block">
-          <div class="example-text">
-            <h3 class="example-title">Option SISR – Infrastructure, Systèmes &amp; Réseaux</h3>
-            <p>Centrée sur l’<strong>administration</strong> et la <strong>sécurité</strong> des infrastructures :
-            serveurs, réseaux, postes et services.</p>
-            <ul>
-              <li>Administration Windows / Linux, Active Directory</li>
-              <li>Réseaux : VLAN, DHCP/DNS, routage, VPN, pare-feu</li>
-              <li>Virtualisation &amp; déploiement (Hyper-V, VMware…)</li>
-              <li>Scripts : <strong>PowerShell</strong>, <strong>Bash</strong></li>
-              <li>Supervision, Intune, gestion de parc</li>
-            </ul>
+        <div class="docs-column">
+          <h3 class="column-title"><i class="fa-solid fa-network-wired"></i> Réseau</h3>
+          <div class="tp-list">
+            <div class="tp-item">
+              <div class="tp-info">
+                <h4>Switch &amp; Routeur</h4>
+                <p>Configuration de base des équipements Cisco.</p>
+              </div>
+              <a href="documents/Configuration de base _ Switch - Routeur.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
+            </div>
           </div>
-          <div class="example-media">
-            <img src="images/network-Diagram.gif" alt="Illustration SISR" class="example-image" />
-          </div>
-        </article>
+        </div>
 
-        <article class="example-block">
-          <div class="example-text">
-            <h3 class="example-title">Option SLAM – Solutions Logicielles &amp; Applications</h3>
-            <p>Centrée sur la <strong>conception</strong> et le <strong>développement</strong>
-            d’applications web et métier.</p>
-            <ul>
-              <li>Front : <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong></li>
-              <li>Back : <strong>PHP</strong>, <strong>Java</strong>, <strong>Python</strong>, <strong>C#</strong>…</li>
-              <li>Bases de données : <strong>SQL</strong>, MySQL, PostgreSQL…</li>
-              <li>Conception (UML), tests, maintenance</li>
-              <li>Sécurité applicative (XSS, SQLi…)</li>
-            </ul>
-          </div>
-          <div class="example-media">
-            <img src="images/slam.gif" alt="Illustration SLAM" class="example-image" />
-          </div>
-        </article>
       </div>
     </div>
 
@@ -1344,6 +1432,9 @@
           </div>
         </article>
       </div>
+    </div>
+  </div>
+</section>
 
 <!-- ========= ENTREPRISE - DOCUMENTATION ========= -->
 <section id="entreprise-docs" class="panel panel--section">
@@ -1389,70 +1480,6 @@
           <a href="documents/Procédure réinstallation Office365.pdf" target="_blank" rel="noopener noreferrer" class="doc-btn">Consulter</a>
         </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ========= DOCUMENTATION ========= -->
-<section id="docs" class="panel panel--section">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-number">08</span>
-      <h2 class="section-title">Documentation & TP</h2>
-      <p class="section-subtitle">Travaux pratiques Système & Réseau.</p>
-    </div>
-
-    <div class="section-body">
-      <div class="docs-two-columns">
-        
-        <div class="docs-column">
-          <h3 class="column-title"><i class="fa-solid fa-server"></i> Système</h3>
-          <div class="tp-list">
-            
-            <div class="tp-item">
-              <div class="tp-info">
-                <h4>Windows Server</h4>
-                <p>Configuration et administration Windows Server.</p>
-              </div>
-              <a href="documents/TP1WindowsServer.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
-            </div>
-
-            <div class="tp-item">
-              <div class="tp-info">
-                <h4>Déploiement Système</h4>
-                <p>Création d'une machine propre (Master).</p>
-              </div>
-              <a href="documents/Creation-machine_propre_TPDHCP.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
-            </div>
-
-            <div class="tp-item">
-              <div class="tp-info">
-                <h4>Serveur DHCP 2019</h4>
-                <p>Installation et rôle DHCP sous Windows Server.</p>
-              </div>
-              <a href="documents/Serveur DHCP 2019.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="docs-column">
-          <h3 class="column-title"><i class="fa-solid fa-network-wired"></i> Réseau</h3>
-          <div class="tp-list">
-            
-            <div class="tp-item">
-              <div class="tp-info">
-                <h4>Switch & Routeur</h4>
-                <p>Configuration de base des équipements Cisco.</p>
-              </div>
-              <a href="documents/Configuration de base _ Switch - Routeur.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn-view">Voir</a>
-            </div>
-
-
-          </div>
-        </div>
-
-      </div>
     </div>
   </div>
 </section>
@@ -1773,75 +1800,49 @@
         </div>
       </article>
 
-      <!-- Certifications en cours / À venir -->
+      <!-- Certificats obtenus -->
       <div class="certif-separator">
         <h3 class="certif-section-title">
-          <i class="fa fa-certificate"></i> Certifications professionnelles en cours / À venir
+          <i class="fa fa-certificate"></i> Certificats obtenus
         </h3>
-        <p class="certif-section-subtitle">
-          Certifications officielles reconnues internationalement avec examens validant les compétences SISR
+        <p class="certif-section-subtitle">Certifications officielles complétées</p>
+      </div>
+
+      <article class="certif-card certif-card--cisco">
+        <div class="certif-cisco-header">
+          <div class="certif-cisco-logo">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div class="certif-cisco-meta">
+            <h3 class="certif-title">Cisco Introduction to Cybersecurity</h3>
+            <span class="certif-cisco-issuer">
+              <i class="fa fa-building"></i> Cisco Networking Academy
+            </span>
+          </div>
+          <span class="certif-cisco-status">
+            <i class="fa fa-check-circle"></i> Obtenu
+          </span>
+        </div>
+        <!-- Aperçu du certificat : remplace images/cisco-certif.png par ton fichier -->
+        <div class="certif-preview certif-preview--cisco">
+          <a href="images/cisco-certif.png" target="_blank" rel="noopener noreferrer">
+            <img src="images/cisco-certif.png" alt="Certificat Cisco Introduction to Cybersecurity" class="certif-image" />
+          </a>
+        </div>
+
+        <p class="certif-cisco-desc">
+          Formation officielle Cisco couvrant les fondamentaux de la cybersécurité :
+          menaces et vulnérabilités, protection des données personnelles, et meilleures
+          pratiques de sécurité pour les réseaux et les systèmes.
         </p>
-      </div>
-
+        <div class="certif-cisco-tags">
+          <span class="certif-cisco-tag">Sécurité réseau</span>
+          <span class="certif-cisco-tag">Menaces cyber</span>
+          <span class="certif-cisco-tag">Cisco NetAcad</span>
+          <span class="certif-cisco-tag">Gratuit</span>
         </div>
-            </div>
-          </div>
+      </article>
 
-
-      <!-- Certifications 100% GRATUITES -->
-      <div class="priority-box priority-box--free">
-        <div class="priority-header">
-          <i class="fa fa-gift"></i>
-          <h4>Certifications 100% GRATUITES à faire en priorité</h4>
-        </div>
-        <p class="priority-subtitle">Commence par celles-ci sans investissement financier</p>
-
-        <div class="free-certif-grid">
-          <div class="free-certif-item">
-            <i class="fa-brands fa-microsoft" style="color: #0078D4;"></i>
-            <h5>Azure Fundamentals (AZ-900)</h5>
-            <p>Cloud computing Microsoft</p>
-            <span class="free-badge">✅ En cours</span>
-          </div>
-
-          <div class="free-certif-item">
-            <i class="fa fa-shield" style="color: #1a73e8;"></i>
-            <h5>(ISC)² Certified in Cybersecurity</h5>
-            <p>Certification cyber gratuite par (ISC)²</p>
-            <span class="free-badge">🆕 Nouveau 2023</span>
-          </div>
-
-          <div class="free-certif-item">
-            <i class="fa-brands fa-gitlab" style="color: #fc6d26;"></i>
-            <h5>GitLab Certified Associate</h5>
-            <p>CI/CD avec GitLab</p>
-            <span class="free-badge">💯 Gratuit</span>
-          </div>
-
-          <div class="free-certif-item">
-            <i class="fa fa-cogs" style="color: #d24939;"></i>
-            <h5>Jenkins Certified Engineer</h5>
-            <p>Pipeline CI/CD Jenkins</p>
-            <span class="free-badge">💯 Gratuit</span>
-          </div>
-
-          <div class="free-certif-item">
-            <i class="fa fa-shield" style="color: #049fd9;"></i>
-            <h5>Cisco Introduction to Cybersecurity</h5>
-            <p>Fondamentaux cybersécurité</p>
-            <span class="free-badge">💯 Gratuit</span>
-          </div>
-
-          <div class="free-certif-item">
-            <i class="fa fa-chart-line" style="color: #f46800;"></i>
-            <h5>Prometheus & Grafana Associate</h5>
-            <p>Monitoring et observabilité</p>
-            <span class="free-badge">💯 Gratuit</span>
-          </div>
-        </div>
-      </div>
-
-      </div>
     </div>
   </div>
 </section>
