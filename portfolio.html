@@ -1828,21 +1828,32 @@
             <i class="fa fa-check-circle"></i> Obtenu
           </span>
         </div>
-        <!-- Aperçu du certificat (PDF) -->
-        <div class="certif-preview certif-preview--cisco">
-          <iframe
-            src="documents/Introduction-to-Cybersecurity.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-            class="e6-pdf-iframe"
-            title="Certificat Cisco Introduction to Cybersecurity"
-            style="width:100%; height:480px; border:0; border-radius:8px;">
-          </iframe>
-        </div>
+        <!-- Aperçu du certificat -->
+        <a
+          href="documents/Introduction-to-Cybersecurity.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="certif-cisco-preview"
+          aria-label="Ouvrir le certificat Cisco au format PDF"
+        >
+          <img
+            src="images/cisco-certif.png"
+            alt="Certificat Cisco Introduction to Cybersecurity délivré par Cisco Networking Academy"
+            loading="lazy"
+          />
+          <span class="certif-cisco-preview__overlay">
+            <span class="certif-cisco-preview__hint">
+              <i class="fa fa-search-plus"></i> Agrandir le PDF
+            </span>
+          </span>
+        </a>
 
         <p class="certif-cisco-desc">
           Formation officielle Cisco couvrant les fondamentaux de la cybersécurité :
           menaces et vulnérabilités, protection des données personnelles, et meilleures
           pratiques de sécurité pour les réseaux et les systèmes.
         </p>
+
         <div class="certif-cisco-tags">
           <span class="certif-cisco-tag">Sécurité réseau</span>
           <span class="certif-cisco-tag">Menaces cyber</span>
@@ -1850,11 +1861,20 @@
           <span class="certif-cisco-tag">Gratuit</span>
         </div>
 
-        <div class="certif-cisco-actions" style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <a href="documents/Introduction-to-Cybersecurity.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <div class="certif-cisco-actions">
+          <a
+            href="documents/Introduction-to-Cybersecurity.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="certif-cisco-btn certif-cisco-btn--primary"
+          >
             <i class="fa fa-eye"></i> Voir le certificat
           </a>
-          <a href="documents/Introduction-to-Cybersecurity.pdf" download="Cisco_Introduction_to_Cybersecurity_GUETTOUCHE.pdf" class="btn-ghost">
+          <a
+            href="documents/Introduction-to-Cybersecurity.pdf"
+            download="Cisco_Introduction_to_Cybersecurity_GUETTOUCHE.pdf"
+            class="certif-cisco-btn certif-cisco-btn--ghost"
+          >
             <i class="fa fa-download"></i> Télécharger (PDF)
           </a>
         </div>
