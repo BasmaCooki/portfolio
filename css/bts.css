@@ -1472,59 +1472,41 @@ body.theme-light .e5-preview {
   box-shadow: 0 0 40px var(--primary-glow), 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-/* ---- Mini-aperçu PDF ---- */
-/* iframe rendue 3× sa taille puis réduite à 33% → thumbnail fidèle */
+/* ---- Aperçu PDF (image) ---- */
 .e6-pdf-preview {
-  width: 280px;
-  min-width: 280px;
+  width: 320px;
+  min-width: 320px;
   overflow: hidden;
   position: relative;
-  background: var(--bg-elevated);
+  background: #fff;
   cursor: pointer;
   flex-shrink: 0;
   border-right: 1px solid rgba(26, 246, 196, 0.12);
-}
-
-.e6-pdf-iframe {
-  width: 300%;
-  height: 660px;
-  border: none;
-  transform: scale(0.333);
-  transform-origin: 0 0;
-  pointer-events: none;
-  display: block;
-}
-
-/* Overlay cliquable au-dessus de l'iframe */
-.e6-pdf-preview-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 16px;
-  background: linear-gradient(to bottom, transparent 45%, rgba(0, 0, 0, 0.7) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.e6-pdf-preview:hover .e6-pdf-preview-overlay {
-  opacity: 1;
-}
-
-.e6-pdf-preview-hint {
-  font-size: 0.78rem;
-  color: var(--primary);
-  font-weight: 600;
-  letter-spacing: 0.04em;
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.75);
-  padding: 5px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(26, 246, 196, 0.4);
+  justify-content: center;
+  padding: 18px;
+  transition: background 0.3s ease;
+}
+
+.e6-pdf-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  border-radius: 4px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.e6-pdf-preview:hover img {
+  transform: scale(1.03);
+}
+
+.e6-pdf-preview:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
 }
 
 /* ---- Informations + actions ---- */
@@ -2077,9 +2059,14 @@ body.theme-light .e6-pdf-modal-bar {
   .e6-pdf-preview {
     width: 100%;
     min-width: unset;
-    height: 200px;
+    height: auto;
     border-right: none;
     border-bottom: 1px solid rgba(26, 246, 196, 0.12);
+    padding: 20px;
+  }
+
+  .e6-pdf-preview img {
+    max-height: 320px;
   }
 
   .e6-synthese-info {

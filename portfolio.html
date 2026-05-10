@@ -1151,23 +1151,16 @@
     <!-- ── BLOC 1 : TABLEAU DE SYNTHÈSE ──────────────────── -->
     <div class="e6-synthese-card reveal">
 
-      <!-- Mini-aperçu PDF cliquable (ouvre la modale) -->
+      <!-- Aperçu PDF cliquable (ouvre la modale) -->
       <div class="e6-pdf-preview"
            onclick="openE6PdfModal('documents/tableau-de-synthese.pdf', 'Tableau de synthèse E6')"
            role="button"
+           tabindex="0"
            aria-label="Visualiser le tableau de synthèse">
-        <iframe
-          src="documents/tableau-de-synthese.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-          class="e6-pdf-iframe"
-          scrolling="no"
-          tabindex="-1"
-          aria-hidden="true">
-        </iframe>
-        <div class="e6-pdf-preview-overlay">
-          <span class="e6-pdf-preview-hint">
-            <i class="fas fa-eye"></i> Cliquer pour agrandir
-          </span>
-        </div>
+        <img
+          src="images/tableau-synthese.png"
+          alt="Aperçu du tableau de synthèse des réalisations professionnelles BTS SIO SISR"
+          loading="lazy" />
       </div>
 
       <!-- Infos + actions -->
