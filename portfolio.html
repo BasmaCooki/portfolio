@@ -111,6 +111,10 @@
         </button>
 
         <div id="submenu-accueil" class="nav-submenu">
+          <button class="nav-sub-btn" data-target="#accueil">
+            <span class="nav-sub-btn__line"></span>
+            <span><i class="fa fa-home"></i> Accueil</span>
+          </button>
           <button class="nav-sub-btn nav-sub-btn--active" data-target="#profil">
             <span class="nav-sub-btn__line"></span>
             <span><i class="fa fa-user"></i> Profil</span>
@@ -228,7 +232,7 @@
         </div>
 
         <footer class="sidebar__footer">
-          <p>© Copyright 2025</p>
+          <p>© Copyright 2026</p>
           <p>Designed by <span>GUETTOUCHE Basma</span></p>
           <p>Tous droits réservés</p>
         </footer>
@@ -658,10 +662,10 @@
           </p>
 
           <div class="cv-actions">
-            <a href="documents/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <a href="documents/cv-Basma-GUETTOUCHE.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
               <i class="fa fa-eye"></i> Voir mon CV
             </a>
-            <a href="documents/cv.pdf" download="CV_Basma_Guettouche.pdf" class="btn-ghost">
+            <a href="documents/cv-Basma-GUETTOUCHE.pdf" download="CV_Basma_Guettouche.pdf" class="btn-ghost">
               <i class="fa fa-download"></i> Télécharger (PDF)
             </a>
           </div>
@@ -1305,7 +1309,7 @@
 <section id="entreprise-alternance" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-number">06</span>
+      <span class="section-number">04</span>
       <h2 class="section-title">Mon alternance</h2>
       <p class="section-subtitle">
         Support informatique au Club Med - IT Kiosk Informatique
@@ -1428,7 +1432,7 @@
             </p>
           </div>
           <div class="example-media">
-            <img src="images/clubmed-suivi.jpg" alt="Illustration du suivi des tickets ou de l'inventaire" class="example-image" />
+            <img src="images/skills.gif" alt="Illustration du suivi des tickets ou de l'inventaire" class="example-image" />
           </div>
         </article>
       </div>
@@ -1440,7 +1444,7 @@
 <section id="entreprise-docs" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-number">07</span>
+      <span class="section-number">05</span>
       <h2 class="section-title">Documentation et procédures</h2>
       <p class="section-subtitle">Consultation des procédures techniques (anonymisées)</p>
     </div>
@@ -1480,6 +1484,7 @@
           <a href="documents/Procédure réinstallation Office365.pdf" target="_blank" rel="noopener noreferrer" class="doc-btn">Consulter</a>
         </div>
 
+      </div>
     </div>
   </div>
 </section>
@@ -1488,7 +1493,7 @@
 <section id="veille" class="panel panel--section">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-number">09</span>
+      <span class="section-number">06</span>
       <h2 class="section-title">Veille technologique</h2>
       <p class="section-subtitle">
         Cybersécurité des identités : MFA, Zero Trust et protection des comptes utilisateurs
@@ -1823,11 +1828,14 @@
             <i class="fa fa-check-circle"></i> Obtenu
           </span>
         </div>
-        <!-- Aperçu du certificat : remplace images/cisco-certif.png par ton fichier -->
+        <!-- Aperçu du certificat (PDF) -->
         <div class="certif-preview certif-preview--cisco">
-          <a href="images/cisco-certif.png" target="_blank" rel="noopener noreferrer">
-            <img src="images/cisco-certif.png" alt="Certificat Cisco Introduction to Cybersecurity" class="certif-image" />
-          </a>
+          <iframe
+            src="documents/Introduction-to-Cybersecurity.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+            class="e6-pdf-iframe"
+            title="Certificat Cisco Introduction to Cybersecurity"
+            style="width:100%; height:480px; border:0; border-radius:8px;">
+          </iframe>
         </div>
 
         <p class="certif-cisco-desc">
@@ -1840,6 +1848,15 @@
           <span class="certif-cisco-tag">Menaces cyber</span>
           <span class="certif-cisco-tag">Cisco NetAcad</span>
           <span class="certif-cisco-tag">Gratuit</span>
+        </div>
+
+        <div class="certif-cisco-actions" style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="documents/Introduction-to-Cybersecurity.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <i class="fa fa-eye"></i> Voir le certificat
+          </a>
+          <a href="documents/Introduction-to-Cybersecurity.pdf" download="Cisco_Introduction_to_Cybersecurity_GUETTOUCHE.pdf" class="btn-ghost">
+            <i class="fa fa-download"></i> Télécharger (PDF)
+          </a>
         </div>
       </article>
 
@@ -1867,9 +1884,18 @@
               <span class="contact-icon"><i class="fa fa-envelope"></i></span>
               <span class="contact-text">basma.guettouche.etudiant@gmail.com</span>
             </li>
+            <!-- Numéro de téléphone : à renseigner -->
+            <!--
             <li>
               <span class="contact-icon"><i class="fa fa-phone"></i></span>
               <span class="contact-text">07 00 00 00 00</span>
+            </li>
+            -->
+            <li>
+              <span class="contact-icon"><i class="fa-brands fa-linkedin"></i></span>
+              <span class="contact-text">
+                <a href="https://www.linkedin.com/in/basma-guettouche-a41531244/" target="_blank" rel="noopener noreferrer">linkedin.com/in/basma-guettouche</a>
+              </span>
             </li>
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
@@ -1891,6 +1917,11 @@
         <div class="contact-col contact-col--form">
           <h3 class="example-title">M'envoyer un message</h3>
 
+          <!--
+            ⚠️ ACTION REQUISE : remplacer YOUR_WEB3FORMS_KEY par ta clé Web3Forms
+            (créer une clé gratuite sur https://web3forms.com/), sinon le formulaire
+            de contact ne fonctionnera pas.
+          -->
           <form class="contact-form" id="contactForm">
             <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
             <input type="hidden" name="subject" value="Nouveau message depuis votre Portfolio">

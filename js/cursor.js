@@ -1,1 +1,0 @@
-// Curseur désactivé
